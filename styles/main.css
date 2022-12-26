@@ -25,6 +25,7 @@
   max-width: 614px;
 
   margin: 0 auto;
+  margin-left: 10px;
   display: flex;
   flex-direction: column;
 }
@@ -37,6 +38,9 @@
 
   position: relative;
   overflow: hidden;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  border: 1px solid black;
 }
 
 .stories__content {
@@ -126,3 +130,76 @@
 }
 
 /* Post */
+
+.post {
+  background-color: white;
+  padding: 15px;
+}
+
+.post .post__header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.post .post__header .post__profile {
+  display: flex;
+  align-items: center;
+}
+
+.post .post__header .post__profile .post__avatar {
+  width: 15%;
+  margin-right: 15px;
+}
+
+.post .post__header .post__profile .post__user {
+  font-weight: bolder;
+}
+
+.post .post__footer .post__buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.post .post__footer .post__buttons .post__indicators {
+  width: 80%;
+}
+
+.post .post__footer .post__infos {
+  display: flex;
+  flex-direction: column;
+}
+
+.post .post__footer .post__infos .post__likes {
+  display: flex;
+}
+
+.post .post__footer .post__infos .post__likes span {
+  display: flex;
+  align-items: center;
+}
+
+.post .post__footer .post__infos .post__likes .post__likes-avatar {
+  width: 5%;
+  margin-right: 5px;
+}
+
+.post .post__footer .post__infos .post__likes a {
+  font-weight: bolder;
+  margin: 0 5px;
+}
+
+.post .post__footer .post__infos .post__description {
+  margin: 10px 0;
+}
+
+.post .post__footer .post__infos .post__description .post__name--underline {
+  font-weight: bolder;
+}
+
+.post .post__footer .post__infos .post__date-time {
+  margin: 10px 0;
+  color: rgb(153, 153, 153);
+}
