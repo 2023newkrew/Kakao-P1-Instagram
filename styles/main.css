@@ -1,6 +1,6 @@
 /* Main Content */
 .main-container {
-  background-color: #ffffff;
+  background-color: var(--primary);
 
   margin-top: 44px;
   margin-bottom: 44px;
@@ -17,7 +17,7 @@
 
   margin: 0 auto;
   display: flex;
-  background-color: rgb(246, 246, 246);
+  background-color: var(--secondary);
 }
 
 .content {
@@ -32,7 +32,7 @@
 
 .stories {
   width: 100%;
-  background-color: #ffffff;
+  background-color: var(--secondary);
   padding: 16px 0;
   flex-shrink: 0;
 
@@ -40,7 +40,9 @@
   overflow: hidden;
   margin-top: 40px;
   margin-bottom: 40px;
-  border: 1px solid black;
+
+  border-radius: 8px;
+  border: 1px solid var(--story-border);
 }
 
 .stories__content {
@@ -88,7 +90,7 @@
   height: 64px;
 
   fill: none;
-  stroke: #c7c7c7;
+  stroke: var(--story-border);
   stroke-width: 1.5;
 }
 
@@ -116,7 +118,7 @@
 .story__user {
   font-size: 12px;
   font-weight: 400;
-  color: #999999;
+  color: var(--text-light);
   text-transform: lowercase;
 
   max-width: 72px;
@@ -126,14 +128,16 @@
 }
 
 .story--has-story .story__user {
-  color: #262626;
+  color: var(--text-dark);
 }
 
 /* Post */
 
 .post {
-  background-color: white;
+  background-color: var(--secondary);
   padding: 15px;
+  border: 1px solid var(--story-border);
+  border-radius: 8px;
 }
 
 .post .post__header {
@@ -147,6 +151,14 @@
   align-items: center;
 }
 
+.post .post__header .post__more-options {
+  color: var(--text-dark);
+}
+
+img {
+  fill: var(--text-dark);
+}
+
 .post .post__header .post__profile .post__avatar {
   width: 15%;
   margin-right: 15px;
@@ -154,6 +166,7 @@
 
 .post .post__header .post__profile .post__user {
   font-weight: bolder;
+  color: var(--text-dark);
 }
 
 .post .post__footer .post__buttons {
@@ -164,7 +177,7 @@
 }
 
 .post .post__footer .post__buttons .post__indicators {
-  width: 80%;
+  flex-grow: 0.9;
 }
 
 .post .post__footer .post__infos {
@@ -174,6 +187,7 @@
 
 .post .post__footer .post__infos .post__likes {
   display: flex;
+  color: var(--text-dark);
 }
 
 .post .post__footer .post__infos .post__likes span {
@@ -193,6 +207,7 @@
 
 .post .post__footer .post__infos .post__description {
   margin: 10px 0;
+  color: var(--text-dark);
 }
 
 .post .post__footer .post__infos .post__description .post__name--underline {
@@ -201,5 +216,5 @@
 
 .post .post__footer .post__infos .post__date-time {
   margin: 10px 0;
-  color: rgb(153, 153, 153);
+  color: var(--text-light);
 }

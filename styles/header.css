@@ -2,7 +2,7 @@
 .header {
   width: 100%;
   height: 44px;
-  background-color: #ffffff;
+  background-color: var(--primary);
 
   display: flex;
   justify-content: center;
@@ -20,7 +20,7 @@
 
   width: 100%;
   height: 1px;
-  background-color: #dbdbdb;
+  background-color: var(--border);
 }
 
 .header__content {
@@ -58,6 +58,9 @@
 
   align-items: center;
   position: relative;
+
+  display: flex;
+  align-items: center;
 }
 
 .header__search img {
@@ -71,17 +74,17 @@
 .header__search input {
   width: 100%;
   height: 100%;
-  background-color: #fafafa;
+  background-color: var(--secondary);
 
   padding: 4px 10px 4px 28px;
-  border: 1px solid #dbdbdb;
+  border: 1px solid var(--border);
   border-radius: 4px;
   outline: none;
 
   font-size: 12px;
   font-weight: 300;
   text-decoration: none;
-  color: #999999;
+  color: var(--text-light);
 
   text-overflow: ellipsis;
   overflow: hidden;
@@ -89,7 +92,7 @@
 }
 
 .header__search input:focus {
-  color: #262626;
+  color: var(--text-dark);
 }
 
 .header__buttons {
@@ -132,4 +135,26 @@
 
   overflow: hidden;
   position: relative;
+}
+
+.header__theme-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.header__theme-button-sun {
+  display: none;
+}
+
+.header__theme-button-moon {
+  display: unset;
+}
+
+:root.darkTheme .header__theme-button {
+  display: unset;
+}
+
+:root.darkTheme .header__theme-button {
+  display: none;
 }

@@ -45,3 +45,31 @@ button {
   background: none;
   cursor: pointer;
 }
+
+html[class*="darkTheme"] img[src*="svg"] {
+  filter: brightness(0) invert(1);
+}
+
+:root {
+  --button-blue-color: #5e95e8;
+
+  --primary: #ffffff;
+  --secondary: #fafafa;
+  --border: #dbdbdb;
+
+  --story-border: #c7c7c7;
+
+  --text-dark: #262626;
+  --text-light: #999999;
+}
+
+:root.darkTheme {
+  --primary: #000000;
+  --secondary: #050505;
+  --border: #262626;
+
+  --story-border: #707070;
+
+  --text-dark: #fafafa;
+  --text-light: #999999;
+}

@@ -4,7 +4,7 @@
 
   padding: 20px;
   padding-top: 60px;
-  padding-left: 40px;
+  padding-left: 30px;
 }
 
 .side-menu .side-menu__user-profile {
@@ -15,7 +15,7 @@
 }
 
 .side-menu .side-menu__user-profile .side-menu__user-avatar {
-  width: 30%;
+  width: 20%;
   margin-right: 10px;
 }
 
@@ -27,15 +27,16 @@
 
 .side-menu .side-menu__user-profile .side-menu__user-info a {
   font-weight: bolder;
+  color: var(--text-dark);
 }
 
 .side-menu .side-menu__user-profile .side-menu__user-info span {
-  color: rgb(153, 153, 153);
+  color: var(--text-light);
 }
 
 .side-menu .side-menu__user-profile .side-menu__user-button {
   width: 15%;
-  color: rgb(94, 149, 232);
+  color: var(--button-blue-color);
   font-weight: bolder;
 }
 
@@ -54,11 +55,12 @@
 }
 
 .side-menu .side-menu__suggestions-section .side-menu__suggestions-header h2 {
-  color: rgb(153, 153, 153);
+  color: var(--text-light);
 }
 
 .side-menu .side-menu__suggestions-section .side-menu__suggestions-header button {
   font-weight: bolder;
+  color: var(--text-dark);
 }
 
 .side-menu .side-menu__suggestions-section .side-menu__suggestions-content .side-menu__suggestion {
@@ -67,7 +69,7 @@
 }
 
 .side-menu .side-menu__suggestions-section .side-menu__suggestions-content .side-menu__suggestion .side-menu__suggestion-avatar {
-  width: 20%;
+  width: 15%;
   margin-right: 10px;
 }
 
@@ -78,21 +80,27 @@
 
 .side-menu .side-menu__suggestions-section .side-menu__suggestions-content .side-menu__suggestion .side-menu__suggestion-info a {
   font-weight: bolder;
+  color: var(--text-dark);
 }
 
 .side-menu .side-menu__suggestions-section .side-menu__suggestions-content .side-menu__suggestion .side-menu__suggestion-info span {
-  color: rgb(153, 153, 153);
+  color: var(--text-light);
+
+  max-width: 190px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .side-menu .side-menu__suggestions-section .side-menu__suggestions-content .side-menu__suggestion .side-menu__suggestion-button {
-  color: rgb(94, 149, 232);
+  color: var(--button-blue-color);
   font-weight: bolder;
 }
 
 .side-menu__footer {
   display: flex;
   flex-direction: column;
-  color: rgb(153, 153, 153);
+  color: var(--text-light);
 }
 
 .side-menu__footer .side-menu__footer-list {
