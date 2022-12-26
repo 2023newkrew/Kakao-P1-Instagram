@@ -1,6 +1,6 @@
 /* Main Content */
 .main-container {
-  background-color: #FFFFFF;
+  background-color: var(--primary);
 
   margin-top: 44px;
   margin-bottom: 44px;
@@ -30,7 +30,7 @@
 
 .stories {
   width: 100%;
-  background-color: #FFFFFF;
+  background-color: var(--primary);
   padding: 16px 0;
   flex-shrink: 0;
 
@@ -83,7 +83,7 @@
   height: 64px;
 
   fill: none;
-  stroke: #C7C7C7;
+  stroke: var(--story-border);
   stroke-width: 1.5;
 }
 
@@ -111,7 +111,7 @@
 .story__user {
   font-size: 12px;
   font-weight: 400;
-  color: #999999;
+  color: var(--text-light);
   text-transform: lowercase;
 
   max-width: 72px;
@@ -121,7 +121,7 @@
 }
 
 .story--has-story .story__user {
-  color: #262626;
+  color: var(--text-dark);
 }
 
 /* Post */
