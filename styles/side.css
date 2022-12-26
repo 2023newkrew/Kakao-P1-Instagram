@@ -19,6 +19,10 @@
   flex-direction: column;
 }
 
+.side-menu__user-info > span {
+  color: #8e8e8e;
+}
+
 .side-menu__user-button,
 .side-menu__suggestion-button {
   margin-left: 8px;
@@ -29,6 +33,7 @@
 }
 
 .side-menu__suggestions-header {
+  padding: 4px 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -46,10 +51,11 @@
 }
 
 .side-menu__suggestions-content {
-  margin: 8px 0 20px;
+  margin-bottom: 20px;
 }
 
 .side-menu__suggestion {
+  padding: 8px 0;
   display: flex;
   align-items: center;
 }
@@ -63,6 +69,11 @@
   flex-grow: 1;
   display: flex;
   flex-direction: column;
+}
+
+.side-menu__suggestion-info > span {
+  font-size: 14px;
+  color: #8e8e8e;
 }
 
 .side-menu__footer {
