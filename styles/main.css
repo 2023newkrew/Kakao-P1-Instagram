@@ -1,6 +1,6 @@
 /* Main Content */
 .main-container {
-  background-color: #FFFFFF;
+  background-color: #ffffff;
 
   margin-top: 44px;
   margin-bottom: 44px;
@@ -17,6 +17,7 @@
 
   margin: 0 auto;
   display: flex;
+  background-color: rgb(246, 246, 246);
 }
 
 .content {
@@ -30,7 +31,7 @@
 
 .stories {
   width: 100%;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   padding: 16px 0;
   flex-shrink: 0;
 
@@ -83,7 +84,7 @@
   height: 64px;
 
   fill: none;
-  stroke: #C7C7C7;
+  stroke: #c7c7c7;
   stroke-width: 1.5;
 }
 
@@ -100,7 +101,7 @@
 }
 
 .story__picture::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   bottom: 0;

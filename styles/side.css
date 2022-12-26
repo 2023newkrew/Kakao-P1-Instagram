@@ -1,0 +1,106 @@
+.side-menu {
+  display: flex;
+  flex-direction: column;
+
+  padding: 20px;
+  padding-top: 60px;
+  padding-left: 40px;
+}
+
+.side-menu .side-menu__user-profile {
+  display: flex;
+  align-items: center;
+
+  height: 10%;
+}
+
+.side-menu .side-menu__user-profile .side-menu__user-avatar {
+  width: 30%;
+  margin-right: 10px;
+}
+
+.side-menu .side-menu__user-profile .side-menu__user-info {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+}
+
+.side-menu .side-menu__user-profile .side-menu__user-info a {
+  font-weight: bolder;
+}
+
+.side-menu .side-menu__user-profile .side-menu__user-info span {
+  color: rgb(153, 153, 153);
+}
+
+.side-menu .side-menu__user-profile .side-menu__user-button {
+  width: 15%;
+  color: rgb(94, 149, 232);
+  font-weight: bolder;
+}
+
+.side-menu .side-menu__suggestions-section {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.side-menu .side-menu__suggestions-section .side-menu__suggestions-header {
+  display: flex;
+  justify-content: space-between;
+
+  font-size: 12px;
+  margin: 20px 0;
+}
+
+.side-menu .side-menu__suggestions-section .side-menu__suggestions-header h2 {
+  color: rgb(153, 153, 153);
+}
+
+.side-menu .side-menu__suggestions-section .side-menu__suggestions-header button {
+  font-weight: bolder;
+}
+
+.side-menu .side-menu__suggestions-section .side-menu__suggestions-content .side-menu__suggestion {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.side-menu .side-menu__suggestions-section .side-menu__suggestions-content .side-menu__suggestion .side-menu__suggestion-avatar {
+  width: 20%;
+  margin-right: 10px;
+}
+
+.side-menu .side-menu__suggestions-section .side-menu__suggestions-content .side-menu__suggestion .side-menu__suggestion-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.side-menu .side-menu__suggestions-section .side-menu__suggestions-content .side-menu__suggestion .side-menu__suggestion-info a {
+  font-weight: bolder;
+}
+
+.side-menu .side-menu__suggestions-section .side-menu__suggestions-content .side-menu__suggestion .side-menu__suggestion-info span {
+  color: rgb(153, 153, 153);
+}
+
+.side-menu .side-menu__suggestions-section .side-menu__suggestions-content .side-menu__suggestion .side-menu__suggestion-button {
+  color: rgb(94, 149, 232);
+  font-weight: bolder;
+}
+
+.side-menu__footer {
+  display: flex;
+  flex-direction: column;
+  color: rgb(153, 153, 153);
+}
+
+.side-menu__footer .side-menu__footer-list {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+}
+
+.side-menu__footer .side-menu__footer-list .side-menu__footer-item {
+  padding-right: 20px;
+}
