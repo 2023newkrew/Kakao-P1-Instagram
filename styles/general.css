@@ -24,6 +24,7 @@ body {
     display: flex;
     flex-direction: column;
     overflow-y: auto;
+    color: var(--text-dark);
 }
 
 img {
@@ -33,6 +34,7 @@ img {
 button {
     border: unset;
     background-color: unset;
+    color: var(--text-dark);
 }
 
 :root {
