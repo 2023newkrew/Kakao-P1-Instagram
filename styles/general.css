@@ -30,6 +30,11 @@ img {
     max-width: 100%;
 }
 
+button {
+    border: unset;
+    background-color: unset;
+}
+
 :root {
     --primary: #FFFFFF;
     --secondary: #FAFAFA;
