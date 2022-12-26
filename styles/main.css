@@ -132,3 +132,36 @@
   border: 1px solid #DBDBDB;
   border-radius: 8px;
 }
+
+.post__header {
+  height: 40px;
+  margin: 8px 4px 8px 12px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.post__profile {
+  display: flex;
+  align-items: center;
+}
+
+.post__avatar {
+  width: 32px;
+  line-height: 0;
+}
+
+.post__user {
+  margin-left: 10px;
+}
+
+.post__more-options {
+  width: 40px;
+  background: transparent;
+  border: none;
+  line-height: 0;
+  cursor: pointer;
+}
+
+.post__more-options:hover > img {
+  filter: invert(54%) sepia(86%) saturate(1%) hue-rotate(317deg) brightness(87%) contrast(104%);
+}
