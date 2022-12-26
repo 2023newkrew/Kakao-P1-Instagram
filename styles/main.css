@@ -189,3 +189,15 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+.post__likes {
+  margin: 0 12px 8px;
+  display: flex;
+  align-items: center;
+}
+
+.post__likes-avatar {
+  width: 20px;
+  margin-right: 4px;
+  line-height: 0;
+}
