@@ -1,8 +1,7 @@
 /* Main Content */
 .main-container {
-  background-color: #FFFFFF;
+  background-color: var(--bg-secondary);
 
-  margin-top: 44px;
   margin-bottom: 44px;
 
   display: flex;
@@ -12,10 +11,11 @@
 .content-container {
   width: 100%;
   max-width: 935px;
-
+  
   padding: 0 0 8px;
-
+  
   margin: 0 auto;
+  margin-top: calc(44px + var(--base-unit) * 4);
   display: flex;
 }
 
@@ -26,16 +26,19 @@
   margin: 0 auto;
   display: flex;
   flex-direction: column;
+  gap: 1rem;
 }
 
 .stories {
   width: 100%;
-  background-color: #FFFFFF;
+  background-color: var(--bg-primary);
   padding: 16px 0;
   flex-shrink: 0;
 
   position: relative;
   overflow: hidden;
+  border: 1px solid var(--separator-color);
+  border-radius: var(--border-radius);
 }
 
 .stories__content {
@@ -125,3 +128,115 @@
 }
 
 /* Post */
+.post{
+  margin-bottom: 1rem;
+  border: 1px solid rgb(219, 219, 219);
+  border-radius: var(--border-radius);
+  background-color: var(--bg-primary);
+}
+.post__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--bg-primary);
+  margin: 0.75rem;
+}
+
+.post__header .post__profile {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.post__header .post__profile a{
+  display: flex;
+  align-items: center;
+  height: 32px;
+  width: 32px;
+  text-decoration: none;
+  color: black;
+  font-weight: 500;
+}
+
+.post__header .post__profile a img{
+  height:100%
+}
+
+.post__header .post__more-options {
+  background: none;
+  border: none;
+  height: 100%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.post__footer {
+  padding: 0 calc(var(--base-unit) * 3);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  min-width: 335px;
+  width: 100%;
+
+}
+.post__footer .post__buttons {
+  display: flex;
+  align-items: center;
+  margin-top: calc(var(--base-unit) * 2);
+  margin-bottom: var(--base-unit);
+}
+.post__footer .post__buttons .post__indicators{
+  flex: 1;
+}
+.post__footer .post__buttons .post__button {
+  background: none;
+  border:none;
+  margin-right: var(--base-unit);
+}
+
+.post__footer .post__infos {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: calc(var(--base-unit) * 4);
+}
+.post__footer .post__infos > div {
+  margin-bottom: var(--base-unit);
+}
+.post__footer .post__infos .post__likes {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+.post__footer .post__infos .post__likes .post__likes-avatar {
+  height: 24px;
+  width: 24px;
+  margin-right: var(--base-unit);
+}
+.post__footer .post__infos .post__likes img{
+  width: 100%;
+}
+.post__footer .post__infos .post__likes span {
+  font-size: 14px;
+}
+.post__footer .post__infos .post__likes a {
+  margin: 0;
+  padding: 0;
+}
+.post__footer .post__infos .post__description {
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.post__footer .post__infos .post__name--underline{
+  font-weight: 600;
+}
+.post__footer .post__infos .post__date-time {
+  margin-top: calc(var(--base-unit) * 4);
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+}
