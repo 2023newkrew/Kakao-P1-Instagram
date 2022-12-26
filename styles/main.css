@@ -128,3 +128,7 @@
 }
 
 /* Post */
+.post {
+  border: 1px solid #DBDBDB;
+  border-radius: 8px;
+}
