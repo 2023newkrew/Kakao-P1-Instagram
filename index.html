@@ -8,20 +8,6 @@
   <link rel="stylesheet" type="text/css" href="styles/header.css" />
   <link rel="stylesheet" type="text/css" href="styles/main.css" />
   <link rel="stylesheet" type="text/css" href="styles/side.css" />
-  <script>
-    function toggleDarkMode(){
-      const container = document.querySelector('body');
-      const isDarkMode = localStorage.getItem('dark');
-      if(isDarkMode){
-        container.classList.remove('dark');
-        localStorage.setItem('dark', false);
-      }else{
-        container.classList.add('dark');
-        localStorage.setItem('dark', true);
-      }
-    }
-    
-  </script>
 </head>
 
 <body>
