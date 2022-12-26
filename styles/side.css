@@ -1,4 +1,5 @@
 .side-menu {
+  width: 319px;
   margin: 32px 0 0 32px;
 }
 
@@ -62,18 +63,26 @@
 
 .side-menu__suggestion-avatar {
   width: 32px;
+  flex-shrink: 0;
 }
 
 .side-menu__suggestion-info {
   margin-left: 12px;
-  flex-grow: 1;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 
 .side-menu__suggestion-info > span {
   font-size: 14px;
   color: #8e8e8e;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.side-menu__suggestion-button {
+  flex-shrink: 0;
 }
 
 .side-menu__footer {

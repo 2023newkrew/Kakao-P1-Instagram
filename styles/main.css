@@ -10,8 +10,7 @@
 }
 
 .content-container {
-  width: 100%;
-  max-width: 935px;
+  width: 821px;
 
   padding: 0 0 8px;
 
@@ -20,8 +19,7 @@
 }
 
 .content {
-  width: 100%;
-  max-width: 614px;
+  width: 470px;
 
   margin: 0 auto;
   display: flex;
