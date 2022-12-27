@@ -99,6 +99,11 @@
     gap: 16px;
 }
 
+:root.darkTheme header {
+    background-color: var(--primary);
+    border-color: var(--border);
+}
+
 /* Profile Button */
 .profile-button {
     background-color: transparent;
@@ -134,7 +139,24 @@
     overflow: hidden;
     position: relative;
 }
+
+/* header__theme */
 .header__theme__button {
-    background-color: var(--background-color-white);
+    background-color: transparent;
     border: none;
+    cursor: pointer;
+}
+
+.header__theme-button-sun {
+    display: none;
+}
+.header__theme-button-moon {
+    display: unset;
+}
+
+:root.darkTheme .header__theme-button-sun {
+    display: unset;
+}
+:root.darkTheme .header__theme-button-moon {
+    display: none;
 }

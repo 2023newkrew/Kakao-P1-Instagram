@@ -5,6 +5,26 @@
     --background-color-gray: rgb(249, 249, 249);
     --background-color-white: white;
 }
+:root.darkTheme {
+    --primary: #000000;
+    --secondary: #050505;
+    --border: #262626;
+
+    --story-border: #707070;
+
+    --text-dark: #fafafa;
+    --text-light: #999999;
+
+    color: var(--text-dark);
+}
+:root.darkTheme a,
+:root.darkTheme button {
+    color: var(--text-dark);
+}
+:root.darkTheme img[src$="svg"] {
+    filter: brightness(0) invert(1);
+}
+
 *,
 *::after,
 *::before {

@@ -20,7 +20,9 @@
 
     background-color: var(--background-color-gray);
 }
-
+:root.darkTheme .content-container {
+    background-color: var(--secondary);
+}
 .content {
     width: 100%;
     max-width: 614px;
@@ -41,6 +43,13 @@
     margin: 30px 0px;
     border: 1px solid rgb(245, 225, 225);
     border-radius: 8px;
+}
+:root.darkTheme .stories {
+    border-color: var(--border);
+}
+
+:root.darkTheme .stories {
+    background-color: var(--primary);
 }
 
 .stories__content {
@@ -135,13 +144,17 @@
     border: 1px solid rgb(245, 225, 225);
     border-radius: 8px;
 }
+:root.darkTheme .post {
+    background-color: var(--primary);
+    border-color: var(--border);
+}
 .post__header {
     display: flex;
     align-items: center;
     margin: 10px 0px;
 }
 .post__more-options {
-    background-color: var(--background-color-white);
+    background-color: transparent;
     border: none;
     margin-right: 10px;
 }
@@ -163,7 +176,9 @@
     display: flex;
     flex-shrink: 0;
 }
-
+.post__avatar img {
+    border-radius: 50%;
+}
 .post__more-options {
     margin-left: auto;
 }
@@ -173,7 +188,7 @@
     margin: 10px 0px;
 }
 .post__button {
-    background-color: var(--background-color-white);
+    background-color: transparent;
     border: none;
     margin-right: 10px;
 }
@@ -209,6 +224,7 @@
 .post__likes-avatar img {
     width: 24px;
     height: 24px;
+    border-radius: 50%;
 }
 
 .post__description {

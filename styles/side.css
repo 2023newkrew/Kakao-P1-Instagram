@@ -10,7 +10,7 @@
     color: black;
 }
 .side-menu button {
-    background-color: var(--background-color-gray);
+    background-color: transparent;
     border: none;
     color: blue;
 }
@@ -117,4 +117,10 @@
 }
 .side-menu__footer-item:last-child::after {
     content: "";
+}
+
+@media (max-width: 1000px) {
+    .side-menu {
+        display: none;
+    }
 }
