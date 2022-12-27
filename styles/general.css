@@ -61,7 +61,7 @@ body {
 img {
     max-width: 100%;
 }
-img[src='assets/images/avatar.png']{
+.avatar{
     border-radius: 50%;
 }
 
