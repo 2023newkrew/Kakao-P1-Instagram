@@ -205,6 +205,10 @@
   line-height: 0;
 }
 
+.post__likes-avatar > img {
+  border-radius: 50%;
+}
+
 .post__description {
   margin: 0 12px 8px;
 }
