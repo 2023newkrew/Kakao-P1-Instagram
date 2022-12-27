@@ -67,3 +67,7 @@ button {
 
     --btn-blue: #6af;
 }
+
+:root.darkTheme img[src$=".svg"] {
+    filter: brightness(0) invert(1);
+}
