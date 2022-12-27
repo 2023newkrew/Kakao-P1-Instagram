@@ -1,7 +1,31 @@
-const toggleThemeBtn = document.querySelector(".header__theme-button");
+const $toggleThemeBtn = document.querySelector(".header__theme-button");
 
-const onDarkThemeBtnClick = () => {
-    document.documentElement.classList.toggle("darkTheme");
-};
+function init() {
+    const onload = () => {
+        const theme = localStorage.getItem("theme");
 
-toggleThemeBtn.addEventListener("click", onDarkThemeBtnClick);
+        if (theme === "dark") {
+            document.documentElement.classList.add("darkTheme");
+        } else {
+            document.documentElement.classList.remove("darkTheme");
+        }
+    };
+
+    const onDarkThemeBtnClick = () => {
+        document.documentElement.classList.toggle("darkTheme");
+
+        if (document.documentElement.classList.contains("darkTheme")) {
+            localStorage.setItem("theme", "dark");
+        } else {
+            localStorage.setItem("theme", "light");
+        }
+    };
+
+    window.addEventListener("load", onload);
+    $toggleThemeBtn.addEventListener("click", onDarkThemeBtnClick);
+}
+
+function main() {
+    init();
+}
+main();
