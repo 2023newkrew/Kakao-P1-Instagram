@@ -1,5 +1,29 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap");
 
+:root {
+  --button-blue-color: #5e95e8;
+
+  --primary: #ffffff;
+  --secondary: #fafafa;
+  --border: #dbdbdb;
+
+  --story-border: #c7c7c7;
+
+  --text-dark: #262626;
+  --text-light: #999999;
+}
+
+:root.darkTheme {
+  --primary: #000000;
+  --secondary: #252525;
+  --border: #262626;
+
+  --story-border: #707070;
+
+  --text-dark: #fafafa;
+  --text-light: #999999;
+}
+
 /* CSS Reset */
 *,
 *::after,
@@ -34,11 +58,13 @@ img[src*="avatar"] {
   border-radius: 50%;
 }
 
+/* a 태그의 밑줄과 컬러를 제거 */
 a {
   text-decoration: none;
   color: inherit;
 }
 
+/* 버튼의 배경을 제거하고 커서의 모양을 포인터로 변경 */
 button {
   border: 0;
   outline: 0;
@@ -46,30 +72,7 @@ button {
   cursor: pointer;
 }
 
-html[class*="darkTheme"] img[src*="svg"] {
+/* filter 기능을 통해 svg Toggle */
+:root.darkTheme img[src$=".svg"] {
   filter: brightness(0) invert(1);
-}
-
-:root {
-  --button-blue-color: #5e95e8;
-
-  --primary: #ffffff;
-  --secondary: #fafafa;
-  --border: #dbdbdb;
-
-  --story-border: #c7c7c7;
-
-  --text-dark: #262626;
-  --text-light: #999999;
-}
-
-:root.darkTheme {
-  --primary: #000000;
-  --secondary: #050505;
-  --border: #262626;
-
-  --story-border: #707070;
-
-  --text-dark: #fafafa;
-  --text-light: #999999;
 }

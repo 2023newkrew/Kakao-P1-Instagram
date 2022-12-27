@@ -3,7 +3,6 @@
   background-color: var(--primary);
 
   margin-top: 44px;
-  margin-bottom: 44px;
 
   display: flex;
   flex: 1;
@@ -32,12 +31,12 @@
 
 .stories {
   width: 100%;
-  background-color: var(--secondary);
+  background-color: var(--primary);
   padding: 16px 0;
   flex-shrink: 0;
 
   position: relative;
-  overflow: hidden;
+
   margin-top: 40px;
   margin-bottom: 40px;
 
@@ -58,7 +57,7 @@
 }
 
 .stories__content::-webkit-scrollbar {
-  display: none;
+  /* display: none; */
 }
 
 .posts {
@@ -131,18 +130,23 @@
   color: var(--text-dark);
 }
 
-/* Post */
+/* post */
 
 .post {
-  background-color: var(--secondary);
+  background-color: var(--primary);
   padding: 15px;
   border: 1px solid var(--story-border);
   border-radius: 8px;
+  margin-bottom: 40px;
 }
 
+/* post */
+
+/* post header */
 .post .post__header {
   display: flex;
   justify-content: space-between;
+
   margin-bottom: 10px;
 }
 
@@ -151,33 +155,95 @@
   align-items: center;
 }
 
-.post .post__header .post__more-options {
-  color: var(--text-dark);
-}
-
-img {
-  fill: var(--text-dark);
-}
-
 .post .post__header .post__profile .post__avatar {
   width: 15%;
+
   margin-right: 15px;
 }
 
 .post .post__header .post__profile .post__user {
+  color: var(--text-dark);
   font-weight: bolder;
+}
+
+.post .post__header .post__more-options {
   color: var(--text-dark);
 }
 
+/* post header */
+
+/* post content */
+.post .post__content {
+  position: relative;
+}
+
+.post .post__content .post__medias {
+  display: flex;
+  overflow: auto;
+}
+
+.post .post__content .post__controller {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+
+  top: 0%;
+
+  display: flex;
+  align-items: center;
+}
+
+.post .post__content .post__controller .post__controller-prev {
+  position: absolute;
+  left: 10px;
+  rotate: 180deg;
+
+  width: 30px;
+  height: 30px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: 0.5s ease-out;
+
+  cursor: pointer;
+}
+
+.post .post__content .post__controller .post__controller-next {
+  position: absolute;
+  right: 10px;
+
+  width: 30px;
+  height: 30px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: 0.5s ease-out;
+
+  cursor: pointer;
+}
+
+.post .post__content .post__controller .post__controller-prev:hover,
+.post .post__content .post__controller .post__controller-next:hover {
+  transform: translateX(5px);
+}
+
+/* post content */
+
+/* post footer */
 .post .post__footer .post__buttons {
   display: flex;
   justify-content: space-between;
-  margin-top: 10px;
-  margin-bottom: 10px;
+
+  margin: 10px 0px;
 }
 
 .post .post__footer .post__buttons .post__indicators {
   flex-grow: 0.9;
+
 }
 
 .post .post__footer .post__infos {
@@ -186,8 +252,9 @@ img {
 }
 
 .post .post__footer .post__infos .post__likes {
-  display: flex;
   color: var(--text-dark);
+
+  display: flex;
 }
 
 .post .post__footer .post__infos .post__likes span {
@@ -197,16 +264,19 @@ img {
 
 .post .post__footer .post__infos .post__likes .post__likes-avatar {
   width: 5%;
+
   margin-right: 5px;
 }
 
 .post .post__footer .post__infos .post__likes a {
   font-weight: bolder;
-  margin: 0 5px;
+
+  margin: 0px 5px;
 }
 
 .post .post__footer .post__infos .post__description {
-  margin: 10px 0;
+  margin: 10px 0px;
+
   color: var(--text-dark);
 }
 
@@ -215,6 +285,31 @@ img {
 }
 
 .post .post__footer .post__infos .post__date-time {
-  margin: 10px 0;
+  margin: 10px 0px;
+
   color: var(--text-light);
+}
+
+/* post footer */
+
+@media (max-width: 600px) {
+  .main-container {
+    margin-top: 44px;
+    margin-bottom: 0px;
+  }
+
+  .content-container {
+    display: flex;
+    flex-direction: column;
+
+    padding: 20px;
+  }
+
+  .content-container .content {
+    margin: 0px;
+  }
+
+  .content-container .stories {
+    margin: 20px 0px;
+  }
 }

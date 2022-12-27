@@ -2,113 +2,140 @@
   display: flex;
   flex-direction: column;
 
-  padding: 20px;
-  padding-top: 60px;
-  padding-left: 30px;
+  padding: 60px 20px 20px 30px;
 }
 
-.side-menu .side-menu__user-profile {
+/* side menu user profile */
+
+.side-menu__user-profile {
   display: flex;
   align-items: center;
 
-  height: 10%;
+  height: 80px;
 }
 
-.side-menu .side-menu__user-profile .side-menu__user-avatar {
+.side-menu__user-profile .side-menu__user-avatar {
   width: 20%;
   margin-right: 10px;
 }
 
-.side-menu .side-menu__user-profile .side-menu__user-info {
+.side-menu__user-profile .side-menu__user-info {
   width: 60%;
+
   display: flex;
   flex-direction: column;
 }
 
-.side-menu .side-menu__user-profile .side-menu__user-info a {
-  font-weight: bolder;
+.side-menu__user-profile .side-menu__user-info a {
   color: var(--text-dark);
+  font-weight: bolder;
 }
 
-.side-menu .side-menu__user-profile .side-menu__user-info span {
+.side-menu__user-profile .side-menu__user-info span {
   color: var(--text-light);
 }
 
-.side-menu .side-menu__user-profile .side-menu__user-button {
-  width: 15%;
+.side-menu__user-profile .side-menu__user-button {
   color: var(--button-blue-color);
   font-weight: bolder;
+
+  width: 15%;
 }
 
-.side-menu .side-menu__suggestions-section {
+/* side menu user profile */
+
+/* side menu suggestions sectino */
+
+.side-menu__suggestions-section {
   display: flex;
   flex-direction: column;
+
   margin-bottom: 20px;
 }
 
-.side-menu .side-menu__suggestions-section .side-menu__suggestions-header {
+.side-menu__suggestions-section .side-menu__suggestions-header {
   display: flex;
   justify-content: space-between;
 
-  font-size: 12px;
   margin: 20px 0;
+
+  font-size: 12px;
 }
 
-.side-menu .side-menu__suggestions-section .side-menu__suggestions-header h2 {
+.side-menu__suggestions-section .side-menu__suggestions-header h2 {
   color: var(--text-light);
 }
 
-.side-menu .side-menu__suggestions-section .side-menu__suggestions-header button {
-  font-weight: bolder;
+.side-menu__suggestions-section .side-menu__suggestions-header button {
   color: var(--text-dark);
+  font-weight: bolder;
 }
 
-.side-menu .side-menu__suggestions-section .side-menu__suggestions-content .side-menu__suggestion {
+.side-menu__suggestions-section .side-menu__suggestions-content .side-menu__suggestion {
   display: flex;
+
   margin-bottom: 20px;
 }
 
-.side-menu .side-menu__suggestions-section .side-menu__suggestions-content .side-menu__suggestion .side-menu__suggestion-avatar {
+.side-menu__suggestions-section .side-menu__suggestions-content .side-menu__suggestion .side-menu__suggestion-avatar {
   width: 15%;
+
   margin-right: 10px;
 }
 
-.side-menu .side-menu__suggestions-section .side-menu__suggestions-content .side-menu__suggestion .side-menu__suggestion-info {
+.side-menu__suggestions-section .side-menu__suggestions-content .side-menu__suggestion .side-menu__suggestion-info {
   display: flex;
+
   flex-direction: column;
 }
 
-.side-menu .side-menu__suggestions-section .side-menu__suggestions-content .side-menu__suggestion .side-menu__suggestion-info a {
-  font-weight: bolder;
+.side-menu__suggestions-section .side-menu__suggestions-content .side-menu__suggestion .side-menu__suggestion-info a {
   color: var(--text-dark);
+
+  font-weight: bolder;
 }
 
-.side-menu .side-menu__suggestions-section .side-menu__suggestions-content .side-menu__suggestion .side-menu__suggestion-info span {
+.side-menu__suggestions-section .side-menu__suggestions-content .side-menu__suggestion .side-menu__suggestion-info span {
   color: var(--text-light);
 
+  /* ellipsis를 사용하기 위해서는 최대 너비 값을 지정해 둬야 함 */
   max-width: 190px;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
 }
 
-.side-menu .side-menu__suggestions-section .side-menu__suggestions-content .side-menu__suggestion .side-menu__suggestion-button {
+.side-menu__suggestions-section .side-menu__suggestions-content .side-menu__suggestion .side-menu__suggestion-button {
   color: var(--button-blue-color);
   font-weight: bolder;
 }
 
+/* side menu suggestions sectino */
+
+/* side menu footer */
+
 .side-menu__footer {
+  color: var(--text-light);
+
   display: flex;
   flex-direction: column;
-  color: var(--text-light);
 }
 
 .side-menu__footer .side-menu__footer-list {
   display: flex;
   flex-direction: row;
+
   list-style: none;
 }
 
 .side-menu__footer .side-menu__footer-list .side-menu__footer-item {
   padding-right: 20px;
+}
+
+/* side menu footer */
+
+@media (max-width: 600px) {
+  .side-menu {
+    display: none;
+  }
 }
