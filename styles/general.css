@@ -25,10 +25,15 @@ body {
     flex-direction: column;
     overflow-y: auto;
     color: var(--text-dark);
+    background-color: var(--secondary);
 }
 
 img {
     max-width: 100%;
+}
+
+img path {
+    filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(7466%) hue-rotate(301deg) brightness(117%) contrast(100%);
 }
 
 button {
@@ -46,6 +51,8 @@ button {
 
     --text-dark: #262626;
     --text-light: #999999;
+
+    --btn-blue: #6af;
 }
 
 :root.darkTheme {
@@ -57,4 +64,6 @@ button {
 
     --text-dark: #FAFAFA;
     --text-light: #999999;
+
+    --btn-blue: #6af;
 }
