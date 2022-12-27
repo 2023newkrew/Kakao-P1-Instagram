@@ -1,61 +1,61 @@
 import { getItem, setItem } from './utils/localStorage.js';
 
 const theme = {
-    LIGHT_THEME: 'light',
-    DARK_THEME: 'dark',
+	LIGHT_THEME: 'light',
+	DARK_THEME: 'dark',
 };
 
 export const setDarkTheme = (toggleButton) => {
-    setItem('theme', theme.DARK_THEME);
+	setItem('theme', theme.DARK_THEME);
 
-    document.documentElement.classList.add('darkMode');
-    
-    const icon = toggleButton.querySelector('.icon');
-    if(icon){
-        icon.src = "assets/icons/moon.svg";
-        icon.alt = 'dark mode';
-    }
+	document.documentElement.classList.add('darkMode');
+	
+	const icon = toggleButton.querySelector('.icon');
+	if(icon){
+		icon.src = "assets/icons/moon.svg";
+		icon.alt = 'dark mode';
+	}
 }
 
 export const setLightTheme = (toggleButton) => {
-    setItem('theme', theme.LIGHT_THEME);
+	setItem('theme', theme.LIGHT_THEME);
 
-    document.documentElement.classList.remove('darkMode');
+	document.documentElement.classList.remove('darkMode');
 
-    const icon = toggleButton.querySelector('.icon');
-    if(icon){
-        icon.src = "assets/icons/sun.svg";
-        icon.alt = 'light mode';
-    }
+	const icon = toggleButton.querySelector('.icon');
+	if(icon){
+		icon.src = "assets/icons/sun.svg";
+		icon.alt = 'light mode';
+	}
 }
 
 export const toggleMode = (toggleButton) => {
-    const currentTheme = getItem('theme');
+	const currentTheme = getItem('theme');
 
-    if(currentTheme === theme.DARK_THEME) {
-        setLightTheme(toggleButton);
-    } else {
-        setDarkTheme(toggleButton);
-    }
+	if(currentTheme === theme.DARK_THEME) {
+		setLightTheme(toggleButton);
+	} else {
+		setDarkTheme(toggleButton);
+	}
 }
 
 export const initTheme = (toggleButton) => {
-    toggleButton.addEventListener('click', () => {
-        toggleMode(toggleButton);
-    });
+	toggleButton.addEventListener('click', () => {
+		toggleMode(toggleButton);
+	});
 
-    const currentTheme = getItem('theme');
+	const currentTheme = getItem('theme');
 
-    if(currentTheme === theme.DARK_THEME){
-        setDarkTheme(toggleButton);
-    } else {
-        setLightTheme(toggleButton);
-    }
+	if(currentTheme === theme.DARK_THEME){
+		setDarkTheme(toggleButton);
+	} else {
+		setLightTheme(toggleButton);
+	}
 }
 
 export default {
-    setDarkTheme,
-    setLightTheme,
-    toggleMode,
-    initTheme
+	setDarkTheme,
+	setLightTheme,
+	toggleMode,
+	initTheme
 };

@@ -1,35 +1,35 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
 
 :root{
-    --bg-primary: rgb(255, 255, 255);
-    --bg-secondary: rgb(250,250,250);
+	--bg-primary: rgb(255, 255, 255);
+	--bg-secondary: rgb(250,250,250);
 
-    --bg-highlight: rgb(239, 239, 239);
+	--bg-highlight: rgb(239, 239, 239);
 
-    --text-primary: rgb(38, 38, 38);
-    --text-secondary: rgb(142, 142, 142);
-    --text-tertiary: rgb(199,199,199);
+	--text-primary: rgb(38, 38, 38);
+	--text-secondary: rgb(142, 142, 142);
+	--text-tertiary: rgb(199,199,199);
 
-    --base-unit: 4px; /* margin base unit */
+	--base-unit: 4px; /* margin base unit */
 
-    --button-primary: rgb(0, 149, 246);
+	--button-primary: rgb(0, 149, 246);
 
-    --separator-color: rgb(219,219,219);
-    --border-radius: 8px;
+	--separator-color: rgb(219,219,219);
+	--border-radius: 8px;
 }
 .darkMode {
-    --bg-primary: rgb(0, 0, 0);
-    --bg-secondary: #121212;
-    --bg-highlight: rgb(38, 38, 38);
+	--bg-primary: rgb(0, 0, 0);
+	--bg-secondary: #121212;
+	--bg-highlight: rgb(38, 38, 38);
 
-    --text-primary: rgb(250, 250, 250);
-    --text-secondary: rgb(168, 168, 168);
-    --text-tertiary: rgb(155, 155, 155);
+	--text-primary: rgb(250, 250, 250);
+	--text-secondary: rgb(168, 168, 168);
+	--text-tertiary: rgb(155, 155, 155);
 
-    --separator-color: rgb(54, 54, 54);
+	--separator-color: rgb(54, 54, 54);
 }
 .darkMode img[src *= svg] {
-    filter:brightness(0) invert(1);
+	filter:brightness(0) invert(1);
 }
 
 /* CSS Reset */
@@ -46,41 +46,41 @@ button,
 input,
 select,
 textarea {
-    font-family: 'Roboto';
+	font-family: 'Roboto';
 }
 
 /* General Styles */
 body {
-    min-height: 100vh;
+	min-height: 100vh;
 
-    display: flex;
-    flex-direction: column;
-    overflow-y: auto;
+	display: flex;
+	flex-direction: column;
+	overflow-y: auto;
 }
 
 img {
-    max-width: 100%;
+	max-width: 100%;
 }
 .avatar{
-    border-radius: 50%;
+	border-radius: 50%;
 }
 
 li {
-    list-style: none;
+	list-style: none;
 }
 
 button {
-    background: none;
-    border: none;
-    color: var(--text-primary);
-    cursor: pointer;
+	background: none;
+	border: none;
+	color: var(--text-primary);
+	cursor: pointer;
 }
 
 a {
-    text-decoration: none;
-    color: var(--text-primary);
+	text-decoration: none;
+	color: var(--text-primary);
 }
 
 span, p, button, div, h1, h2, h3, h4, h5, h6 {
-    color: var(--text-primary);
+	color: var(--text-primary);
 }
