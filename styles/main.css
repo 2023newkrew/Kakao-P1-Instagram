@@ -9,6 +9,10 @@
     flex: 1;
 }
 
+:root.darkTheme .main-container {
+    background-color: var(--secondary);
+}
+
 .content-container {
     width: 100%;
     max-width: 935px;
