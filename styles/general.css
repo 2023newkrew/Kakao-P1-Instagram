@@ -1,10 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
 
 :root{
-    --bg-parimy: rgb(255,255,255);
+    --bg-primary: rgb(255, 255, 255);
     --bg-secondary: rgb(250,250,250);
 
-    --text-primary: #262626;
+    --bg-highlight: rgb(239, 239, 239);
+
+    --text-primary: rgb(38, 38, 38);
     --text-secondary: rgb(142, 142, 142);
     --text-tertiary: rgb(199,199,199);
 
@@ -15,9 +17,19 @@
     --separator-color: rgb(219,219,219);
     --border-radius: 8px;
 }
-.dark {
-    --bg-parimy: #222222;
-    --bg-secondary: rgb(101, 101, 101);
+.darkMode {
+    --bg-primary: rgb(0, 0, 0);
+    --bg-secondary: #121212;
+    --bg-highlight: rgb(38, 38, 38);
+
+    --text-primary: rgb(250, 250, 250);
+    --text-secondary: rgb(168, 168, 168);
+    --text-tertiary: rgb(155, 155, 155);
+
+    --separator-color: rgb(54, 54, 54);
+}
+.darkMode img[src *= svg] {
+    filter:brightness(0) invert(1);
 }
 
 /* CSS Reset */
@@ -57,7 +69,18 @@ li {
     list-style: none;
 }
 
+button {
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    cursor: pointer;
+}
+
 a {
     text-decoration: none;
-    color:#222222;
+    color: var(--text-primary);
+}
+
+span, p, button, div, h1, h2, h3, h4, h5, h6 {
+    color: var(--text-primary);
 }
