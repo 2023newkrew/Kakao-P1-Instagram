@@ -24,6 +24,8 @@ body {
     display: flex;
     flex-direction: column;
     overflow-y: auto;
+
+    color: var(--primary-text);
 }
 
 img {
