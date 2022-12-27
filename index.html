@@ -8,8 +8,8 @@
   <link rel="stylesheet" type="text/css" href="styles/header.css" />
   <link rel="stylesheet" type="text/css" href="styles/main.css" />
   <link rel="stylesheet" type="text/css" href="styles/side.css" />
-  <script src="toggleTheme.js" defer></script>
-  <script src="slideMedia.js" defer></script>
+  <script src="./javascripts/mediasSlide.js" defer></script>
+  <script src="./javascripts//toggleTheme.js" defer></script>
 </head>
 
 <body>
@@ -185,6 +185,15 @@
               </div>
               <span class="story__user">user1</span>
             </button>
+
+            <div class="stories__controller">
+              <span class="stories__controller-prev">
+                <img src="assets/icons/arrow.svg">
+              </span>
+              <span class="stories__controller-next">
+                <img src="assets/icons/arrow.svg">
+              </span>
+            </div>
           </div>
         </div>
 
@@ -204,11 +213,11 @@
             </div>
 
             <div class="post__content">
-              <div class="post__medias">
-                <img class="post__media" src="assets/images/picture.jpeg" alt="Post Content" />
-                <img class="post__media" src="assets/images/picture.jpeg" alt="Post Content" />
-                <img class="post__media" src="assets/images/picture.jpeg" alt="Post Content" />
-              </div>
+              <ul class="post__medias">
+                <li class="post__list"><img class="post__media" src="assets/images/picture.jpeg" alt="Post Content"   /></li>
+                <li class="post__list"><img class="post__media" src="assets/images/picture.jpeg" alt="Post Content" /></li>
+                <li class="post__list"><img class="post__media" src="assets/images/picture.jpeg" alt="Post Content" /></li>
+              </ul>
 
               <div class="post__controller">
                 <span class="post__controller-prev">
@@ -259,6 +268,7 @@
               </div>
             </div>
           </article>
+          
 
         </div>
 
