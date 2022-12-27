@@ -149,6 +149,10 @@
   line-height: 0;
 }
 
+.post__avatar > img {
+  border-radius: 50%;
+}
+
 .post__user {
   margin-left: 10px;
 }
