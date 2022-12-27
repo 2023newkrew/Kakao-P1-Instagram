@@ -1,8 +1,13 @@
 import { getItem, setItem } from './utils/localStorage.js';
 
+const theme = {
+    LIGHT_THEME: 'light',
+    DARK_THEME: 'dark',
+};
 
 export const setDarkTheme = (toggleButton) => {
-    setItem('darkMode', true);
+    setItem('theme', theme.DARK_THEME);
+
     document.documentElement.classList.add('darkMode');
     
     const icon = toggleButton.querySelector('.icon');
@@ -11,8 +16,10 @@ export const setDarkTheme = (toggleButton) => {
         icon.alt = 'dark mode';
     }
 }
+
 export const setLightTheme = (toggleButton) => {
-    setItem('darkMode', false);
+    setItem('theme', theme.LIGHT_THEME);
+
     document.documentElement.classList.remove('darkMode');
 
     const icon = toggleButton.querySelector('.icon');
@@ -21,24 +28,27 @@ export const setLightTheme = (toggleButton) => {
         icon.alt = 'light mode';
     }
 }
+
 export const toggleMode = (toggleButton) => {
-    const isDarkMode = getItem('darkMode');
-    if(isDarkMode) {
+    const currentTheme = getItem('theme');
+
+    if(currentTheme === theme.DARK_THEME) {
         setLightTheme(toggleButton);
-    }
-    else {
+    } else {
         setDarkTheme(toggleButton);
     }
 }
 
 export const initTheme = (toggleButton) => {
-    toggleButton.addEventListener('click', ()=>{
+    toggleButton.addEventListener('click', () => {
         toggleMode(toggleButton);
     });
-    const isDarkMode = getItem('darkMode');
-    if(isDarkMode){
+
+    const currentTheme = getItem('theme');
+
+    if(currentTheme === theme.DARK_THEME){
         setDarkTheme(toggleButton);
-    }else{
+    } else {
         setLightTheme(toggleButton);
     }
 }

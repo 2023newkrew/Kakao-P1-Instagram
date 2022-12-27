@@ -14,9 +14,9 @@ const initPosts = (posts)=>{
 }
 
 const onLoadScript = ()=>{
-    const darkModeButton = document.querySelector('.button__darkmode');
+    const themeButton = document.querySelector('.theme-button');
     
-    initTheme(darkModeButton);
+    initTheme(themeButton);
 
     const postsContainer = document.querySelector('.posts');
     const posts = postsContainer.querySelectorAll('.post');

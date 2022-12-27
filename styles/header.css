@@ -34,27 +34,13 @@
   align-items: center;
 }
 
-.header__content .button__darkmode {
+.header__content .theme-button {
   height: 24px;
   width: 24px;
 }
 
 .header__home {
   margin-top: 5px;
-}
-
-.header__theme-button {
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-}
-
-.header__theme-button-sun {
-  display: none;
-}
-
-.header__theme-button-moon {
-  display: unset;
 }
 
 .header__search {
@@ -107,9 +93,7 @@
 /* Profile Button */
 .profile-button {
   background-color: transparent;
-  border: none;
   outline: none;
-  cursor: pointer;
   position: relative;
 }
 
