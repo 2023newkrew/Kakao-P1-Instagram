@@ -1,136 +1,140 @@
 /* Header Navbar */
 .header {
-  width: 100%;
-  height: 44px;
-  background-color: #FFFFFF;
+    width: 100%;
+    height: 44px;
+    background-color: #ffffff;
 
-  display: flex;
-  justify-content: center;
+    display: flex;
+    justify-content: center;
 
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 2;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2;
 }
 
 .header::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
+    content: "";
+    position: absolute;
+    bottom: 0;
 
-  width: 100%;
-  height: 1px;
-  background-color: #DBDBDB;
+    width: 100%;
+    height: 1px;
+    background-color: #dbdbdb;
 }
 
 .header__content {
-  width: 100%;
-  max-width: 975px;
+    width: 100%;
+    max-width: 975px;
 
-  padding: 0 14px;
+    padding: 0 14px;
 
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .header__home {
-  margin-top: 5px;
+    margin-top: 5px;
 }
 
 .header__theme-button {
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
 }
 
 .header__theme-button-sun {
-  display: none;
+    display: none;
 }
 
 .header__theme-button-moon {
-  display: unset;
+    display: unset;
 }
 
 .header__search {
-  width: 216px;
-  height: 28px;
+    width: 216px;
+    height: 28px;
 
-  display: none;
-  align-items: center;
-  position: relative;
+    display: none;
+    align-items: center;
+    position: relative;
 }
 
 .header__search img {
-  width: 12px;
-  height: 12px;
+    width: 12px;
+    height: 12px;
 
-  position: absolute;
-  left: 8px;
+    position: absolute;
+    left: 8px;
 }
 
 .header__search input {
-  width: 100%;
-  height: 100%;
-  background-color: #FAFAFA;
+    width: 100%;
+    height: 100%;
+    background-color: #fafafa;
 
-  padding: 4px 10px 4px 28px;
-  border: 1px solid #DBDBDB;
-  border-radius: 4px;
-  outline: none;
+    padding: 4px 10px 4px 28px;
+    border: 1px solid #dbdbdb;
+    border-radius: 4px;
+    outline: none;
 
-  font-size: 12px;
-  font-weight: 300;
-  text-decoration: none;
-  color: #999999;
+    font-size: 12px;
+    font-weight: 300;
+    text-decoration: none;
+    color: #999999;
 
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 .header__search input:focus {
-  color: #262626;
+    color: #262626;
 }
 
 .header__buttons {
-  display: flex;
-  align-items: center;
-  gap: 16px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
 }
 
 /* Profile Button */
 .profile-button {
-  background-color: transparent;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  position: relative;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    position: relative;
 }
 
 .profile-button__border {
-  display: none;
+    display: none;
 
-  width: 30px;
-  height: 30px;
-  border: 1px solid #262626;
-  border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    border: 1px solid #262626;
+    border-radius: 50%;
 
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .profile-button:focus .profile-button__border {
-  display: block;
+    display: block;
 }
 
 .profile-button__picture {
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
 
-  overflow: hidden;
-  position: relative;
+    overflow: hidden;
+    position: relative;
+}
+.header__theme__button {
+    background-color: var(--background-color-white);
+    border: none;
 }
