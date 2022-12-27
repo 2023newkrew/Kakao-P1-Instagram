@@ -58,6 +58,7 @@
 
   position: absolute;
   left: 8px;
+  cursor: pointer;
 }
 
 .header__search input {
