@@ -24,6 +24,7 @@ body {
     display: flex;
     flex-direction: column;
     overflow-y: auto;
+    font-size: 14px;
 }
 
 img {
@@ -36,5 +37,10 @@ button {
     border: 0;
     outline: 0;
     background-color: #fff;
+}
+
+a {
+    text-decoration: none;
+    color: #000;
 }
 
