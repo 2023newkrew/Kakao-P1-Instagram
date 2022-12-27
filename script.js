@@ -1,6 +1,13 @@
 import { initTheme } from './theme.js';
 import { initCarousel } from './carousel.js';
 
+
+const postsContainer = document.querySelector('.posts');
+const posts = postsContainer.querySelectorAll('.post');
+
+const searchInput = document.querySelector('.header__search input');
+const searchButton = document.querySelector('.header__search .search-icon');
+
 const initPostCarousel = (post)=>{
   const slidesContainer = post.querySelector('.post__content .slides-container');
   const prevButton = post.querySelector('.prev-button');
@@ -8,8 +15,7 @@ const initPostCarousel = (post)=>{
 
   initCarousel(slidesContainer, prevButton, nextButton);
 };
-
-const initPosts = (posts)=>{
+const initPosts = ()=>{
   posts.forEach(initPostCarousel);
 }
 
@@ -22,17 +28,7 @@ const search = (keyword)=>{
 
   window.open(`https://www.google.com/search?q=${searchKeyword}`);
 }
-const onLoadScript = ()=>{
-  const themeButton = document.querySelector('.theme-button');
-  
-  initTheme(themeButton);
-
-  const postsContainer = document.querySelector('.posts');
-  const posts = postsContainer.querySelectorAll('.post');
-  initPosts(posts);
-
-  const searchInput = document.querySelector('.header__search input');
-  const searchButton = document.querySelector('.header__search .search-icon');
+const initSearchHandlers = ()=>{
   searchInput.addEventListener('keypress', (event)=>{
     const { code } = event;
     if(code === 'Enter'){
@@ -42,7 +38,14 @@ const onLoadScript = ()=>{
   });
   searchButton.addEventListener('click', ()=>{
     search(searchInput.value);
-  })
+  });
+}
+const onLoadScript = ()=>{
+  initTheme();
+
+  initPosts();
+
+  initSearchHandlers();
 }
 
 onLoadScript();
