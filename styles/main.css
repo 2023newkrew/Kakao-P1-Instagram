@@ -1,6 +1,6 @@
 /* Main Content */
 .main-container {
-  background-color: #FFFFFF;
+  background-color: #FAFAFA;
 
   margin-top: 44px;
   margin-bottom: 44px;
@@ -42,7 +42,8 @@
   gap: 16px;
   padding: 16px;
   position: relative;
-
+  
+  background-color: #FFFFFF;
   border: 1px solid #DBDBDB;
   border-radius: 8px;
 
@@ -126,6 +127,7 @@
 
 /* Post */
 .post {
+  background-color: #FFFFFF;
   border: 1px solid #DBDBDB;
   border-radius: 8px;
 }
