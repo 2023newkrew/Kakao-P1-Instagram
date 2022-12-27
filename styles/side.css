@@ -47,7 +47,7 @@
 }
 
 .side-menu__user-button {
-  color: var(--btn-blue);
+  color: var(--button-blue);
   font-weight: bold;
 }
 
@@ -115,7 +115,7 @@
 }
 
 .side-menu__suggestion-button {
-  color: var(--btn-blue);
+  color: var(--button-blue);
   font-weight: bold;
 }
 

@@ -52,7 +52,7 @@ button {
   --text-dark: #262626;
   --text-light: #999999;
 
-  --btn-blue: #6af;
+  --button-blue: #6af;
 }
 
 :root.darkTheme {
@@ -65,7 +65,7 @@ button {
   --text-dark: #FAFAFA;
   --text-light: #999999;
 
-  --btn-blue: #6af;
+  --button-blue: #6af;
 }
 
 :root.darkTheme img[src$=".svg"] {
