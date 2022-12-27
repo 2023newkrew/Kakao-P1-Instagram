@@ -1,4 +1,4 @@
-import { getItem, setItem } from './useLocalStorage.js';
+import { getItem, setItem } from './utils/localStorage.js';
 
 
 export const setDarkTheme = (toggleButton) => {

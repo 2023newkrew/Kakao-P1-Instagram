@@ -1,4 +1,4 @@
-import { initTheme } from './utils/useDarkMode.js';
+import { initTheme } from './theme.js';
 
 const onLoadScript = ()=>{
     const darkModeButton = document.querySelector('.button__darkmode');
