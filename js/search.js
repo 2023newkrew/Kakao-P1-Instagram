@@ -12,11 +12,11 @@ const hideSuggestions = ()=>{
 const getEmphasizedKeyword = (suggestionKeyword, searchKeyword)=>{
   const pattern = new RegExp(searchKeyword, 'i');
   const emphasizedWord = suggestionKeyword.match(pattern);
-
-  if(emphasizedWord && emphasizedWord.length > 0){
-    return suggestionKeyword.replace(emphasizedWord[0], `<strong>${emphasizedWord[0]}</strong>`);
-  }
-  return suggestionKeyword;
+  
+  if(!emphasizedWord) return suggestionKeyword;
+  
+  return suggestionKeyword.replace(emphasizedWord[0], `<strong>${emphasizedWord[0]}</strong>`);
+ 
 }
 
 const getSuggestionKeywordTemplate = (suggestionKeyword, searchKeyword) => 
@@ -26,22 +26,24 @@ const getSuggestionKeywordTemplate = (suggestionKeyword, searchKeyword) =>
       </a>
   </li>`;
 
-const findMatchResults = (keyword) => SUGGESTION_KEYWORDS.filter((suggestionKeyword)=>{
-    const hasKeyword = new RegExp(keyword, 'gi');
-    return suggestionKeyword.match(hasKeyword);
-  });
+const getSuggestionsTemplate = (searchKeyword) => {
+  const keywordTemplates = SUGGESTION_KEYWORDS.reduce((suggestions, suggestion)=>{
+    if(suggestion.indexOf(searchKeyword) === -1){
+      return suggestions;
+    }
+
+    suggestions.push(getSuggestionKeywordTemplate(suggestion, searchKeyword));
+    return suggestions;
+  }, []);
+  return keywordTemplates.join('\n');
+}
 
 const addSuggestions = (keyword)=>{
   const searchKeyword = keyword.trim();
-  const matchResults = findMatchResults(searchKeyword);
-  if(matchResults.length === 0){
-    return;
-  }
 
-  const suggestionKeywordsTemplates = matchResults
-                                        .map((suggestionKeyword)=> getSuggestionKeywordTemplate(suggestionKeyword, searchKeyword))
-                                        .join('\n');
-  suggestionsContainer.innerHTML = suggestionKeywordsTemplates;
+  const suggestionsTemplate = getSuggestionsTemplate(searchKeyword);
+
+  suggestionsContainer.innerHTML = suggestionsTemplate;
   suggestionsContainer.style.setProperty('display', 'flex');
 }
 
