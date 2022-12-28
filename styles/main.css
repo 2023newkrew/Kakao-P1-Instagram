@@ -227,3 +227,35 @@
   flex: 1;
   display: flex;
 }
+
+.post__content {
+  position: relative;
+  overflow: hidden;
+}
+
+.post__medias {
+  display: flex;
+  transition: all 0.5s ease-in-out;
+}
+
+.post__media {
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+.carousel-button {
+  position:absolute;
+  top: 50%;
+  margin: 16px;
+  width: 24px;
+  height: 24px;
+  z-index: 1;
+}
+
+.post__left-carousel-button {
+  transform: rotate(180deg);
+}
+
+.post__right-carousel-button {
+  right: 0;
+}
