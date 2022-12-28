@@ -1,3 +1,5 @@
+import { createPosts } from './post.js';
+
 const NIGHT_MODE_CLASS = "nightMode";
 
 const dayNightToggleBtn = document.querySelector(".header__theme-button");
@@ -25,6 +27,8 @@ dayNightToggleBtn.addEventListener("click", () => {
   toggleNightMode();
   setThemeMode(isNightMode());
 });
+
+createPosts();
 
 (() => {
   if (isNightMode()) setNightTheme();
