@@ -56,6 +56,10 @@
   scroll-behavior: smooth;
   top: 0;
   transition: transform 0.5s ease-out;
+
+  list-style: none;
+
+  z-index: 1;
 }
 
 .stories__controller {
@@ -86,6 +90,7 @@
   transition: 0.5s ease-out;
 
   cursor: pointer;
+  z-index: 2;
 }
 
 .stories__controller .stories__controller-next {
@@ -100,6 +105,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 2;
 
   transition: 0.5s ease-out;
 
