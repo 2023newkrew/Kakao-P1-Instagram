@@ -1,3 +1,9 @@
+@media (max-width: 1000px) {
+  .side-menu {
+    display: none;
+  }
+}
+
 .side-menu {
   width: 319px;
   margin: 32px 0 0 32px;
