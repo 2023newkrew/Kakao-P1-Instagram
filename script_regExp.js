@@ -72,8 +72,17 @@ function init() {
 
         if (theme === "dark") {
             util.addClass(document.documentElement, "darkTheme");
-        } else {
+        } else if (theme === "light") {
             util.removeClass(document.documentElement, "darkTheme");
+        } else {
+            //theme === null
+            if (
+                window.matchMedia &&
+                window.matchMedia("(prefers-color-scheme: dark)").matches
+            ) {
+                // dark mode
+                util.addClass(document.documentElement, "darkTheme");
+            }
         }
     };
 
