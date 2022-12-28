@@ -1,4 +1,4 @@
-import { stories } from "./dummy.js";
+import { stories, posts } from "./dummy.js";
 
 const themeButtonEl = document.querySelector(".header__theme-button");
 themeButtonEl.addEventListener("click", toggleTheme);
@@ -20,33 +20,34 @@ function toggleTheme() {
 }
 
 function setStory(story) {
-  const storyEl = document.createElement("button");
-  storyEl.classList.add("story");
-  storyEl.innerHTML = `<div class="story__avatar">
-    <div class="story__border">
-      <svg width="64" height="64" xmlns="http://www.w3.org/2000/svg">
-        <circle r="31" cy="32" cx="32" />
-      </svg>
-    </div>
-    <div class="story__picture">
-      <img class="user-profile-img" src=${story.profileImg} alt="user picture"/>
-      </div>
-    </div>
-    <span class="story__user">${story.name}</span>
-  `;
-  return storyEl;
+  const storyHTML = `<button class="story">
+    <div class="story__avatar">
+        <div class="story__border">
+        <svg width="64" height="64" xmlns="http://www.w3.org/2000/svg">
+            <circle r="31" cy="32" cx="32" />
+        </svg>
+        </div>
+        <div class="story__picture">
+        <img class="user-profile-img" src=${story.profileImg} alt="user picture"/>
+        </div>
+        </div>
+        <span class="story__user">${story.name}</span>
+    </button>`;
+  return storyHTML;
 }
 
-function setStories() {
+function initStories() {
   const storiesContentEl = document.querySelector(".stories__content");
+  let storiesHTML = "";
   for (let story of stories) {
-    storiesContentEl.appendChild(setStory(story));
+    storiesHTML += setStory(story);
   }
+  storiesContentEl.innerHTML = storiesHTML;
 }
 
 function main() {
   initThemeMode();
-  setStories();
+  initStories();
 }
 
 main();
