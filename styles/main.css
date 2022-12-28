@@ -30,7 +30,7 @@
   background-color: var(--background-color-secondary);
   padding: 16px 0;
   flex-shrink: 0;
-  border: 1px solid var(--story-border-color);
+  border: 1px solid var(--border-color);
   border-radius: 8px;
   margin-top: 16px;
   position: relative;
@@ -127,7 +127,7 @@
 
 .post {
   background-color: var(--background-color-secondary);
-  border: 1px solid var(--story-border-color);
+  border: 1px solid var(--border-color);
   border-radius: 8px;
 }
 
