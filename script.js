@@ -14,9 +14,13 @@ window.addEventListener("DOMContentLoaded", () => {
   if (theme === "dark") rootClassList.add("dark-theme");
 });
 
+const stories = document.querySelector(".stories__content");
+const prevButton = document.querySelector(".stories__button--prev");
+const nextButton = document.querySelector(".stories__button--next");
+
 const startObserver = new IntersectionObserver(
   ([{ isIntersecting }]) => {
-    const prevButtonClassList = document.querySelector(".stories__button--prev").classList;
+    const prevButtonClassList = prevButton.classList;
 
     if (isIntersecting) {
       prevButtonClassList.add("hidden");
@@ -25,14 +29,14 @@ const startObserver = new IntersectionObserver(
     }
   },
   {
-    root: document.querySelector(".stories__content"),
+    root: stories,
     threshold: 1,
   }
 );
 
 const endObserver = new IntersectionObserver(
   ([{ isIntersecting }]) => {
-    const nextButtonClassList = document.querySelector(".stories__button--next").classList;
+    const nextButtonClassList = nextButton.classList;
 
     if (isIntersecting) {
       nextButtonClassList.add("hidden");
@@ -41,10 +45,18 @@ const endObserver = new IntersectionObserver(
     }
   },
   {
-    root: document.querySelector(".stories__content"),
+    root: stories,
     threshold: 1,
   }
 );
 
 startObserver.observe(document.querySelector(".story:first-child"));
 endObserver.observe(document.querySelector(".story:last-child"));
+
+prevButton.addEventListener("click", () => {
+  stories.scrollLeft -= 320;
+});
+
+nextButton.addEventListener("click", () => {
+  stories.scrollLeft += 320;
+});
