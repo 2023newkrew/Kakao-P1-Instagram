@@ -15,8 +15,7 @@ const buildStoryHTML = ({ imageSource, imageAlternativeText, userName }) => `<li
     </div>
   </div>
   <span class="story__user">${userName}</span>
-</li>
-`;
+</li>`;
 
 const ClassName = {
   VISIBLE: 'visible',
@@ -39,7 +38,7 @@ const updateScrollButtonVisibility = () => {
 };
 
 const renderStories = (stories) => {
-  storiesContentElement.innerHTML = stories.map(buildStoryHTML).join('');
+  storiesContentElement.innerHTML = stories.map(buildStoryHTML).join('\n');
   updateScrollButtonVisibility();
 };
 
