@@ -24,10 +24,26 @@ body {
     display: flex;
     flex-direction: column;
     overflow-y: auto;
+
+    color: var(--primary-text);
 }
 
 img {
     max-width: 100%;
 }
 
+a {
+    text-decoration: none;
+    color: inherit;
+    font-weight: 500;
+}
 
+:root {
+    --primary-background: #ffffff;
+    --secondary-background: #fafafa;
+    --border: #dbdbdb;
+    --primary-text: #262626;
+    --secondary-text: #8e8e8e;
+    --tetriary-text: #c7c7c7;
+    --primary-button: #0095f6;
+}

@@ -1,17 +1,16 @@
 /* Main Content */
 .main-container {
-  background-color: #FFFFFF;
+  background-color: var(--secondary-background);
 
   margin-top: 44px;
-  margin-bottom: 44px;
+  padding-bottom: 44px;
 
   display: flex;
   flex: 1;
 }
 
 .content-container {
-  width: 100%;
-  max-width: 935px;
+  width: 821px;
 
   padding: 0 0 8px;
 
@@ -20,8 +19,7 @@
 }
 
 .content {
-  width: 100%;
-  max-width: 614px;
+  width: 470px;
 
   margin: 0 auto;
   display: flex;
@@ -30,7 +28,6 @@
 
 .stories {
   width: 100%;
-  background-color: #FFFFFF;
   padding: 16px 0;
   flex-shrink: 0;
 
@@ -43,8 +40,12 @@
   overflow-x: auto;
   overflow-y: hidden;
   gap: 16px;
-  padding: 0 16px;
+  padding: 16px;
   position: relative;
+  
+  background-color: var(--primary-background);
+  border: 1px solid var(--border);
+  border-radius: 8px;
 
   scroll-behavior: smooth;
   scrollbar-width: none;
@@ -125,3 +126,96 @@
 }
 
 /* Post */
+.post {
+  background-color: var(--primary-background);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.post__header {
+  height: 40px;
+  margin: 8px 4px 8px 12px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.post__profile {
+  display: flex;
+  align-items: center;
+}
+
+.post__avatar {
+  width: 32px;
+  line-height: 0;
+}
+
+.post__avatar > img {
+  border-radius: 50%;
+}
+
+.post__user {
+  margin-left: 10px;
+}
+
+.post__more-options,
+.post__button {
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border: none;
+  line-height: 0;
+  cursor: pointer;
+}
+
+.post__more-options:hover > img,
+.post__button:hover > img {
+  filter: invert(54%) sepia(86%) saturate(1%) hue-rotate(317deg) brightness(87%) contrast(104%);
+}
+
+.post__medias {
+  line-height: 0;
+}
+
+.post__buttons {
+  margin: 4px 12px 6px;
+  position: relative;
+}
+
+.post__button--align-right {
+  float: right;
+}
+
+.post__indicators {
+  position: absolute;
+  display: inline-block;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.post__likes {
+  margin: 0 12px 8px;
+  display: flex;
+  align-items: center;
+}
+
+.post__likes-avatar {
+  width: 20px;
+  margin-right: 4px;
+  line-height: 0;
+}
+
+.post__likes-avatar > img {
+  border-radius: 50%;
+}
+
+.post__description {
+  margin: 0 12px 8px;
+}
+
+.post__date-time {
+  margin: 0 0 12px 12px;
+  display: block;
+  font-size: 12px;
+  color: var(--secondary-text);
+}
