@@ -1,3 +1,7 @@
+/*
+    util.getClickCount의 getTranslateX를 정규식을 이용하여 구함 
+    이 방법이 적합한 방법인가?
+*/
 const $toggleThemeBtn = document.querySelector(".header__theme-button");
 const $stories = document.querySelector(".stories");
 const $rightArrow = document.querySelector(".story__next-button");
@@ -5,16 +9,13 @@ const $leftArrow = document.querySelector(".story__prev-button");
 const $innerBox = document.querySelector(".stories__inner-box");
 
 const util = {
+    getTranslateX(element) {
+        return Number(element.style.transform.replace(/[^\d.]/g, ""));
+    },
     getClickCount(container, contents) {
         const contentWidth = contents[0].offsetWidth;
-
-        const innerBoxStyle = window.getComputedStyle(container);
-        const innerBoxMatrix = new WebKitCSSMatrix(innerBoxStyle.transform);
-
-        //console.log("[translate val]", Math.abs(innerBoxMatrix.m41));
-        const clickCount = Math.floor(
-            Math.abs(innerBoxMatrix.m41) / contentWidth
-        );
+        const translateX = this.getTranslateX(container);
+        const clickCount = Math.floor(Math.abs(translateX) / contentWidth);
         return clickCount;
     },
     isFirst(container, contents) {
@@ -105,7 +106,6 @@ function init() {
     const makeOnArrowClickByTransformWithDirection = (direction) => {
         const adjustNum = direction === "left" ? -1 : 1;
         const onArrowClickByTransform = () => {
-            const animationTime = 500;
             const contents = $innerBox.querySelectorAll(".stories__content");
             const clickCount = util.getClickCount($innerBox, contents);
             const contentWidth = contents[0].offsetWidth;
@@ -113,26 +113,18 @@ function init() {
             $innerBox.style.transform = `translateX(-${
                 (clickCount + adjustNum) * contentWidth
             }px)`;
-            /*
-            getComputedStyle가 설정된 값이 아닌 눈에 보이는 현재 값을 기준으로 하기 때문에 
-            애니메이션이 종료된 후 로직이 실행되어야 한다
-    
-            getComputedStyle을 쓰지 않는 방법으로는 transform 값을 가져와서 정규식을 통해 값을 얻어오는 방법이 있으나
-            해당 방법이 적합한 방법인지는 모르겠다.
-            */
-            setTimeout(() => {
-                if (util.isLast($innerBox, contents)) {
-                    util.turnOffElement($rightArrow);
-                } else {
-                    util.turnOnElement($rightArrow);
-                }
 
-                if (util.isFirst($innerBox, contents)) {
-                    util.turnOffElement($leftArrow);
-                } else {
-                    util.turnOnElement($leftArrow);
-                }
-            }, animationTime);
+            if (util.isLast($innerBox, contents)) {
+                util.turnOffElement($rightArrow);
+            } else {
+                util.turnOnElement($rightArrow);
+            }
+
+            if (util.isFirst($innerBox, contents)) {
+                util.turnOffElement($leftArrow);
+            } else {
+                util.turnOnElement($leftArrow);
+            }
         };
         return onArrowClickByTransform;
     };

@@ -7,7 +7,7 @@
         <link rel="stylesheet" type="text/css" href="styles/header.css" />
         <link rel="stylesheet" type="text/css" href="styles/main.css" />
         <link rel="stylesheet" type="text/css" href="styles/side.css" />
-        <script src="script.js" defer></script>
+        <script src="script_regExp.js" defer></script>
     </head>
 
     <body>
@@ -63,28 +63,40 @@
             <section class="content-container">
                 <div class="content">
                     <div class="stories">
-                        <div class="stories__content">
-                            <button class="story">
-                                <div class="story__avatar">
-                                    <div class="story__border">
-                                        <svg
-                                            width="64"
-                                            height="64"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                        >
-                                            <circle r="31" cy="32" cx="32" />
-                                        </svg>
+                        <div class="stories__inner-box">
+                            <div class="stories__content">
+                                <button class="story">
+                                    <div class="story__avatar">
+                                        <div class="story__border">
+                                            <svg
+                                                width="64"
+                                                height="64"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                            >
+                                                <circle
+                                                    r="31"
+                                                    cy="32"
+                                                    cx="32"
+                                                />
+                                            </svg>
+                                        </div>
+                                        <div class="story__picture">
+                                            <img
+                                                src="assets/images/avatar.png"
+                                                alt="user picture"
+                                            />
+                                        </div>
                                     </div>
-                                    <div class="story__picture">
-                                        <img
-                                            src="assets/images/avatar.png"
-                                            alt="user picture"
-                                        />
-                                    </div>
-                                </div>
-                                <span class="story__user">user1</span>
-                            </button>
+                                    <span class="story__user">user1</span>
+                                </button>
+                            </div>
                         </div>
+                        <button class="story__next-button">
+                            <img src="assets/icons/arrow.svg" alt="arrow" />
+                        </button>
+                        <button class="story__prev-button">
+                            <img src="assets/icons/arrow.svg" alt="arrow" />
+                        </button>
                     </div>
 
                     <div class="posts">

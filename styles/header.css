@@ -23,6 +23,10 @@
     background-color: #dbdbdb;
 }
 
+:root.darkTheme .header::after {
+    background-color: var(--secondary);
+}
+
 .header__content {
     width: 100%;
     max-width: 975px;
