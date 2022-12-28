@@ -55,8 +55,7 @@
 
   scroll-behavior: smooth;
   top: 0;
-  overflow: auto;
-  transition: left 0.5s ease-out;
+  transition: transform 0.5s ease-out;
 }
 
 .stories__controller {

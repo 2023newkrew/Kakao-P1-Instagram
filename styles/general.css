@@ -49,7 +49,7 @@ body {
   flex-direction: column;
   overflow-y: auto;
 
-  /* min-width: 220px; */
+  min-width: 220px;
 }
 
 img {

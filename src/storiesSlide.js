@@ -21,7 +21,7 @@
     }
 
     storiesContent.innerHTML = elementString;
-})(100)
+})(20)
 
 
 const storySlidesElement = document.querySelector('.stories__content');
@@ -37,13 +37,8 @@ const storyGap = 23;
 const storyImgWidth = 64;
 const storyCount = parseInt(storySlideWidth / (storyGap + storyImgWidth));
 
-(function initFunction() {
-    storySlidesElement.style.width = `${storySlideWidth * storySlideCount}px`;
-    storySlidesElement.style.left = `${0}px`;
-})();
-
 const moveStorySlide = (num) => {
-    storySlidesElement.style.left = `${-num * (storyImgWidth + storyGap) * 3}px`;
+    storySlidesElement.style.setProperty('transform', `translateX(${-(num * ((storyImgWidth + storyGap) * 3))}px)`);
     currentStoryIndex = num;
 }
 
@@ -56,6 +51,5 @@ storyPrevButton.addEventListener('click', function () {
 const storyNextButton = document.querySelector('.stories__controller-next');
 
 storyNextButton.addEventListener('click', function () {
-    console.log(parseInt(storySlideCount / storyCount), currentStoryIndex)
-    if (currentStoryIndex !== parseInt(storySlideCount / storyCount)) moveStorySlide(currentStoryIndex + 1);
+    if (currentStoryIndex !== parseInt(storySlideCount / 3)) moveStorySlide(currentStoryIndex + 1);
 })
