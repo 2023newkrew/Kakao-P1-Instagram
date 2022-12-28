@@ -20,10 +20,6 @@
   line-height: 0;
 }
 
-.side-menu__user-avatar > img {
-  border-radius: 50%;
-}
-
 .side-menu__user-info {
   margin-left: 12px;
   flex-grow: 1;
@@ -76,10 +72,6 @@
   width: 32px;
   flex-shrink: 0;
   line-height: 0;
-}
-
-.side-menu__suggestion-avatar > img {
-  border-radius: 50%;
 }
 
 .side-menu__suggestion-info {
