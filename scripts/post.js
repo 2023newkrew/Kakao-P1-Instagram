@@ -1,69 +1,25 @@
-const posts = [
-    // example post 1
-    {
-        user: {
-            avatar: 'assets/images/avatar.png',
-            name: 'hash.table'
-        },
-        content: '오늘도 카카오맨 hash는 행복합니다.\n카카오라서 행복합니다',
-        pictures: [
-            'assets/images/picture.jpeg',
-        ],
-        likes: [
-            {
-                user: {
-                    avatar: 'assets/images/avatar.png',
-                    name: 'tori.ham'
-                },
-            },
-            {
-                user: {
-                    avatar: 'assets/images/avatar.png',
-                    name: 'muse.le'
-                },
-            }
-        ],
-        updatedAt: new Date('2022-12-26')
-    },
-    // example post 2
-    {
-        user: {
-            avatar: 'assets/images/avatar.png',
-            name: 'hash.table'
-        },
-        content: '오늘도 카카오맨 hash는 행복합니다.\n카카오라서 행복합니다',
-        pictures: [
-            'assets/images/picture.jpeg',
-            'assets/images/picture.jpeg',
-        ],
-        likes: [
-            {
-                user: {
-                    avatar: 'assets/images/avatar.png',
-                    name: 'tori.ham'
-                },
-            },
-            {
-                user: {
-                    avatar: 'assets/images/avatar.png',
-                    name: 'muse.le'
-                },
-            }
-        ],
-        updatedAt: new Date('2022-12-26')
-    }
-]
-const picturePages = Array(posts.length).fill(0);
+let picturePages;
+let postItems;
 
+async function init () {
+    postItems = await getPostItems();
+    picturePages = Array(postItems.length).fill(0);
+    setPosts();
+}
+async function getPostItems() {
+    const response = await fetch('../data/postItems.json');
+    const postItems = await response.json();
+    
+    return postItems;
+}
 function setPosts() {
     const elementPosts = document.querySelector('.posts');
     elementPosts.innerHTML = '';
-    for (let [index, post] of posts.entries()) {
-        const { user, pictures, content, updatedAt, likes } = post
-        elementPosts.innerHTML += makePost(index, user, pictures, content, updatedAt, likes);
+    for (let [index, postItem] of postItems.entries()) {
+        elementPosts.innerHTML += makePost(index, postItem);
     }
 }
-function makePost(index, {avatar, name}, pictures, content, updatedAt, likes) {
+function makePost(index, { user: {avatar, name}, pictures, content, updatedAt, likes }) {
     return `
         <article class="post">
             <div class="post__header">
@@ -124,7 +80,7 @@ function makePost(index, {avatar, name}, pictures, content, updatedAt, likes) {
                     </span>
                 </div>
 
-                <span class="post__date-time">${updatedAt.toDateString()}</span>
+                <span class="post__date-time">${new Date(updatedAt).toDateString()}</span>
                 </div>
             </div>
         </article>`;
@@ -143,11 +99,11 @@ function prevPicture(index) {
     movePicture(index);
 }
 function nextPicture(index) {
-    if (picturePages[index] >= posts[index].pictures.length - 1) return;
+    if (picturePages[index] >= postItems[index].pictures.length - 1) return;
     picturePages[index]++;
     
     const post = document.querySelectorAll('.post__content')[index];
-    if (picturePages[index] === posts[index].pictures.length - 1) {
+    if (picturePages[index] === postItems[index].pictures.length - 1) {
         const nextButton = post.querySelector('.post__content__right-arrow')
         nextButton.style.setProperty('visibility', 'hidden');
     } 
@@ -159,5 +115,4 @@ function movePicture(index) {
     const post = document.querySelectorAll('.post__medias');
     post[index].style.setProperty('transform', `translateX(${-468 * picturePages[index]}px)`)
 }
-
-setPosts();
+init();

@@ -1,37 +1,14 @@
-/*
-    더미 데이터입니다.
-*/
-const stories = [
-    {
-        avatar: 'assets/images/avatar.png',
-        name: 'hash.table'
-    },
-    {
-        avatar: 'assets/images/avatar.png',
-        name: 'tori.ham'
-    },
-    {
-        avatar: 'assets/images/avatar.png',
-        name: 'muse.le'
-    },
-    {
-        avatar: 'assets/images/avatar.png',
-        name: 'carter.p'
-    },
-    {
-        avatar: 'assets/images/avatar.png',
-        name: 'pepsi.colla'
-    },
-    {
-        avatar: 'assets/images/avatar.png',
-        name: 'edan.gwan'
-    },
-    {
-        avatar: 'assets/images/avatar.png',
-        name: 'frey.ryu'
-    },
-];
-
+let storyItems;
+async function init () {
+    storyItems = await getStoryItems();
+    setStories();
+}
+async function getStoryItems() {
+    const response = await fetch('../data/storyItems.json');
+    const storyItems = await response.json();
+    
+    return storyItems;
+}
 /*
     setStories(): void
     
@@ -42,12 +19,12 @@ function setStories() {
     
     let elementString = '<div class="stories__content">';
     elementString = '<div class="stories__content">';
-    for (let story of stories) {
-        elementString += makeStory(story);
+    for (let storyItem of storyItems) {
+        elementString += makeStory(storyItem);
     }
     elementString += '</div>';
     elementString += '<button onClick="pageController.onPrevStory()" style="display: none" class="stories__arrow__left"><img src="assets/icons/arrow.svg" /></button>';
-    elementString += `<button onClick="pageController.onNextStory()" style="${stories.length < 6 ? "display: none": ""}" class="stories__arrow__right"><img src="assets/icons/arrow.svg" /></button>`;
+    elementString += `<button onClick="pageController.onNextStory()" style="${storyItems.length < 6 ? "display: none": ""}" class="stories__arrow__right"><img src="assets/icons/arrow.svg" /></button>`;
 
     elementStories.innerHTML = elementString;
 }
@@ -99,13 +76,13 @@ const pageController = {
         if (this.storyPage === 0) this.setPrevStoryButtonVisible(false);
     },
     onNextStory: function () {
-        if (this.storyPage >= stories.length - 5) return;
+        if (this.storyPage >= storyItems.length - 5) return;
         this.setPrevStoryButtonVisible(true);
 
         this.storyPage++;
         this.moveStory();
 
-        if (this.storyPage === stories.length - 5) this.setNextStoryButtonVisible(false);
+        if (this.storyPage === storyItems.length - 5) this.setNextStoryButtonVisible(false);
     },
     setPrevStoryButtonVisible: function (visible) {
         const elementPrevStoryButton = document.querySelector('.stories__arrow__left')
@@ -126,4 +103,4 @@ const pageController = {
 }
 
 // init function
-setStories();
+init();
