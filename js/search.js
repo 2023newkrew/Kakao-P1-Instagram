@@ -1,6 +1,4 @@
-const suggestions = [ '아이유','아이유 자작곡 테스트 텍스트 긴 텍스트','아이들','아기','아파트','아파트 전세','아파트 매매', '아이유 콘서트', '아이유 자작곡', '아이유 소속사', '강남','강남역', '강남역 맛집', '카카오', '카카오 아지트', '판교 카카오', '판교역', '신분당선 판교역', '광교역','광교 중앙역', '신분당선 광교중앙역', '뉴크루','라이언','춘식이','라이언 춘식이','춘식도락','하찮은 춘식이' ];
-
-const SEARCH_BASE_QUERY = 'https://www.google.com/search?q=';
+import { SUGGESTION_KEYWORDS, SEARCH_BASE_QUERY, EMPTY_KEYWORD_ALERT } from "./constants/search.js";
 
 const searchHeader = document.querySelector('.header__search');
 const searchInput = searchHeader.querySelector('input');
@@ -28,7 +26,7 @@ const getSuggestionKeywordTemplate = (suggestionKeyword, searchKeyword) =>
       </a>
   </li>`;
 
-const findMatchResults = (keyword) => suggestions.filter((suggestionKeyword)=>{
+const findMatchResults = (keyword) => SUGGESTION_KEYWORDS.filter((suggestionKeyword)=>{
     const hasKeyword = new RegExp(keyword, 'gi');
     return suggestionKeyword.match(hasKeyword);
   });
@@ -55,11 +53,11 @@ const clearSuggestions = ()=>{
 const search = (keyword)=>{
   const searchKeyword = keyword.trim();
   if(!searchKeyword){
-    alert('검색어를 입력해주세요');
+    alert(EMPTY_KEYWORD_ALERT);
     return;
   }
 
-  window.open(`https://www.google.com/search?q=${searchKeyword}`);
+  window.open(SEARCH_BASE_QUERY + searchKeyword);
   hideSuggestions();
 }
 
