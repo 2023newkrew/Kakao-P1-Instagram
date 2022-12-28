@@ -14,7 +14,7 @@ function setTheme(theme) {
 }
 
 (
-    function init() {
+    function initTheme() {
         const localTheme = getTheme()
         if (localTheme === 'darkTheme') document.documentElement.classList.toggle('darkTheme');
     }
