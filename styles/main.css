@@ -71,7 +71,7 @@
   display: none;
 }
 
-.stories__scroll-left-button[class~="visible"] {
+.stories__scroll-left-button[class~='visible'] {
   display: unset;
 }
 
@@ -90,7 +90,7 @@
   display: none;
 }
 
-.stories__scroll-right-button[class~="visible"] {
+.stories__scroll-right-button[class~='visible'] {
   display: unset;
 }
 

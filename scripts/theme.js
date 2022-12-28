@@ -1,8 +1,8 @@
-import { LocalStorageKey } from "./const.js";
+import { LocalStorageKey } from './const.js';
 
 const Theme = Object.freeze({
-  LIGHT_THEME: "lightTheme",
-  DARK_THEME: "darkTheme",
+  LIGHT_THEME: 'lightTheme',
+  DARK_THEME: 'darkTheme',
 });
 
 const initializeDocumentTheme = () => {

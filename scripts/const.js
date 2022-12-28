@@ -1,5 +1,5 @@
 const LocalStorageKey = Object.freeze({
-  THEME: "theme",
+  THEME: 'theme',
 });
 
 export { LocalStorageKey };

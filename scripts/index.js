@@ -1,4 +1,4 @@
-import { initializeDocumentTheme, toggleDocumentTheme } from "./theme.js";
+import { initializeDocumentTheme, toggleDocumentTheme } from './theme.js';
 
 const toggleThemeButton = document.querySelector('.header__theme-button');
 
