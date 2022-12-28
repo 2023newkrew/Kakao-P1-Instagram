@@ -54,6 +54,14 @@
   display: unset;
 }
 
+:root.nightMode .header__theme-button-moon {
+  display: none;
+}
+
+:root.nightMode .header__theme-button-sun {
+  display: unset;
+}
+
 .header__search {
   width: 216px;
   height: 28px;
