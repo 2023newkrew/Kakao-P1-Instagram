@@ -59,11 +59,11 @@
 .stories__scroll-left-button {
   cursor: pointer;
 
-  width: 24px;
-  height: 24px;
+  width: 2rem;
+  height: 2rem;
 
   position: absolute;
-  left: 0.5rem;
+  left: 1rem;
   top: 0;
   bottom: 0;
   margin: auto;
@@ -79,11 +79,11 @@
 .stories__scroll-right-button {
   cursor: pointer;
 
-  width: 24px;
-  height: 24px;
+  width: 2rem;
+  height: 2rem;
 
   position: absolute;
-  right: 0.5rem;
+  right: 1rem;
   top: 0;
   bottom: 0;
   margin: auto;
@@ -212,7 +212,7 @@
 .post__media {
   position: relative;
   min-width: 100%;
-  padding-bottom: 100%;
+  padding-bottom: 125%;
   background-color: black;
 }
 
@@ -227,11 +227,11 @@
 .post__shift-left-button {
   cursor: pointer;
 
-  width: 24px;
-  height: 24px;
+  width: 2rem;
+  height: 2rem;
 
   position: absolute;
-  left: 0.5rem;
+  left: 1rem;
   top: 0;
   bottom: 0;
   margin: auto;
@@ -247,11 +247,11 @@
 .post__shift-right-button {
   cursor: pointer;
 
-  width: 24px;
-  height: 24px;
+  width: 2rem;
+  height: 2rem;
 
   position: absolute;
-  right: 0.5rem;
+  right: 1rem;
   top: 0;
   bottom: 0;
   margin: auto;
