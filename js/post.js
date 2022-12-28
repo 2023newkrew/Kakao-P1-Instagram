@@ -21,14 +21,16 @@ const makePostTemplate = ({username, content, images}) => `
       <button class="post__button prev-button">
         <img src="assets/icons/arrow.svg" alt="prev button image"/>
       </button>
-    <div class="post__medias slides-container">
-      ${
-        images.map((image)=>
-          `<div class="post__media slide">
-              <img src="${image}" alt="Post Content" />
-          </div>`
-        )
-      }
+    <div class="post__medias carousel-sections-scroll">
+      <div class="post_media carousel-sections">
+        ${
+          images.map((image, index)=>
+            `<div class="carousel-section">
+                <img src="${image}" alt="게시글 이미지 ${index}" />
+            </div>`
+          )
+        }
+      </div>
     </div>
       <button class="post__button next-button">
         <img src="assets/icons/arrow.svg" alt="prev button image"/>
@@ -44,7 +46,10 @@ const makePostTemplate = ({username, content, images}) => `
                 <img src="assets/icons/comment.svg" alt="comment" />
             </button>
 
-            <div class="post__indicators"></div>
+            <div class="post__indicators">
+              <div></div>
+              <div></div>
+            </div>
 
             <button class="post__button post__button--align-right">
                 <img src="assets/icons/bookmark.svg" alt="bookmark" />
@@ -78,16 +83,20 @@ const makePostTemplate = ({username, content, images}) => `
 const postsContainer = document.querySelector('.posts');
 
 const initPostCarousel = (post)=>{
-  const slidesContainer = post.querySelector('.post__content .slides-container');
+  const slidesContainer = post.querySelector('.post__content .carousel-sections');
   const prevButton = post.querySelector('.prev-button');
   const nextButton = post.querySelector('.next-button');
 
   initCarousel(slidesContainer, prevButton, nextButton);
 };
 
-export const initPosts = ()=>{
+const renderPosts = ()=>{
   const postTemplates = MOCK_POSTS_DATA.map(makePostTemplate).join('\n');
   postsContainer.innerHTML = postTemplates;
+}
+
+export const initPosts = ()=>{
+  renderPosts();
 
   const posts = postsContainer.querySelectorAll('.post');
   posts.forEach(initPostCarousel);

@@ -5,7 +5,6 @@ export const MOCK_POSTS_DATA = [
     images:[
       'https://cdn.mydaily.co.kr/FILES/202212/202212251951653340_1.jpg',
       'https://pds.joongang.co.kr/news/component/htmlphoto_mmdata/202207/31/d399eb2b-154e-4585-bdbb-b8a86939577c.jpg',
-      
     ]
   },
   {
