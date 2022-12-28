@@ -85,6 +85,34 @@
   color: var(--text-primary);
 }
 
+.header__search .suggestions {
+  display: none;
+  flex-direction: column;
+
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--separator-color);
+  border-radius: var(--border-radius);
+  
+  position: absolute;
+  top: calc(100% + var(--base-unit) * 1);
+  width: 100%;
+  max-height: 240px;
+  overflow-y: auto;
+  z-index: 10;
+}
+
+.header__search .suggestions .suggestion:not(:last-of-type) {
+  border-bottom: 1px solid var(--separator-color);
+}
+
+.header__search .suggestions .suggestion .suggestion__keyword {
+  display:block;
+  padding: var(--base-unit) calc(var(--base-unit) * 2);
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
 .header__buttons {
   display: flex;
   align-items: center;

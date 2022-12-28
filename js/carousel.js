@@ -5,9 +5,9 @@ export const initCarousel = (slidesContainer, prevButton, nextButton) => {
 	prevButton.addEventListener('click', () => {
 		const slideWidth = slide.clientWidth;
 		slidesContainer.scrollLeft -= slideWidth;
-	})
+	});
 	nextButton.addEventListener('click', () => {
 		const slideWidth = slide.clientWidth;
 		slidesContainer.scrollLeft += slideWidth;
-	})
+	});
 }
