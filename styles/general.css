@@ -36,11 +36,11 @@ img {
 button {
     border: 0;
     outline: 0;
-    background-color: #fff;
+    background-color: var(--background-gray-1);
 }
 
-a {
+a, span, h2, button {
     text-decoration: none;
-    color: #000;
+    color: var(--black-1);
 }
 

@@ -1,0 +1,29 @@
+:root {
+    --background-gray-1: #FAFAFA;
+    --background-gray-2: #DDD;
+    --background-white: #FFF;
+    
+    --gray-1: #C7C7C7;
+    --gray-2: #8E8E8E;
+    --black-1: #000;
+
+    --darkness: 0.8;
+}
+:root.dark .header__theme-button-sun {
+    display: unset;
+}
+:root.dark .header__theme-button-moon {
+    display: none;
+}
+/* 전체 색상 반전 */
+:root.dark{
+    filter: invert(1) hue-rotate(180deg);
+}
+/* 이미지 색상 반전 제외 */
+:root.dark img {
+    filter: invert(1) hue-rotate(180deg);
+}
+/* svg는 색상 반전 적용 */
+:root.dark img[src*="svg"] {
+    filter: unset;
+}
