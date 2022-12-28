@@ -28,6 +28,10 @@ body {
     color: var(--primary-text);
 }
 
+button {
+    color: var(--primary-text);
+}
+
 img {
     max-width: 100%;
 }
@@ -46,4 +50,13 @@ a {
     --secondary-text: #8e8e8e;
     --tetriary-text: #c7c7c7;
     --primary-button: #0095f6;
+}
+
+:root.dark-theme {
+    --primary-background: #000000;
+    --secondary-background: #121212;
+    --border: #363636;
+    --primary-text: #fafafa;
+    --secondary-text: #a8a8a8;
+    --tetriary-text: #494949;
 }
