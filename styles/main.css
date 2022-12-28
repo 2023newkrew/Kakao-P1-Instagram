@@ -55,6 +55,45 @@
   display: none;
 }
 
+.stories__scroll-left-button {
+  cursor: pointer;
+
+  width: 24px;
+  height: 24px;
+
+  position: absolute;
+  left: 0.5rem;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  transform: scaleX(-1);
+
+  display: none;
+}
+
+.stories__scroll-left-button[class~="visible"] {
+  display: unset;
+}
+
+.stories__scroll-right-button {
+  cursor: pointer;
+
+  width: 24px;
+  height: 24px;
+
+  position: absolute;
+  right: 0.5rem;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+
+  display: none;
+}
+
+.stories__scroll-right-button[class~="visible"] {
+  display: unset;
+}
+
 .posts {
   display: flex;
   flex-direction: column;
