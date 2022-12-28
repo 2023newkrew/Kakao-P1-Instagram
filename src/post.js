@@ -46,7 +46,7 @@ const createPost = ({user, medias, likes, description}) => {
 
     <div class="post__content">
       <button class="post__left-carousel-button carousel-button icon-button">
-        <img src="assets/icons/arrow.svg" alt="right arrow" />
+        <img src="assets/icons/arrow.svg" alt="left arrow" />
       </button>
       <div class="post__medias">
         ${medias.map((media) => `<img class="post__media" src="${media}" alt="Post Content" />`).join("")}
