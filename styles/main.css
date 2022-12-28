@@ -27,6 +27,7 @@
 }
 
 .stories {
+  display: relative;
   width: 100%;
   padding: 16px 0;
   flex-shrink: 0;
@@ -64,6 +65,31 @@
 
 /* Components */
 /* Story */
+.stories__button {
+  position: absolute;
+  margin: 0 5px;
+  width: 45px;
+  height: 45px;
+  line-height: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.stories__button > img {
+  width: 25px;
+}
+
+.stories__button--next {
+  right: 0;
+}
+
+.stories__button--prev > img {
+  transform: scaleX(-1);
+}
+
 .story {
   background-color: transparent;
   border: none;
