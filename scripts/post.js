@@ -20,9 +20,9 @@
   </div>
 
   <div class="post__content">
-    <div class="post__medias">
+    <ul class="post__medias">
       ${images.map(buildPostImageHTML).join('\n')}
-    </div>
+    </ul>
     <button class="post__shift-left-button" title="Shift Left">
       <img src="assets/icons/arrow.svg" alt="left" />
     </button>
@@ -70,7 +70,9 @@
   </div>
 </article>`;
 
-  const buildPostImageHTML = ({ source, alternativeText }) => `<img class="post__media" src="${source}" alt="${alternativeText}" />`;
+  const buildPostImageHTML = ({ source, alternativeText }) => `<li class="post__media">
+  <img src="${source}" alt="${alternativeText}" />
+</li>`;
 
   const renderPosts = (posts) => {
     postsElement.innerHTML = posts.map(buildPostHTML).join('\n');

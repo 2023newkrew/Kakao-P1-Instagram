@@ -206,6 +206,22 @@
 .post__medias {
   display: flex;
   transition: 0.2s;
+  list-style: none;
+}
+
+.post__media {
+  position: relative;
+  min-width: 100%;
+  padding-bottom: 100%;
+  background-color: black;
+}
+
+.post__media img {
+  position: absolute;
+  object-fit: scale-down;
+  margin: auto;
+  width: 100%;
+  height: 100%;
 }
 
 .post__shift-left-button {
