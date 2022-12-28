@@ -48,6 +48,8 @@ body {
   display: flex;
   flex-direction: column;
   overflow-y: auto;
+
+  /* min-width: 220px; */
 }
 
 img {

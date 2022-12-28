@@ -8,8 +8,9 @@
   <link rel="stylesheet" type="text/css" href="styles/header.css" />
   <link rel="stylesheet" type="text/css" href="styles/main.css" />
   <link rel="stylesheet" type="text/css" href="styles/side.css" />
-  <script src="./javascripts/mediasSlide.js" defer></script>
-  <script src="./javascripts//toggleTheme.js" defer></script>
+  <script type="module"  src="./src/mediasSlide.js"></script>
+  <script type="module" src="./src/toggleTheme.js"></script>
+  <script type="module" src="./src/storiesSlide.js"></script>
 </head>
 
 <body>
@@ -55,123 +56,7 @@
       <div class="content">
         <div class="stories">
           <div class="stories__content">
-            <button class="story ">
-              <div class="story__avatar">
-                <div class="story__border">
-                  <svg width="64" height="64" xmlns="http://www.w3.org/2000/svg">
-                    <circle r="31" cy="32" cx="32" />
-                  </svg>
-                </div>
-                <div class="story__picture">
-                  <img src="assets/images/avatar.png" alt="user picture" />
-                </div>
-              </div>
-              <span class="story__user">user1</span>
-            </button>
-            <button class="story ">
-              <div class="story__avatar">
-                <div class="story__border">
-                  <svg width="64" height="64" xmlns="http://www.w3.org/2000/svg">
-                    <circle r="31" cy="32" cx="32" />
-                  </svg>
-                </div>
-                <div class="story__picture">
-                  <img src="assets/images/avatar.png" alt="user picture" />
-                </div>
-              </div>
-              <span class="story__user">user1</span>
-            </button>
-            <button class="story ">
-              <div class="story__avatar">
-                <div class="story__border">
-                  <svg width="64" height="64" xmlns="http://www.w3.org/2000/svg">
-                    <circle r="31" cy="32" cx="32" />
-                  </svg>
-                </div>
-                <div class="story__picture">
-                  <img src="assets/images/avatar.png" alt="user picture" />
-                </div>
-              </div>
-              <span class="story__user">user1</span>
-            </button>
-            <button class="story ">
-              <div class="story__avatar">
-                <div class="story__border">
-                  <svg width="64" height="64" xmlns="http://www.w3.org/2000/svg">
-                    <circle r="31" cy="32" cx="32" />
-                  </svg>
-                </div>
-                <div class="story__picture">
-                  <img src="assets/images/avatar.png" alt="user picture" />
-                </div>
-              </div>
-              <span class="story__user">user1</span>
-            </button>
-            <button class="story ">
-              <div class="story__avatar">
-                <div class="story__border">
-                  <svg width="64" height="64" xmlns="http://www.w3.org/2000/svg">
-                    <circle r="31" cy="32" cx="32" />
-                  </svg>
-                </div>
-                <div class="story__picture">
-                  <img src="assets/images/avatar.png" alt="user picture" />
-                </div>
-              </div>
-              <span class="story__user">user1</span>
-            </button>
-            <button class="story ">
-              <div class="story__avatar">
-                <div class="story__border">
-                  <svg width="64" height="64" xmlns="http://www.w3.org/2000/svg">
-                    <circle r="31" cy="32" cx="32" />
-                  </svg>
-                </div>
-                <div class="story__picture">
-                  <img src="assets/images/avatar.png" alt="user picture" />
-                </div>
-              </div>
-              <span class="story__user">user1</span>
-            </button>
-            <button class="story ">
-              <div class="story__avatar">
-                <div class="story__border">
-                  <svg width="64" height="64" xmlns="http://www.w3.org/2000/svg">
-                    <circle r="31" cy="32" cx="32" />
-                  </svg>
-                </div>
-                <div class="story__picture">
-                  <img src="assets/images/avatar.png" alt="user picture" />
-                </div>
-              </div>
-              <span class="story__user">user1</span>
-            </button>
-            <button class="story ">
-              <div class="story__avatar">
-                <div class="story__border">
-                  <svg width="64" height="64" xmlns="http://www.w3.org/2000/svg">
-                    <circle r="31" cy="32" cx="32" />
-                  </svg>
-                </div>
-                <div class="story__picture">
-                  <img src="assets/images/avatar.png" alt="user picture" />
-                </div>
-              </div>
-              <span class="story__user">user1</span>
-            </button>
-            <button class="story ">
-              <div class="story__avatar">
-                <div class="story__border">
-                  <svg width="64" height="64" xmlns="http://www.w3.org/2000/svg">
-                    <circle r="31" cy="32" cx="32" />
-                  </svg>
-                </div>
-                <div class="story__picture">
-                  <img src="assets/images/avatar.png" alt="user picture" />
-                </div>
-              </div>
-              <span class="story__user">user1</span>
-            </button>
+            <!-- TODO : button 태그 li와 ul로 변경 -->
             <button class="story ">
               <div class="story__avatar">
                 <div class="story__border">
@@ -186,14 +71,15 @@
               <span class="story__user">user1</span>
             </button>
 
-            <div class="stories__controller">
-              <span class="stories__controller-prev">
-                <img src="assets/icons/arrow.svg">
-              </span>
-              <span class="stories__controller-next">
-                <img src="assets/icons/arrow.svg">
-              </span>
-            </div>
+          </div>
+
+          <div class="stories__controller">
+            <span class="stories__controller-prev">
+              <img src="assets/icons/arrow.svg">
+            </span>
+            <span class="stories__controller-next">
+              <img src="assets/icons/arrow.svg">
+            </span>
           </div>
         </div>
 
@@ -214,9 +100,9 @@
 
             <div class="post__content">
               <ul class="post__medias">
-                <li class="post__list"><img class="post__media" src="assets/images/picture.jpeg" alt="Post Content"   /></li>
-                <li class="post__list"><img class="post__media" src="assets/images/picture.jpeg" alt="Post Content" /></li>
-                <li class="post__list"><img class="post__media" src="assets/images/picture.jpeg" alt="Post Content" /></li>
+                <li><img class="post__media" src="assets/images/picture.jpeg" alt="Post Content" /></li>
+                <li><img class="post__media" src="assets/images/picture.jpeg" alt="Post Content" /></li>
+                <li><img class="post__media" src="assets/images/picture.jpeg" alt="Post Content" /></li>
               </ul>
 
               <div class="post__controller">
@@ -228,6 +114,8 @@
                 </span>
               </div>
             </div>
+
+
 
 
             <div class="post__footer">
@@ -268,7 +156,152 @@
               </div>
             </div>
           </article>
-          
+
+          <article class="post">
+            <div class="post__header">
+              <div class="post__profile">
+                <a href="" target="_blank" class="post__avatar">
+                  <img src="assets/images/avatar.png" alt="user picture" />
+                </a>
+                <a href="" target="_blank" class="post__user">user</a>
+              </div>
+
+              <button class="post__more-options">
+                <img src="assets/icons/more.svg" alt="more" />
+              </button>
+            </div>
+
+            <div class="post__content">
+              <ul class="post__medias">
+                <li><img class="post__media" src="assets/images/picture.jpeg" alt="Post Content" /></li>
+                <li><img class="post__media" src="assets/images/picture.jpeg" alt="Post Content" /></li>
+                <li><img class="post__media" src="assets/images/picture.jpeg" alt="Post Content" /></li>
+              </ul>
+
+              <div class="post__controller">
+                <span class="post__controller-prev">
+                  <img src="assets/icons/arrow.svg">
+                </span>
+                <span class="post__controller-next">
+                  <img src="assets/icons/arrow.svg">
+                </span>
+              </div>
+            </div>
+
+            
+
+
+            <div class="post__footer">
+              <div class="post__buttons">
+                <button class="post__button">
+                  <img src="assets/icons/heart.svg" alt="heart" />
+                </button>
+                <button class="post__button">
+                  <img src="assets/icons/comment.svg" alt="comment" />
+                </button>
+
+                <div class="post__indicators"></div>
+
+                <button class="post__button post__button--align-right">
+                  <img src="assets/icons/bookmark.svg" alt="bookmark" />
+                </button>
+              </div>
+
+              <div class="post__infos">
+                <div class="post__likes">
+                  <a href="#" class="post__likes-avatar">
+                    <img src="assets/images/avatar.png" alt="user picture" />
+                  </a>
+
+                  <span>Liked by
+                    <a class="post__name--underline" href="#">user1</a> and
+                    <a href="#">33 others</a></span>
+                </div>
+
+                <div class="post__description">
+                  <span>
+                    <a class="post__name--underline" href="" target="_blank">user</a>
+                    description
+                  </span>
+                </div>
+
+                <span class="post__date-time">30 minutes ago</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="post">
+            <div class="post__header">
+              <div class="post__profile">
+                <a href="" target="_blank" class="post__avatar">
+                  <img src="assets/images/avatar.png" alt="user picture" />
+                </a>
+                <a href="" target="_blank" class="post__user">user</a>
+              </div>
+
+              <button class="post__more-options">
+                <img src="assets/icons/more.svg" alt="more" />
+              </button>
+            </div>
+
+            <div class="post__content">
+              <ul class="post__medias">
+                <li class="post__list"><img class="post__media" src="assets/images/picture.jpeg" alt="Post Content"   /></li>
+                <li class="post__list"><img class="post__media" src="assets/images/picture.jpeg" alt="Post Content" /></li>
+                <li class="post__list"><img class="post__media" src="assets/images/picture.jpeg" alt="Post Content" /></li>
+              </ul>
+
+              <div class="post__controller">
+                <span class="post__controller-prev">
+                  <img src="assets/icons/arrow.svg">
+                </span>
+                <span class="post__controller-next">
+                  <img src="assets/icons/arrow.svg">
+                </span>
+              </div>
+            </div>
+
+            
+
+
+            <div class="post__footer">
+              <div class="post__buttons">
+                <button class="post__button">
+                  <img src="assets/icons/heart.svg" alt="heart" />
+                </button>
+                <button class="post__button">
+                  <img src="assets/icons/comment.svg" alt="comment" />
+                </button>
+
+                <div class="post__indicators"></div>
+
+                <button class="post__button post__button--align-right">
+                  <img src="assets/icons/bookmark.svg" alt="bookmark" />
+                </button>
+              </div>
+
+              <div class="post__infos">
+                <div class="post__likes">
+                  <a href="#" class="post__likes-avatar">
+                    <img src="assets/images/avatar.png" alt="user picture" />
+                  </a>
+
+                  <span>Liked by
+                    <a class="post__name--underline" href="#">user1</a> and
+                    <a href="#">33 others</a></span>
+                </div>
+
+                <div class="post__description">
+                  <span>
+                    <a class="post__name--underline" href="" target="_blank">user</a>
+                    description
+                  </span>
+                </div>
+
+                <span class="post__date-time">30 minutes ago</span>
+              </div>
+            </div>
+          </article>
 
         </div>
 

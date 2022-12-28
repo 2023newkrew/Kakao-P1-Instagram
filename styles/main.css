@@ -42,19 +42,21 @@
 
   border-radius: 8px;
   border: 1px solid var(--story-border);
+
+  overflow: hidden;
 }
 
 .stories__content {
   display: flex;
-  overflow-x: hidden;
-  overflow-y: hidden;
-  gap: 16px;
+
+  gap: 23px;
   padding: 0 8px;
   position: relative;
 
   scroll-behavior: smooth;
-  scrollbar-width: none;
-
+  top: 0;
+  overflow: auto;
+  transition: left 0.5s ease-out;
 }
 
 .stories__controller {
@@ -63,7 +65,7 @@
 
 .stories:hover .stories__controller {
   position: absolute;
-  width: 100%;
+  width: inherit;
   height: 100%;
   top: 25%;
   display: flex;
