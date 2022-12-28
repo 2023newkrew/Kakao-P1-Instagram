@@ -207,7 +207,18 @@
 }
 
 .post__medias {
-  line-height: 0;
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.post__medias::-webkit-scrollbar {
+  display: none;
+}
+
+.post__media {
+  scroll-snap-align: center;
 }
 
 .post__buttons {
