@@ -103,24 +103,23 @@ function init() {
         }
     };
 
-    const makeOnArrowClickByTransformWithDirection = (direction) => {
+    const makeOnArrowClickByTransform = (container, contents, direction) => {
         const adjustNum = direction === "left" ? -1 : 1;
         const onArrowClickByTransform = () => {
-            const contents = $innerBox.querySelectorAll(".stories__content");
-            const clickCount = util.getClickCount($innerBox, contents);
+            const clickCount = util.getClickCount(container, contents);
             const contentWidth = contents[0].offsetWidth;
 
-            $innerBox.style.transform = `translateX(-${
+            container.style.transform = `translateX(-${
                 (clickCount + adjustNum) * contentWidth
             }px)`;
 
-            if (util.isLast($innerBox, contents)) {
+            if (util.isLast(container, contents)) {
                 util.turnOffElement($rightArrow);
             } else {
                 util.turnOnElement($rightArrow);
             }
 
-            if (util.isFirst($innerBox, contents)) {
+            if (util.isFirst(container, contents)) {
                 util.turnOffElement($leftArrow);
             } else {
                 util.turnOnElement($leftArrow);
@@ -133,11 +132,19 @@ function init() {
     $toggleThemeBtn.addEventListener("click", onDarkThemeBtnClick);
     $rightArrow.addEventListener(
         "click",
-        makeOnArrowClickByTransformWithDirection("right")
+        makeOnArrowClickByTransform(
+            $innerBox,
+            $innerBox.querySelectorAll(".stories__content"),
+            "right"
+        )
     );
     $leftArrow.addEventListener(
         "click",
-        makeOnArrowClickByTransformWithDirection("left")
+        makeOnArrowClickByTransform(
+            $innerBox,
+            $innerBox.querySelectorAll(".stories__content"),
+            "left"
+        )
     );
 }
 function makeDummy(count) {
