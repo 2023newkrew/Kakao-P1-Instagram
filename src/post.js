@@ -18,8 +18,8 @@ export const createPosts = () => {
 
     appendMediaPage(maxMediaPage);
 
-    leftButton.addEventListener('click', () => previousMedia(index, mediasContainer, leftButton, rightButton));
-    rightButton.addEventListener('click', () => nextMedia(index, mediasContainer, leftButton, rightButton));
+    leftButton.addEventListener("click", () => previousMedia(index, mediasContainer, leftButton, rightButton));
+    rightButton.addEventListener("click", () => nextMedia(index, mediasContainer, leftButton, rightButton));
 
     displayButtons(index, leftButton, rightButton);
     
@@ -49,7 +49,7 @@ const createPost = ({user, medias, likes, description}) => {
         <img src="assets/icons/arrow.svg" alt="right arrow" />
       </button>
       <div class="post__medias">
-        ${medias.map((media) => `<img class="post__media" src="${media}" alt="Post Content" />`).join('')}
+        ${medias.map((media) => `<img class="post__media" src="${media}" alt="Post Content" />`).join("")}
       </div>
       <button class="post__right-carousel-button carousel-button icon-button">
         <img src="assets/icons/arrow.svg" alt="right arrow" />
@@ -85,10 +85,10 @@ const createPost = ({user, medias, likes, description}) => {
             </a>
             <span>Liked by
               <a class="post__name--underline" href="#">${likes[0]}</a> 
-              ${likes.length > 1 ? `and <a href="#">${likes.length - 1} others</a>` : ''}
+              ${likes.length > 1 ? `and <a href="#">${likes.length - 1} others</a>` : ""}
             </span>
           </div>
-            ` : ''
+            ` : ""
         }
 
         <div class="post__description">
