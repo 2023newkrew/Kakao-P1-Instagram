@@ -1,4 +1,5 @@
 import { initHorizontalScroll } from "./util.js";
+import { STORY_SCROLL_AMOUNT } from "./CONSTANTS.js";
 
 export function initStory() {
   const $stories = document.querySelector(".stories__content");
@@ -11,6 +12,6 @@ export function initStory() {
     items: stories,
     $prevButton,
     $nextButton,
-    scrollAmount: 320,
+    scrollAmount: STORY_SCROLL_AMOUNT,
   });
 }

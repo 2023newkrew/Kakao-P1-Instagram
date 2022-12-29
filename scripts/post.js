@@ -1,4 +1,5 @@
 import { initHorizontalScroll } from "./util.js";
+import { CAROUSEL_SCROLL_AMOUNT } from "./CONSTANTS.js";
 
 function initCarousel($post) {
   const $medias = $post.querySelector(".post__medias");
@@ -11,7 +12,7 @@ function initCarousel($post) {
     items: medias,
     $prevButton,
     $nextButton,
-    scrollAmount: 468,
+    scrollAmount: CAROUSEL_SCROLL_AMOUNT,
   });
 }
 
