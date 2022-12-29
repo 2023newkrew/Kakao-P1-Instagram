@@ -1,5 +1,5 @@
 /*
-    util.getClickCount의 getTranslateX를 정규식을 이용하여 구함 
+    util.getCurrentIndex getTranslateX를 정규식을 이용하여 구함 
     이 방법이 적합한 방법인가?
 */
 const $toggleThemeBtn = document.querySelector(".header__theme-button");
@@ -12,23 +12,23 @@ const util = {
     getTranslateX(element) {
         return Number(element.style.transform.replace(/[^\d.]/g, ""));
     },
-    getClickCount(container, contents) {
+    getCurrentIndex(container, contents) {
         const contentWidth = contents[0].offsetWidth;
         const translateX = this.getTranslateX(container);
-        const clickCount = Math.floor(Math.abs(translateX) / contentWidth);
-        return clickCount;
+        const currentIndex = Math.floor(Math.abs(translateX) / contentWidth);
+        return currentIndex;
     },
     isFirst(container, contents) {
-        return this.getClickCount(container, contents) === 0;
+        return this.getCurrentIndex(container, contents) === 0;
     },
     isLast(container, contents) {
         const contentsCount = contents.length;
         console.log(
             "[test]",
             contentsCount,
-            this.getClickCount(container, contents)
+            this.getCurrentIndex(container, contents)
         );
-        return this.getClickCount(container, contents) === contentsCount - 1;
+        return this.getCurrentIndex(container, contents) === contentsCount - 1;
     },
     turnOnElement(element) {
         element.style.display = "unset";
@@ -60,11 +60,11 @@ const util = {
     ) {
         const adjustNum = direction === "left" ? -1 : 1;
         const onArrowClickByTransform = () => {
-            const clickCount = util.getClickCount(container, contents);
+            const currentIndex = util.getCurrentIndex(container, contents);
             const contentWidth = contents[0].offsetWidth;
 
             container.style.transform = `translateX(-${
-                (clickCount + adjustNum) * contentWidth
+                (currentIndex + adjustNum) * contentWidth
             }px)`;
 
             if (util.isLast(container, contents)) {
