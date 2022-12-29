@@ -201,7 +201,9 @@
 }
 
 .post__footer {
+  position: relative;
   padding: 12px;
+
 }
 
 .post__infos {
@@ -236,6 +238,25 @@
   overflow: hidden;
   width: 468px;
 } 
+.post__indicators {
+  position: absolute;
+  display: flex;
+  gap: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.post__indicators__dot {
+  width: 6px;
+  height: 6px;
+  border: 1px solid var(--gray-1);
+  background: var(--background-white);
+  border-radius: 50%;
+  list-style: none;
+}
+.active {
+  border: 1px solid var(--black-1);
+  background: var(--black-1)
+}
 .post__content__left-arrow {
   position: absolute;
   top: 50%;

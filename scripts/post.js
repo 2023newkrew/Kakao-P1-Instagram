@@ -5,7 +5,7 @@ const PICTURE_WIDTH = 468;
 const postItemsElement = document.querySelector('.posts');
 
 /** @type {Node[]} 게시물 엘리먼트 리스트 */
-let postContentElement;
+let postElement;
 
 /** @type {number[]} 게시물 사진 페이지 배열 */
 let picturePages;
@@ -97,7 +97,11 @@ function createPost(index, postItem) {
                     <img src="assets/icons/comment.svg" alt="comment" />
                 </button>
 
-                <div class="post__indicators"></div>
+                <ul class="post__indicators">
+                ${pictures.map((_, index) => {
+                    return `<li class='post__indicators__dot ${index === 0 ? 'active' : ''}'></li>`
+                }).join('')}
+                </ul>
 
                 <button class="post__button post__button--align-right">
                     <img src="assets/icons/bookmark.svg" alt="bookmark" />
@@ -137,7 +141,7 @@ function onPrevPicture(index) {
     if (picturePages[index] <= 0) return;
     picturePages[index]--;
     
-    const post = postContentElement[index]; // index에 해당하는 post
+    const post = postElement[index]; // index에 해당하는 post
     const prevButton = post.querySelector('.post__content__left-arrow');  // post carousel에 종속된 이전 버튼
     const nextButton = post.querySelector('.post__content__right-arrow'); // post carousel에 종속된 다음 버튼
 
@@ -146,6 +150,7 @@ function onPrevPicture(index) {
     }
     nextButton.style.setProperty('visibility', 'visible');
     movePicture(index);
+    indicatePicture(index);
 }
 
 /**
@@ -156,7 +161,7 @@ function onNextPicture(index) {
     if (picturePages[index] >= postItems[index].pictures.length - 1) return;
     picturePages[index]++;
     
-    const post = postContentElement[index];
+    const post = postElement[index];
     const prevButton = post.querySelector('.post__content__left-arrow');
     const nextButton = post.querySelector('.post__content__right-arrow');
     
@@ -165,6 +170,22 @@ function onNextPicture(index) {
     }
     prevButton.style.setProperty('visibility', 'visible');
     movePicture(index);
+    indicatePicture(index);
+}
+
+/**
+ * 현재 선택된 picture의 indicator를 활성화하고, 기존 indicator를 비활성화합니다.
+ * @param {number} index post index
+ */
+function indicatePicture(index) {
+    const indicators = postElement[index].querySelectorAll('.post__indicators__dot');
+    for (let i = 0; i < indicators.length; i++) {
+        if (picturePages[index] === i) {
+            indicators[i].classList.add('active');
+        } else {
+            indicators[i].classList.remove('active');
+        }
+    }
 }
 
 /**
@@ -190,6 +211,6 @@ async function init () {
     drawPostItems();
 
     // post elements 배열 지정
-    postContentElement = document.querySelectorAll('.post__content');
+    postElement = document.querySelectorAll('.post');
 }
 init();
