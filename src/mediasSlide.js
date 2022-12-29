@@ -88,69 +88,70 @@ import debounce from "./utils/debounce.js";
 const postsElement = document.querySelector('.posts');
 const postListElements = Array.prototype.slice.call(postsElement.children);
 
-function render() {
-    const makeIndicator = (postIndicator, mediaSlideImgElements) => {
-        let elementString = '';
-        for (let index = 0; index < mediaSlideImgElements.length; index++) {
-            elementString += `<li><img src="assets/icons/indicator.svg"</li>`
-        }
-        postIndicator.innerHTML = elementString;
-        return postIndicator;
+const makeIndicator = (postIndicator, mediaSlideImgElements) => {
+    let elementString = '';
+    for (let index = 0; index < mediaSlideImgElements.length; index++) {
+        elementString += `<li><img src="assets/icons/indicator.svg"</li>`
     }
+    postIndicator.innerHTML = elementString;
+    return postIndicator;
+}
 
-    const renderSlideButton = (mediaPrevButtonElement, mediaNextButtonElement, currentMediaIndex, mediaSlideCount) => {
-        mediaPrevButtonElement.style.opacity = currentMediaIndex === 0 ? 0 : 100;
-        mediaNextButtonElement.style.opacity = currentMediaIndex === mediaSlideCount - 1 ? 0 : 100;
-    }
+const renderSlideButton = (mediaPrevButtonElement, mediaNextButtonElement, currentMediaIndex, mediaSlideCount) => {
+    mediaPrevButtonElement.style.opacity = currentMediaIndex === 0 ? 0 : 100;
+    mediaNextButtonElement.style.opacity = currentMediaIndex === mediaSlideCount - 1 ? 0 : 100;
+}
 
-    const filterIndicator = (postIndicator, currentMediaIndex) => {
-        const indicator = postIndicator.querySelector(`:nth-child(${currentMediaIndex + 1})`);
-        indicator.classList.toggle('active');
-    }
+const filterIndicator = (postIndicator, currentMediaIndex) => {
+    const indicator = postIndicator.querySelector(`:nth-child(${currentMediaIndex + 1})`);
+    indicator.classList.toggle('active');
+}
 
+
+function render(init) {
     postListElements.map(post => {
         const mediaSlidesElement = post.querySelector(`.post__medias`);
         const mediaSlideImgElements = mediaSlidesElement.querySelectorAll('li');
 
         const postContentElement = post.querySelector(`.post__content`);
-
         const postIndicatorsElement = post.querySelector(`.post__indicators`);
-
-        const postIndicator = makeIndicator(postIndicatorsElement, mediaSlideImgElements);
 
         const mediaSlideWidth = postContentElement.clientWidth;
         const mediaSlideCount = mediaSlideImgElements.length;
         mediaSlidesElement.style.width = `${mediaSlideWidth * mediaSlideCount}px`;
 
-        let currentMediaIndex = 0;
+        if (init) {
+            const postIndicator = makeIndicator(postIndicatorsElement, mediaSlideImgElements);
+            let currentMediaIndex = 0;
 
-        const mediaPrevButtonElement = postContentElement.querySelector('.post__controller .post__controller-prev');
-        const mediaNextButtonElement = postContentElement.querySelector('.post__controller .post__controller-next');
-
-        renderSlideButton(mediaPrevButtonElement, mediaNextButtonElement, currentMediaIndex, mediaSlideCount);
-        filterIndicator(postIndicator, currentMediaIndex);
-
-        const moveMediaSlide = (num) => {
-            filterIndicator(postIndicator, currentMediaIndex);
-            mediaSlidesElement.style.setProperty('transform', `translateX(${-(num * mediaSlideWidth)}px)`);
-            currentMediaIndex = num;
-            filterIndicator(postIndicator, currentMediaIndex);
+            const mediaPrevButtonElement = postContentElement.querySelector('.post__controller .post__controller-prev');
+            const mediaNextButtonElement = postContentElement.querySelector('.post__controller .post__controller-next');
 
             renderSlideButton(mediaPrevButtonElement, mediaNextButtonElement, currentMediaIndex, mediaSlideCount);
+            filterIndicator(postIndicator, currentMediaIndex);
+
+            const moveMediaSlide = (num) => {
+                filterIndicator(postIndicator, currentMediaIndex);
+                mediaSlidesElement.style.setProperty('transform', `translateX(${-(num * mediaSlideWidth)}px)`);
+                currentMediaIndex = num;
+                filterIndicator(postIndicator, currentMediaIndex);
+
+                renderSlideButton(mediaPrevButtonElement, mediaNextButtonElement, currentMediaIndex, mediaSlideCount);
+            }
+
+            mediaPrevButtonElement.addEventListener('click', () => {
+                currentMediaIndex !== 0 && moveMediaSlide(currentMediaIndex - 1)
+            });
+
+            mediaNextButtonElement.addEventListener('click', () => {
+                currentMediaIndex !== (mediaSlideCount - 1) && moveMediaSlide(currentMediaIndex + 1)
+            })
         }
-
-        mediaPrevButtonElement.addEventListener('click', () => {
-            currentMediaIndex !== 0 && moveMediaSlide(currentMediaIndex - 1)
-        });
-
-        mediaNextButtonElement.addEventListener('click', () => {
-            currentMediaIndex !== (mediaSlideCount - 1) && moveMediaSlide(currentMediaIndex + 1)
-        })
     })
 }
 
-render();
+render(true);
 
 window.addEventListener("resize", debounce(function (e) {
-    render();
+    render(false);
 }));

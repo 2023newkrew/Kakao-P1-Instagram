@@ -29,7 +29,7 @@ searchElement.addEventListener('keyup', (event) => {
     const text = searchElement.value;
 
     if (event.key == "Enter") {
-        window.open(`https://www.google.com/searchElement?q=${text}`)
+        window.open(`https://www.google.com/search?q=${text}`)
 
         searchElement.value = '';
         textAreaElement.innerHTML = ``;
@@ -40,7 +40,7 @@ searchElement.addEventListener('keyup', (event) => {
         ref.forEach(function (arg) {
             if (arg.name.indexOf(text) > -1) {
                 elementString += `
-                <a href="https://www.google.com/searchElement?q=${arg.name}" target="_blank">
+                <a href="https://www.google.com/search?q=${arg.name}" target="_blank">
                     <div key=${arg.key}>${arg.name}</div>
                 </a>`
             }
