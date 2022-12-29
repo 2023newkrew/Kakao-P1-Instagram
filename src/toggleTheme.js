@@ -1,6 +1,6 @@
-const toggleThemeButton = document.querySelector('.header__theme-button');
+const toggleThemeButtonElement = document.querySelector('.header__theme-button');
 
-toggleThemeButton.addEventListener('click', () => {
+toggleThemeButtonElement.addEventListener('click', () => {
     document.documentElement.classList.toggle('darkTheme');
     setTheme(document.documentElement.classList.value);
 })

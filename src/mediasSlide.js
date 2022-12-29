@@ -21,8 +21,8 @@ import debounce from "./utils/debounce.js";
                     </button>
                 </div>
 
-                <div class="post__content #${index}" id="post__content #${index}">
-                    <ul class="post__medias #${index}" id="post__medias #${index}">
+                <div class="post__content" id="post__content">
+                    <ul class="post__medias" id="post__medias">
                         <li><img class="post__media" src="assets/images/picture.jpeg" alt="Post Content" /></li>
                         <li><img class="post__media" src="assets/images/picture.jpeg" alt="Post Content" /></li>
                         <li><img class="post__media" src="assets/images/picture.jpeg" alt="Post Content" /></li>
@@ -49,7 +49,7 @@ import debounce from "./utils/debounce.js";
                             <img src="assets/icons/comment.svg" alt="comment" />
                         </button>
 
-                        <ul class="post__indicators ${index}" id="post__indicators ${index}"></ul>
+                        <ul class="post__indicators" id="post__indicators"></ul>
 
                         <button class="post__button post__button--align-right">
                             <img src="assets/icons/bookmark.svg" alt="bookmark" />
@@ -85,23 +85,22 @@ import debounce from "./utils/debounce.js";
     posts.innerHTML = elementString;
 })(5)
 
-const posts = document.querySelector('.posts');
-const postList = Array.prototype.slice.call(posts.children);
+const postsElement = document.querySelector('.posts');
+const postListElements = Array.prototype.slice.call(postsElement.children);
 
 function render() {
-    const makeIndicator = (index, mediaSlideImg) => {
-        const postIndicator = document.getElementById(`post__indicators ${index}`);
+    const makeIndicator = (postIndicator, mediaSlideImgElements) => {
         let elementString = '';
-        for (let index = 0; index < mediaSlideImg.length; index++) {
+        for (let index = 0; index < mediaSlideImgElements.length; index++) {
             elementString += `<li><img src="assets/icons/indicator.svg"</li>`
         }
         postIndicator.innerHTML = elementString;
         return postIndicator;
     }
 
-    const renderSlideButton = (mediaPrevButton, mediaNextButton, currentMediaIndex, mediaSlideCount) => {
-        mediaPrevButton.style.opacity = currentMediaIndex === 0 ? 0 : 100;
-        mediaNextButton.style.opacity = currentMediaIndex === mediaSlideCount - 1 ? 0 : 100;
+    const renderSlideButton = (mediaPrevButtonElement, mediaNextButtonElement, currentMediaIndex, mediaSlideCount) => {
+        mediaPrevButtonElement.style.opacity = currentMediaIndex === 0 ? 0 : 100;
+        mediaNextButtonElement.style.opacity = currentMediaIndex === mediaSlideCount - 1 ? 0 : 100;
     }
 
     const filterIndicator = (postIndicator, currentMediaIndex) => {
@@ -109,40 +108,42 @@ function render() {
         indicator.classList.toggle('active');
     }
 
-    postList.map((post, index) => {
-        const mediaSlides = document.getElementById(`post__medias #${index}`);
-        const mediaSlideImg = mediaSlides.querySelectorAll('li');
+    postListElements.map(post => {
+        const mediaSlidesElement = post.querySelector(`.post__medias`);
+        const mediaSlideImgElements = mediaSlidesElement.querySelectorAll('li');
 
-        const postContent = document.getElementById(`post__content #${index}`);
+        const postContentElement = post.querySelector(`.post__content`);
 
-        const postIndicator = makeIndicator(index, mediaSlideImg);
+        const postIndicatorsElement = post.querySelector(`.post__indicators`);
 
-        const mediaSlideWidth = postContent.clientWidth;
-        const mediaSlideCount = mediaSlideImg.length;
-        mediaSlides.style.width = `${mediaSlideWidth * mediaSlideCount}px`;
+        const postIndicator = makeIndicator(postIndicatorsElement, mediaSlideImgElements);
+
+        const mediaSlideWidth = postContentElement.clientWidth;
+        const mediaSlideCount = mediaSlideImgElements.length;
+        mediaSlidesElement.style.width = `${mediaSlideWidth * mediaSlideCount}px`;
 
         let currentMediaIndex = 0;
 
-        const mediaPrevButton = postContent.querySelector('.post__controller .post__controller-prev');
-        const mediaNextButton = postContent.querySelector('.post__controller .post__controller-next');
+        const mediaPrevButtonElement = postContentElement.querySelector('.post__controller .post__controller-prev');
+        const mediaNextButtonElement = postContentElement.querySelector('.post__controller .post__controller-next');
 
-        renderSlideButton(mediaPrevButton, mediaNextButton, currentMediaIndex, mediaSlideCount);
+        renderSlideButton(mediaPrevButtonElement, mediaNextButtonElement, currentMediaIndex, mediaSlideCount);
         filterIndicator(postIndicator, currentMediaIndex);
 
         const moveMediaSlide = (num) => {
             filterIndicator(postIndicator, currentMediaIndex);
-            mediaSlides.style.setProperty('transform', `translateX(${-(num * mediaSlideWidth)}px)`);
+            mediaSlidesElement.style.setProperty('transform', `translateX(${-(num * mediaSlideWidth)}px)`);
             currentMediaIndex = num;
             filterIndicator(postIndicator, currentMediaIndex);
 
-            renderSlideButton(mediaPrevButton, mediaNextButton, currentMediaIndex, mediaSlideCount);
+            renderSlideButton(mediaPrevButtonElement, mediaNextButtonElement, currentMediaIndex, mediaSlideCount);
         }
 
-        mediaPrevButton.addEventListener('click', () => {
+        mediaPrevButtonElement.addEventListener('click', () => {
             currentMediaIndex !== 0 && moveMediaSlide(currentMediaIndex - 1)
         });
 
-        mediaNextButton.addEventListener('click', () => {
+        mediaNextButtonElement.addEventListener('click', () => {
             currentMediaIndex !== (mediaSlideCount - 1) && moveMediaSlide(currentMediaIndex + 1)
         })
     })

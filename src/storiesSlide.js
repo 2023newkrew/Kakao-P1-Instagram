@@ -44,7 +44,6 @@ const moveStorySlide = (num) => {
     storySlidesElement.style.setProperty('transform', `translateX(${-(num * ((storyImgWidth + storyGap) * 3))}px)`);
     currentStoryIndex = num;
 
-    // ! : transition 효과는 어째서 적용되는걸까 ?
     storyPrevButton.style.opacity = currentStoryIndex === 0 ? 0 : 100;
     storyNextButton.style.opacity = currentStoryIndex === limitCount ? 0 : 100;
 }

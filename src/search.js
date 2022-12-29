@@ -9,30 +9,30 @@ const ref = [
     { key: 8, name: '나는 긴 텍스트입니다 ! 나는 긴 텍스트입니다 ! 나는 긴 텍스트입니다 !' }
 ];
 
-const search = document.querySelector('.search__area');
-const textArea = document.querySelector('.recommend__area');
+const searchElement = document.querySelector('.search__area');
+const textAreaElement = document.querySelector('.recommend__area');
 
-const searchButton = document.querySelector('.header__search img')
-searchButton.style.cursor = 'pointer';
+const searchButtonElement = document.querySelector('.header__search img')
+searchButtonElement.style.cursor = 'pointer';
 
-searchButton.addEventListener('click', () => {
-    const text = search.value;
+searchButtonElement.addEventListener('click', () => {
+    const text = searchElement.value;
 
     if (text !== '') {
-        window.open(`https://www.google.com/search?q=${text}`)
-        search.value = '';
-        textArea.innerHTML = ``;
+        window.open(`https://www.google.com/searchElement?q=${text}`)
+        searchElement.value = '';
+        textAreaElement.innerHTML = ``;
     }
 })
 
-search.addEventListener('keyup', (event) => {
-    const text = search.value;
+searchElement.addEventListener('keyup', (event) => {
+    const text = searchElement.value;
 
     if (event.key == "Enter") {
-        window.open(`https://www.google.com/search?q=${text}`)
+        window.open(`https://www.google.com/searchElement?q=${text}`)
 
-        search.value = '';
-        textArea.innerHTML = ``;
+        searchElement.value = '';
+        textAreaElement.innerHTML = ``;
     }
 
     if (text !== '') {  //빈줄이 들어오면
@@ -40,12 +40,12 @@ search.addEventListener('keyup', (event) => {
         ref.forEach(function (arg) {
             if (arg.name.indexOf(text) > -1) {
                 elementString += `
-                <a href="https://www.google.com/search?q=${arg.name}" target="_blank">
+                <a href="https://www.google.com/searchElement?q=${arg.name}" target="_blank">
                     <div key=${arg.key}>${arg.name}</div>
                 </a>`
             }
         });
-        textArea.innerHTML = elementString;
+        textAreaElement.innerHTML = elementString;
     }
-    else if (text === '') textArea.innerHTML = ``;
+    else if (text === '') textAreaElement.innerHTML = ``;
 })
