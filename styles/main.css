@@ -314,14 +314,14 @@
 /* post content */
 
 /* post footer */
-.post .post__footer .post__buttons {
+.post__footer .post__buttons {
   display: flex;
   justify-content: space-between;
 
   margin: 10px 0px;
 }
 
-.post .post__footer .post__buttons .post__indicators {
+.post__footer .post__buttons .post__indicators {
   flex-grow: 0.9;
 
   display: flex;
@@ -334,6 +334,14 @@
 
   list-style: none;
   gap: 10px;
+}
+
+.post__footer .post__buttons .post__indicators li {
+  filter: none;
+}
+
+.post__footer .post__buttons .post__indicators li[class*="active"] {
+  filter: invert(83%) sepia(4%) saturate(4977%) hue-rotate(167deg) brightness(98%) contrast(88%);
 }
 
 .post .post__footer .post__infos {

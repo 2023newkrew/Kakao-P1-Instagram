@@ -1,3 +1,5 @@
+import debounce from "./utils/debounce.js";
+
 (function makeDummyMedia(dummyMediaCount) {
     const posts = document.querySelector('.posts');
 
@@ -86,78 +88,67 @@
 const posts = document.querySelector('.posts');
 const postList = Array.prototype.slice.call(posts.children);
 
-
 function render() {
+    const makeIndicator = (index, mediaSlideImg) => {
+        const postIndicator = document.getElementById(`post__indicators ${index}`);
+        let elementString = '';
+        for (let index = 0; index < mediaSlideImg.length; index++) {
+            elementString += `<li><img src="assets/icons/indicator.svg"</li>`
+        }
+        postIndicator.innerHTML = elementString;
+        return postIndicator;
+    }
+
+    const renderSlideButton = (mediaPrevButton, mediaNextButton, currentMediaIndex, mediaSlideCount) => {
+        mediaPrevButton.style.opacity = currentMediaIndex === 0 ? 0 : 100;
+        mediaNextButton.style.opacity = currentMediaIndex === mediaSlideCount - 1 ? 0 : 100;
+    }
+
+    const filterIndicator = (postIndicator, currentMediaIndex) => {
+        const indicator = postIndicator.querySelector(`:nth-child(${currentMediaIndex + 1})`);
+        indicator.classList.toggle('active');
+    }
+
     postList.map((post, index) => {
         const mediaSlides = document.getElementById(`post__medias #${index}`);
         const mediaSlideImg = mediaSlides.querySelectorAll('li');
 
         const postContent = document.getElementById(`post__content #${index}`);
 
-        const postIndicator = document.getElementById(`post__indicators ${index}`);
-        let elementString = '';
-        for (let index = 0; index < mediaSlideImg.length; index++) {
-            elementString += `
-            <li><img src="assets/icons/indicator.svg"</li>
-            `
-        }
-        postIndicator.innerHTML = elementString;
-
-        const indicator = postIndicator.querySelector(`:nth-child(1)`);
-        indicator.style.filter = "invert(83%) sepia(4%) saturate(4977%) hue-rotate(167deg) brightness(98%) contrast(88%)";
+        const postIndicator = makeIndicator(index, mediaSlideImg);
 
         const mediaSlideWidth = postContent.clientWidth;
         const mediaSlideCount = mediaSlideImg.length;
-        // TODO : 초기에 옮기는 길이를 고정시켜 두는 방법은 그닥 좋지 않아보임 observer 또는 resize를 통해 변경을 확인하는건 어떨까 ?
-        // TODO : 위 방법은 reflow를 유발함 li 태그가 자연스럽게 꽉 차고 줄어들게 바꿀 수 있게 해야 함
         mediaSlides.style.width = `${mediaSlideWidth * mediaSlideCount}px`;
+
         let currentMediaIndex = 0;
 
+        const mediaPrevButton = postContent.querySelector('.post__controller .post__controller-prev');
+        const mediaNextButton = postContent.querySelector('.post__controller .post__controller-next');
+
+        renderSlideButton(mediaPrevButton, mediaNextButton, currentMediaIndex, mediaSlideCount);
+        filterIndicator(postIndicator, currentMediaIndex);
+
         const moveMediaSlide = (num) => {
+            filterIndicator(postIndicator, currentMediaIndex);
             mediaSlides.style.setProperty('transform', `translateX(${-(num * mediaSlideWidth)}px)`);
             currentMediaIndex = num;
+            filterIndicator(postIndicator, currentMediaIndex);
 
-            mediaPrevButton.style.opacity = currentMediaIndex === 0 ? 0 : 100;
-            mediaNextButton.style.opacity = currentMediaIndex === mediaSlideCount - 1 ? 0 : 100;
+            renderSlideButton(mediaPrevButton, mediaNextButton, currentMediaIndex, mediaSlideCount);
         }
 
-        const mediaPrevButton = postContent.querySelector('.post__controller .post__controller-prev');
-        mediaPrevButton.style.opacity = currentMediaIndex === 0 ? 0 : 100;
-
-        mediaPrevButton.addEventListener('click', function () {
-            let prevIndicator = postIndicator.querySelector(`:nth-child(${currentMediaIndex + 1})`);
-            prevIndicator.style.filter = "";
-
-            if (currentMediaIndex !== 0) moveMediaSlide(currentMediaIndex - 1);
-
-            let nextIndicator = postIndicator.querySelector(`:nth-child(${currentMediaIndex + 1})`);
-            nextIndicator.style.filter = "invert(83%) sepia(4%) saturate(4977%) hue-rotate(167deg) brightness(98%) contrast(88%)";
+        mediaPrevButton.addEventListener('click', () => {
+            currentMediaIndex !== 0 && moveMediaSlide(currentMediaIndex - 1)
         });
 
-        const mediaNextButton = postContent.querySelector('.post__controller .post__controller-next');
-        mediaNextButton.style.opacity = currentMediaIndex === mediaSlideCount - 1 ? 0 : 100;
-
-        mediaNextButton.addEventListener('click', function () {
-            let prevIndicator = postIndicator.querySelector(`:nth-child(${currentMediaIndex + 1})`);
-            prevIndicator.style.filter = "";
-
-            if (currentMediaIndex !== mediaSlideCount - 1) moveMediaSlide(currentMediaIndex + 1);
-
-            let nextIndicator = postIndicator.querySelector(`:nth-child(${currentMediaIndex + 1})`);
-            nextIndicator.style.filter = "invert(83%) sepia(4%) saturate(4977%) hue-rotate(167deg) brightness(98%) contrast(88%)";
+        mediaNextButton.addEventListener('click', () => {
+            currentMediaIndex !== (mediaSlideCount - 1) && moveMediaSlide(currentMediaIndex + 1)
         })
     })
 }
 
 render();
-
-function debounce(func) {
-    var timer;
-    return function (event) {
-        if (timer) clearTimeout(timer);
-        timer = setTimeout(func, 100, event);
-    };
-}
 
 window.addEventListener("resize", debounce(function (e) {
     render();
