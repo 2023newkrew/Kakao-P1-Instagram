@@ -1,6 +1,7 @@
 import { stories, posts } from "./dummy.js";
 import { initCarousel } from "./carousel.js";
 import { initThemeMode } from "./theme.js";
+import { initSearch } from "./search.js";
 
 function setStory(story) {
   const storyHTML = `<li>
@@ -34,6 +35,7 @@ function main() {
   initThemeMode();
   initStories();
   initCarousel();
+  initSearch();
 }
 
 main();
