@@ -1,4 +1,5 @@
 import { SUGGESTION_KEYWORDS, SEARCH_BASE_QUERY, EMPTY_KEYWORD_ALERT } from "./constants/search.js";
+import debounce from "./utils/debounce.js";
 
 const searchHeader = document.querySelector('.header__search');
 const searchInput = searchHeader.querySelector('input');
@@ -81,14 +82,14 @@ export const initSearchHandlers = ()=>{
     }
   });
 
-  searchInput.addEventListener('keyup', ()=>{
+  searchInput.addEventListener('keyup', debounce(()=>{
     if(!searchInput.value){
       clearSuggestions();
       return;
     }
 
     addSuggestions(searchInput.value);
-  });
+  }, 200));
 
   searchButton.addEventListener('click', ()=>{
     search(searchInput.value);
