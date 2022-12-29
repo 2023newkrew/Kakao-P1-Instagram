@@ -106,12 +106,10 @@ const loadImages = async (images)=>{
 }
 
 const calculateRatioOfImage = (image)=>(image.height / image.width * 100);
-const getMaxValue = (maxValue, currentValue)=> (maxValue >= currentValue ? maxValue : currentValue);
 
 const getPaddingBottomValue = async (images)=>{
   const loadedImages = await loadImages(images);
-  const maxPaddingBottom = loadedImages.map(calculateRatioOfImage).reduce(getMaxValue, 0);
-
+  const maxPaddingBottom = Math.max(...loadedImages.map(calculateRatioOfImage));
   return maxPaddingBottom;
 }
 
