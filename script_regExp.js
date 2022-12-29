@@ -51,6 +51,30 @@ const util = {
     toggleClass(element, className) {
         element.classList.toggle(className);
     },
+    makeOnArrowClickByTransform(container, contents, direction) {
+        const adjustNum = direction === "left" ? -1 : 1;
+        const onArrowClickByTransform = () => {
+            const clickCount = util.getClickCount(container, contents);
+            const contentWidth = contents[0].offsetWidth;
+
+            container.style.transform = `translateX(-${
+                (clickCount + adjustNum) * contentWidth
+            }px)`;
+
+            if (util.isLast(container, contents)) {
+                util.turnOffElement($rightArrow);
+            } else {
+                util.turnOnElement($rightArrow);
+            }
+
+            if (util.isFirst(container, contents)) {
+                util.turnOffElement($leftArrow);
+            } else {
+                util.turnOnElement($leftArrow);
+            }
+        };
+        return onArrowClickByTransform;
+    },
 };
 
 function init() {
@@ -112,36 +136,11 @@ function init() {
         }
     };
 
-    const makeOnArrowClickByTransform = (container, contents, direction) => {
-        const adjustNum = direction === "left" ? -1 : 1;
-        const onArrowClickByTransform = () => {
-            const clickCount = util.getClickCount(container, contents);
-            const contentWidth = contents[0].offsetWidth;
-
-            container.style.transform = `translateX(-${
-                (clickCount + adjustNum) * contentWidth
-            }px)`;
-
-            if (util.isLast(container, contents)) {
-                util.turnOffElement($rightArrow);
-            } else {
-                util.turnOnElement($rightArrow);
-            }
-
-            if (util.isFirst(container, contents)) {
-                util.turnOffElement($leftArrow);
-            } else {
-                util.turnOnElement($leftArrow);
-            }
-        };
-        return onArrowClickByTransform;
-    };
-
     window.addEventListener("load", onload);
     $toggleThemeBtn.addEventListener("click", onDarkThemeBtnClick);
     $rightArrow.addEventListener(
         "click",
-        makeOnArrowClickByTransform(
+        util.makeOnArrowClickByTransform(
             $innerBox,
             $innerBox.querySelectorAll(".stories__content"),
             "right"
@@ -149,7 +148,7 @@ function init() {
     );
     $leftArrow.addEventListener(
         "click",
-        makeOnArrowClickByTransform(
+        util.makeOnArrowClickByTransform(
             $innerBox,
             $innerBox.querySelectorAll(".stories__content"),
             "left"
