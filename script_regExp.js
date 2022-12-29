@@ -36,11 +36,11 @@ const util = {
     turnOffElement(element) {
         element.style.display = "none";
     },
-    setLocalStorage(key, value) {
-        localStorage.setItem(key, value);
+    setThemeInLocalStorage(value) {
+        localStorage.setItem("theme", value);
     },
-    getLocalStorage(key) {
-        return localStorage.getItem(key);
+    getThemeInLocalStorage() {
+        return localStorage.getItem("theme");
     },
     addClass(element, className) {
         element.classList.add(className);
@@ -98,7 +98,7 @@ function init() {
     }
 
     const onload = () => {
-        const theme = util.getLocalStorage("theme");
+        const theme = util.getThemeInLocalStorage();
 
         if (theme === "dark") {
             util.addClass(document.documentElement, "darkTheme");
@@ -119,9 +119,9 @@ function init() {
     const onDarkThemeBtnClick = () => {
         util.toggleClass(document.documentElement, "darkTheme");
         if (document.documentElement.classList.contains("darkTheme")) {
-            util.setLocalStorage("theme", "dark");
+            util.setThemeInLocalStorage("dark");
         } else {
-            util.setLocalStorage("theme", "light");
+            util.setThemeInLocalStorage("light");
         }
     };
 
