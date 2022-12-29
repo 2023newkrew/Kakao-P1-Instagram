@@ -162,7 +162,3 @@ function debounce(func) {
 window.addEventListener("resize", debounce(function (e) {
     render();
 }));
-
-//TODO : resize를 통한 구현
-//! : post들을 전부 다시그려야 하는 상황에서 reflow를 예방할 수 없을 것 같음
-//! : instagram의 경우에는 리렌더링을 하는 것 같음

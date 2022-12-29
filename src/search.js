@@ -3,10 +3,10 @@ const ref = [
     { key: 2, name: '데이터2' },
     { key: 3, name: '자바스크립트' },
     { key: 4, name: 'Json' },
-    { key: 4, name: '카카오' },
-    { key: 4, name: '주식' },
-    { key: 4, name: 'Joy' },
-    { key: 3, name: '나는 긴 텍스트입니다 ! 나는 긴 텍스트입니다 ! 나는 긴 텍스트입니다 !' }
+    { key: 5, name: '카카오' },
+    { key: 6, name: '주식' },
+    { key: 7, name: 'Joy' },
+    { key: 8, name: '나는 긴 텍스트입니다 ! 나는 긴 텍스트입니다 ! 나는 긴 텍스트입니다 !' }
 ];
 
 const search = document.querySelector('.search__area');
