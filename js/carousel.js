@@ -29,24 +29,7 @@ const getCarousel = (slidesContainer) => {
 		}
 	}
 
-	const prev = ()=>{
-		if(currentIndex <= 0) {
-			return;
-		}
-		currentIndex -= 1;
-		
-		render();
-	}
-	
-	const next = ()=>{
-		if(currentIndex === slides.length - 1) {
-			return;
-		}
-		currentIndex+=1;
-		render();
-	}
-
-	const goto = (newIndex)=>{
+	const goto = (newIndex) => {
 		if(newIndex < 0 || newIndex > slides.length - 1){
 			return;
 		}
@@ -54,6 +37,15 @@ const getCarousel = (slidesContainer) => {
 		currentIndex = newIndex;
 		render();
 	}
+	
+	const prev = () => {
+		goto(currentIndex - 1);
+	}
+
+	const next = () => {
+		goto(currentIndex + 1);
+	}
+
 
 	const init = ()=>{
 		const newSlides = slidesContainer.querySelectorAll('.carousel-sections .carousel-section');

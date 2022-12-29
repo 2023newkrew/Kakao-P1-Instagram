@@ -2,7 +2,7 @@ import { initCarousel } from './carousel.js';
 import { MOCK_POSTS_DATA } from './constants/post.js';
 
 
-const makePostTemplate = ({username, content, images}, paddingBottom) => `
+const makePostTemplate = ({username, content, images}) => `
   <article class="post">
     <header class="post__header">
       <div class="post__profile">
@@ -22,7 +22,7 @@ const makePostTemplate = ({username, content, images}, paddingBottom) => `
         <img src="assets/icons/arrow.svg" alt="prev button image"/>
       </button>
     <div class="post__medias carousel-sections-scroll">
-      <ul class="post_media carousel-sections" style="padding-bottom: ${paddingBottom}%">
+      <ul class="post_media carousel-sections">
         ${
           images.map((image, index)=>
             `<li class="carousel-section">
@@ -90,43 +90,12 @@ const initPostCarousel = (post)=>{
   initCarousel(slidesContainer, prevButton, nextButton);
 };
 
-const loadImage = (imageSrc)=>new Promise((resolve)=>{
-  const image = new Image();
-  image.addEventListener('load', ()=>{
-    resolve(image);
-  });
-  image.src = imageSrc;
-});
-
-const loadImages = async (images)=>{
-  const imagePromises = images.map((imageSrc)=>loadImage(imageSrc));
-  const resolvedImages = await Promise.all(imagePromises);
-
-  return resolvedImages;
-}
-
-const calculateRatioOfImage = (image)=>(image.height / image.width * 100);
-
-const getPaddingBottomValue = async (images)=>{
-  const loadedImages = await loadImages(images);
-  const maxPaddingBottom = Math.max(...loadedImages.map(calculateRatioOfImage));
-  return maxPaddingBottom;
-}
-
-const renderPosts =  async ()=>{
-  const postTemplates = [];
-
-  for(const post of MOCK_POSTS_DATA){
-    const contentPaddingBottomSize = await getPaddingBottomValue(post.images);
-    postTemplates.push(makePostTemplate(post, contentPaddingBottomSize));
-  }
-  postTemplates.join('\n');
-
-  postsContainer.innerHTML = postTemplates;
+const renderPosts = ()=>{
+  postsContainer.innerHTML = MOCK_POSTS_DATA.map(makePostTemplate).join('\n');
 }
 
 export const initPosts = async ()=>{
-  await renderPosts();
+  renderPosts();
 
   const posts = postsContainer.querySelectorAll('.post');
   posts.forEach(initPostCarousel);

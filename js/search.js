@@ -47,12 +47,9 @@ const hideSuggestions = ()=>{
 
 const getEmphasizedKeyword = (suggestionKeyword, searchKeyword)=>{
   const pattern = new RegExp(searchKeyword, 'i');
-  const emphasizedWord = suggestionKeyword.match(pattern);
+  const [emphasizedWord] = suggestionKeyword.match(pattern);
   
-  if(!emphasizedWord) return suggestionKeyword;
-  
-  return suggestionKeyword.replace(emphasizedWord[0], `<strong>${emphasizedWord[0]}</strong>`);
- 
+  return suggestionKeyword.replace(emphasizedWord, `<strong>${emphasizedWord}</strong>`);
 }
 
 const getSuggestionKeyword = (suggestionKeyword, searchKeyword) => {

@@ -243,16 +243,11 @@
   position: relative;
 }
 .post__content .post__medias .post_media img {
-  position: absolute;
-  top: 0px;
   width: 100%;
   height: 100%;
   display: block;
   object-fit: contain;
 }
-/* .post__content .slides-container .slide img {
-  object-fit: cover;
-} */
 .post__footer {
   padding: 0 calc(var(--base-unit) * 3);
 
