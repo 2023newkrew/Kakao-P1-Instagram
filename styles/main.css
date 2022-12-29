@@ -126,6 +126,8 @@
   flex-direction: column;
   flex: 1;
   gap: 8px;
+
+  list-style: none;
 }
 
 /* Components */
@@ -247,7 +249,7 @@
 
   position: relative;
 
-  transition: left 0.5s ease-out;
+  transition: transform 0.5s ease-out;
 }
 
 .post .post__content .post__media {
@@ -318,7 +320,6 @@
 
 .post .post__footer .post__buttons .post__indicators {
   flex-grow: 0.9;
-
 }
 
 .post .post__footer .post__infos {
