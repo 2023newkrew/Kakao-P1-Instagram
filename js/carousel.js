@@ -37,6 +37,7 @@ const getCarousel = (slidesContainer) => {
 		
 		render();
 	}
+	
 	const next = ()=>{
 		if(currentIndex === slides.length - 1) {
 			return;
@@ -55,7 +56,7 @@ const getCarousel = (slidesContainer) => {
 	}
 
 	const init = ()=>{
-		const newSlides = slidesContainer.querySelectorAll('.carousel-sections > div');
+		const newSlides = slidesContainer.querySelectorAll('.carousel-sections .carousel-section');
 		slides = newSlides;
 
 		const newIndicators = slidesContainer.querySelectorAll('.post__indicators > div');
@@ -76,6 +77,7 @@ const getCarousel = (slidesContainer) => {
 	}
 }
 //TODO: 이벤트 위임
+const RESIZE_DELAY_MS = 100;
 export const initCarousel = (slidesContainer, prevButton, nextButton) => {
 	const { init, prev, next, render} = getCarousel(slidesContainer);
 
@@ -83,5 +85,5 @@ export const initCarousel = (slidesContainer, prevButton, nextButton) => {
 	prevButton.onclick = prev;
 	nextButton.onclick = next;
 
-	window.addEventListener('resize', debounce(render, 100));
+	window.addEventListener('resize', debounce(render, RESIZE_DELAY_MS));
 }
