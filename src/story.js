@@ -7,9 +7,7 @@ const rightButton = document.querySelector('.stories__right-button');
 
 export const createStories = () => {
   const storiesContainer = document.querySelector(".stories__content");
-  const storiesArray = [];
-
-  dummyStory.forEach((story) => storiesArray.push(createStory(story)));
+  const storiesArray = dummyStory.map((story) => createStory(story));
   storiesContainer.innerHTML = storiesArray.join("");
 }
 
