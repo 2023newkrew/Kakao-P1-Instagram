@@ -15,7 +15,7 @@
 }
 
 .side-menu__user-profile .side-menu__user-avatar {
-  width: 20%;
+  width: 80px;
   margin-right: 10px;
 }
 
@@ -78,7 +78,7 @@
 }
 
 .side-menu__suggestions-section .side-menu__suggestions-content .side-menu__suggestion .side-menu__suggestion-avatar {
-  width: 15%;
+  width: 30px;
 
   margin-right: 10px;
 }
