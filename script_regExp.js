@@ -51,7 +51,13 @@ const util = {
     toggleClass(element, className) {
         element.classList.toggle(className);
     },
-    makeOnArrowClickByTransform(container, contents, direction) {
+    makeOnArrowClickByTransform(
+        container,
+        contents,
+        direction,
+        $rightArrow,
+        $leftArrow
+    ) {
         const adjustNum = direction === "left" ? -1 : 1;
         const onArrowClickByTransform = () => {
             const clickCount = util.getClickCount(container, contents);
@@ -143,7 +149,9 @@ function init() {
         util.makeOnArrowClickByTransform(
             $innerBox,
             $innerBox.querySelectorAll(".stories__content"),
-            "right"
+            "right",
+            $rightArrow,
+            $leftArrow
         )
     );
     $leftArrow.addEventListener(
@@ -151,7 +159,9 @@ function init() {
         util.makeOnArrowClickByTransform(
             $innerBox,
             $innerBox.querySelectorAll(".stories__content"),
-            "left"
+            "left",
+            $rightArrow,
+            $leftArrow
         )
     );
 }
@@ -175,6 +185,35 @@ function makePostDummy(count, imgCount) {
             $clone.querySelector(".post__medias").appendChild($imgClone);
         }
 
+        const $rightArrow = $clone.querySelector(".post__next-button");
+        const $leftArrow = $clone.querySelector(".post__prev-button");
+
+        const container = $clone.querySelector(".post__medias");
+        const contents = $clone.querySelectorAll(".post__media");
+
+        util.turnOffElement($leftArrow);
+        if (contents.length <= 1) util.turnOffElement($rightArrow);
+
+        $rightArrow.addEventListener(
+            "click",
+            util.makeOnArrowClickByTransform(
+                container,
+                contents,
+                "right",
+                $rightArrow,
+                $leftArrow
+            )
+        );
+        $leftArrow.addEventListener(
+            "click",
+            util.makeOnArrowClickByTransform(
+                container,
+                contents,
+                "left",
+                $rightArrow,
+                $leftArrow
+            )
+        );
         document.querySelector(".posts").appendChild($clone);
     }
 }
