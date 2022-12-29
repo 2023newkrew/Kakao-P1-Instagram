@@ -1,12 +1,12 @@
-import { NIGHT_MODE_CLASS } from "./const.js";
+import { CLASS_NAME } from "./const.js";
 
 const themeBtnEl = document.querySelector(".header__theme-button");
 
-const getIsNightMode = () => localStorage.getItem(NIGHT_MODE_CLASS) === "true";
-const toggleNightMode = () => localStorage.setItem(NIGHT_MODE_CLASS, !getIsNightMode());
+const getIsNightMode = () => localStorage.getItem(CLASS_NAME.NIGHT_MODE) === "true";
+const toggleNightMode = () => localStorage.setItem(CLASS_NAME.NIGHT_MODE, !getIsNightMode());
 
-const setNightTheme = () => document.documentElement.classList.add(NIGHT_MODE_CLASS);
-const setDayTheme = () => document.documentElement.classList.remove(NIGHT_MODE_CLASS);
+const setNightTheme = () => document.documentElement.classList.add(CLASS_NAME.NIGHT_MODE);
+const setDayTheme = () => document.documentElement.classList.remove(CLASS_NAME.NIGHT_MODE);
 
 const setThemeMode = () => getIsNightMode() ? setNightTheme() : setDayTheme();
 

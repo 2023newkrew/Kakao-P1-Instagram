@@ -3,6 +3,9 @@ export const DISPLAY = Object.freeze({
   BLOCK: "block"
 });
 
-export const NIGHT_MODE_CLASS = "nightMode";
+export const CLASS_NAME = Object.freeze({
+  NIGHT_MODE: "nightMode",
+  POST: "post"
+});
 
 export const STORY_SCROLL_PIXELS = 500;

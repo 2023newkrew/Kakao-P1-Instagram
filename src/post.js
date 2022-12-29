@@ -1,4 +1,5 @@
 import { appendMediaPage, displayButtons, nextMedia, previousMedia } from "./carousel.js";
+import { CLASS_NAME } from "./const.js";
 import { dummyPosts } from "./faker.js";
 
 export const createPosts = () => {
@@ -7,7 +8,7 @@ export const createPosts = () => {
 
   dummyPosts.forEach((post, index) => {
     const postElement = document.createElement("article");
-    postElement.classList.add("post");
+    postElement.classList.add(CLASS_NAME.POST);
     postElement.innerHTML = createPost(post);
 
     const maxMediaPage = post.medias.length - 1;
