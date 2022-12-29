@@ -11,6 +11,7 @@
 
 .content-container {
   width: 100%;
+  height: 100%;
   max-width: 824px;
   padding: 0 0 8px;
   margin: 0 auto;
@@ -154,7 +155,25 @@
   font-weight: 600;
 }
 
-.post__media {
+.post__content {
+  position: relative;
+  overflow: hidden;
+}
+
+.post__carousel-buttons {
+  position: absolute;
+  width: 470px;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 014px;
+  z-index: 10;
+}
+
+.post__medias {
+  display: flex;
+  transition: all 0.3s ease-out;
 }
 
 .post__likes img {

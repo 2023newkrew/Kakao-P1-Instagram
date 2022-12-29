@@ -1,4 +1,5 @@
 import { stories, posts } from "./dummy.js";
+import { initCarousel } from "./carousel.js";
 
 const themeButtonEl = document.querySelector(".header__theme-button");
 themeButtonEl.addEventListener("click", toggleTheme);
@@ -48,6 +49,7 @@ function initStories() {
 function main() {
   initThemeMode();
   initStories();
+  initCarousel();
 }
 
 main();
