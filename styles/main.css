@@ -245,7 +245,6 @@
 
 .post .post__content .post__medias {
   display: flex;
-  overflow: auto;
 
   position: relative;
 
@@ -253,6 +252,8 @@
 
   list-style: none;
 }
+
+
 
 .post .post__content .post__media {
   object-fit: cover;

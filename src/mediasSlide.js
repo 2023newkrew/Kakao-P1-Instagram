@@ -100,14 +100,14 @@ postList.map((post, index) => {
         `
     }
     postIndicator.innerHTML = elementString;
+
     const indicator = postIndicator.querySelector(`:nth-child(1)`);
     indicator.style.filter = "invert(83%) sepia(4%) saturate(4977%) hue-rotate(167deg) brightness(98%) contrast(88%)";
 
     const mediaSlideWidth = postContent.clientWidth;
     const mediaSlideCount = mediaSlideImg.length;
     // TODO : 초기에 옮기는 길이를 고정시켜 두는 방법은 그닥 좋지 않아보임 observer 또는 resize를 통해 변경을 확인하는건 어떨까 ?
-    // TODO : 위 방법은 reflow를 유발함 li 태그가 자연스럽게 꽉 차고 줄어들게 바꿀 수 있어야 함
-    console.log(mediaSlideWidth, mediaSlideCount)
+    // TODO : 위 방법은 reflow를 유발함 li 태그가 자연스럽게 꽉 차고 줄어들게 바꿀 수 있게 해야 함
     mediaSlides.style.width = `${mediaSlideWidth * mediaSlideCount}px`;
     let currentMediaIndex = 0;
 
@@ -147,3 +147,5 @@ postList.map((post, index) => {
 })
 
 //TODO : resize를 통한 구현
+//! : post들을 전부 다시그려야 하는 상황에서 reflow를 예방할 수 없을 것 같음
+//! : instagram의 경우에는 리렌더링을 하는 것 같음
