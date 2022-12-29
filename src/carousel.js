@@ -41,3 +41,20 @@ export const appendMediaPage = (maxMediaPage) => {
     max: maxMediaPage
   });
 }
+
+export const initCarousel = (postElement, index) => {
+  const leftButton = postElement.querySelector(".post__left-carousel-button");
+  const rightButton = postElement.querySelector(".post__right-carousel-button");
+  const mediasContainer = postElement.querySelector(".post__medias");
+  const indicators = postElement.querySelectorAll(".post__indicator");
+  
+  const maxMediaPage = mediasContainer.childElementCount - 1;
+
+  appendMediaPage(maxMediaPage);
+
+  leftButton.addEventListener("click", () => previousMedia(index, mediasContainer, leftButton, rightButton, indicators));
+  rightButton.addEventListener("click", () => nextMedia(index, mediasContainer, leftButton, rightButton, indicators));
+
+  displayButtons(index, leftButton, rightButton);
+  updateIndicator(index, indicators);
+};

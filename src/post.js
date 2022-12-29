@@ -1,39 +1,23 @@
-import { appendMediaPage, displayButtons, updateIndicator, nextMedia, previousMedia } from "./carousel.js";
+import { initCarousel } from "./carousel.js";
 import { CLASS_NAME } from "./const.js";
 import { dummyPosts } from "./faker.js";
 
 export const createPosts = () => {
   const posts = document.querySelector(".posts");
-  const postsArray = [];
+  const postsArray = dummyPosts.map((post) => createPostElement(post));
 
-  dummyPosts.forEach((post, index) => {
-    const postElement = document.createElement("article");
-    postElement.classList.add(CLASS_NAME.POST);
-    postElement.innerHTML = createPost(post);
-
-    const maxMediaPage = post.medias.length - 1;
-
-    const leftButton = postElement.querySelector(".post__left-carousel-button");
-    const rightButton = postElement.querySelector(".post__right-carousel-button");
-    const mediasContainer = postElement.querySelector(".post__medias");
-    const indicators = postElement.querySelectorAll(".post__indicator");
-
-    appendMediaPage(maxMediaPage);
-
-    leftButton.addEventListener("click", () => previousMedia(index, mediasContainer, leftButton, rightButton, indicators));
-    rightButton.addEventListener("click", () => nextMedia(index, mediasContainer, leftButton, rightButton, indicators));
-
-    displayButtons(index, leftButton, rightButton);
-    updateIndicator(index, indicators);
-    
-    postsArray.push(postElement);
+  postsArray.forEach((postElement, index) => {
+    initCarousel(postElement, index);
   });
 
   posts.append(...postsArray);
 }
 
-const createPost = ({user, medias, likes, description}) => {
-  return `
+const createPostElement = ({user, medias, likes, description}) => {
+  const postElement = document.createElement("article");
+  postElement.classList.add(CLASS_NAME.POST);
+
+  const postBody = `
     <div class="post__header">
       <div class="post__profile">
         <a href="" target="_blank" class="post__avatar avatar">
@@ -106,5 +90,9 @@ const createPost = ({user, medias, likes, description}) => {
         <span class="post__date-time">30 minutes ago</span>
       </div>
     </div>
-  `
+  `;
+  
+  postElement.innerHTML = postBody;
+
+  return postElement;
 }
