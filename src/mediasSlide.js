@@ -160,7 +160,6 @@ function debounce(func) {
 }
 
 window.addEventListener("resize", debounce(function (e) {
-    console.log('bb')
     render();
 }));
 
