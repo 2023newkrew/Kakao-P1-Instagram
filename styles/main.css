@@ -49,7 +49,6 @@
   gap: 16px;
   padding: 0 16px;
   position: relative;
-
   scroll-behavior: smooth;
   scrollbar-width: none;
 }
@@ -121,6 +120,24 @@
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
+}
+
+.stories__button {
+  position:absolute;
+  top: 50%;
+  width: 24px;
+  height: 24px;
+  margin: 0 16px;
+  z-index: 1;
+}
+
+.stories__left-button {
+  transform: translateY(-50%) rotate(180deg);
+}
+
+.stories__right-button {
+  transform: translateY(-50%);
+  right: 0;
 }
 
 .story--has-story .story__user {
