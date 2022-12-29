@@ -1,4 +1,7 @@
 // TODO: 화면 크기 조절 시 캐러셀 스크롤 위치 뒤틀림 수정 필요 
+
+import debounce from "./utils/debounce.js";
+
 // reference : https://codesandbox.io/s/vanilla-js-carousel-forked-rcypq1?file=/src/index.js
 const getCarousel = (slidesContainer) => {
 	let currentIndex = 0;
@@ -35,7 +38,6 @@ const getCarousel = (slidesContainer) => {
 		render();
 	}
 	const next = ()=>{
-		console.log(slides);
 		if(currentIndex === slides.length - 1) {
 			return;
 		}
@@ -73,6 +75,7 @@ const getCarousel = (slidesContainer) => {
 		render,
 	}
 }
+//TODO: 이벤트 위임
 export const initCarousel = (slidesContainer, prevButton, nextButton) => {
 	const { init, prev, next, render} = getCarousel(slidesContainer);
 
@@ -80,7 +83,5 @@ export const initCarousel = (slidesContainer, prevButton, nextButton) => {
 	prevButton.onclick = prev;
 	nextButton.onclick = next;
 
-	window.addEventListener('resize', ()=>{
-		render();
-	});
+	window.addEventListener('resize', debounce(render, 100));
 }
