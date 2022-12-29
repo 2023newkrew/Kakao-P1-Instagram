@@ -84,6 +84,16 @@ const util = {
         };
         return onArrowClickByTransform;
     },
+    makeDebounceHandler(handler, delay) {
+        let timeOut = null;
+
+        const debounceHandler = () => {
+            clearTimeout(timeOut);
+            timeOut = setTimeout(handler, delay);
+        };
+
+        return debounceHandler;
+    },
 };
 
 function init() {
@@ -148,6 +158,35 @@ function init() {
             }
         }
     };
+
+    const makeAdjustPostTransform = () => {
+        // 자유변수
+        let beforeContainerWidth =
+            document.querySelector(".post__content").offsetWidth;
+
+        const adjustPostTransform = () => {
+            const currentContainerWidth =
+                document.querySelector(".post__content").offsetWidth;
+
+            const targets = document.querySelectorAll(".post__medias");
+            for (let i = 0; i < targets.length; i++) {
+                const target = targets[i];
+
+                const targetTranslateValue = util.getTranslateX(target);
+                target.style.transform = `translateX(-${
+                    (targetTranslateValue * currentContainerWidth) /
+                    beforeContainerWidth
+                }px)`;
+            }
+            beforeContainerWidth = currentContainerWidth;
+        };
+        return adjustPostTransform;
+    };
+
+    window.addEventListener(
+        "resize",
+        util.makeDebounceHandler(makeAdjustPostTransform(), 250)
+    );
 
     window.addEventListener("load", onload);
     $toggleThemeBtn.addEventListener("click", onDarkThemeBtnClick);
