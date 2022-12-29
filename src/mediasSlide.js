@@ -90,37 +90,32 @@ postList.map((post, index) => {
 
     const postContent = document.getElementById(`post__content #${index}`);
 
-    const mediaSlideCount = mediaSlideImg.length;
     const mediaSlideWidth = postContent.clientWidth;
-
+    const mediaSlideCount = mediaSlideImg.length;
+    // TODO : 초기에 옮기는 길이를 고정시켜 두는 방법은 그닥 좋지 않아보임 observer 또는 resize를 통해 변경을 확인하는건 어떨까 ?
+    // TODO : 위 방법은 reflow를 유발함 li 태그가 자연스럽게 꽉 차고 줄어들게 바꿀 수 있어야 함
+    mediaSlides.style.width = `${mediaSlideWidth * mediaSlideCount}px`;
     let currentMediaIndex = 0;
 
-    (function initFunction() {
-        // TODO : 초기에 옮기는 길이를 고정시켜 두는 방법은 그닥 좋지 않아보임
-        mediaSlides.style.width = mediaSlideWidth * mediaSlideCount + 'px';
-    })();
-
     const moveMediaSlide = (num) => {
-        const postContentWidth = document.querySelector('.post__content').clientWidth;
-        mediaSlides.style.setProperty('transform', `translateX(${-(num * postContentWidth)}px)`);
+        mediaSlides.style.setProperty('transform', `translateX(${-(num * mediaSlideWidth)}px)`);
         currentMediaIndex = num;
+
+        mediaPrevButton.style.opacity = currentMediaIndex === 0 ? 0 : 100;
+        mediaNextButton.style.opacity = currentMediaIndex === mediaSlideCount - 1 ? 0 : 100;
     }
 
     const mediaPrevButton = postContent.querySelector('.post__controller .post__controller-prev');
+    mediaPrevButton.style.opacity = currentMediaIndex === 0 ? 0 : 100;
 
     mediaPrevButton.addEventListener('click', function () {
         if (currentMediaIndex !== 0) moveMediaSlide(currentMediaIndex - 1);
     });
 
     const mediaNextButton = postContent.querySelector('.post__controller .post__controller-next');
+    mediaNextButton.style.opacity = currentMediaIndex === mediaSlideCount - 1 ? 0 : 100;
 
     mediaNextButton.addEventListener('click', function () {
         if (currentMediaIndex !== mediaSlideCount - 1) moveMediaSlide(currentMediaIndex + 1);
     })
 })
-
-
-
-
-
-

@@ -43,15 +43,20 @@ const moveStorySlide = (num) => {
     // TODO : 추후 observer를 활용해서 제작하는 방식을 통해 성능 측정 해보기
     storySlidesElement.style.setProperty('transform', `translateX(${-(num * ((storyImgWidth + storyGap) * 3))}px)`);
     currentStoryIndex = num;
+
+    storyPrevButton.style.opacity = currentStoryIndex === 0 ? 0 : 100;
+    storyNextButton.style.opacity = currentStoryIndex === limitCount ? 0 : 100;
 }
 
 const storyPrevButton = document.querySelector('.stories__controller-prev');
+storyPrevButton.style.opacity = currentStoryIndex === 0 ? 0 : 100;
 
 storyPrevButton.addEventListener('click', function () {
     if (currentStoryIndex !== 0) moveStorySlide(currentStoryIndex - 1);
 })
 
 const storyNextButton = document.querySelector('.stories__controller-next');
+storyNextButton.style.opacity = currentStoryIndex === limitCount ? 0 : 100;
 
 storyNextButton.addEventListener('click', function () {
     if (currentStoryIndex !== limitCount) moveStorySlide(currentStoryIndex + 1);

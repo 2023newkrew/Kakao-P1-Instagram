@@ -250,6 +250,8 @@
   position: relative;
 
   transition: transform 0.5s ease-out;
+
+  list-style: none;
 }
 
 .post .post__content .post__media {
