@@ -8,6 +8,7 @@
   <link rel="stylesheet" type="text/css" href="styles/header.css" />
   <link rel="stylesheet" type="text/css" href="styles/main.css" />
   <link rel="stylesheet" type="text/css" href="styles/side.css" />
+  <script type="module" src="script.js"></script>
 </head>
 
 <body>
@@ -17,10 +18,14 @@
         <a href="index.html" class="header__home">
           <img src="assets/icons/logo.svg" alt="logo" />
         </a>
+        <button class="header__theme-button" title="Toggle Theme">
+          <img src="assets/icons/moon.svg" class="header__theme-button-moon" alt="moon" />
+          <img src="assets/icons/sun.svg" class="header__theme-button-sun" alt="sun" />
+        </button>
       </div>
 
       <div class="header__search">
-        <img src="assets/icons/search.svg" alt="search"  />
+        <img src="assets/icons/search.svg" alt="search" />
         <input type="text" placeholder="Search" />
       </div>
 
@@ -188,7 +193,7 @@
 
           <span class="side-menu__footer-copyright">&copy; 2022 instagram from facebook</span>
         </div>
-        
+
       </div>
     </section>
   </main>
