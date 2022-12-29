@@ -1,10 +1,10 @@
 (() => {
   const postsElement = document.querySelector('.posts');
 
-  const ClassName = {
+  const ClassName = Object.freeze({
     VISIBLE: 'visible',
     FOCUS: 'focus',
-  };
+  });
 
   const buildPostHTML = ({ userName, images, description }) => `<article class="post" data-medias-index="0">
   <div class="post__header">

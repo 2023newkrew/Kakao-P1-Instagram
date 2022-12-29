@@ -4,9 +4,9 @@
   const storiesScrollLeftButton = storiesElement.querySelector('.stories__scroll-left-button');
   const storiesScrollRightButton = storiesElement.querySelector('.stories__scroll-right-button');
 
-  const ClassName = {
+  const ClassName = Object.freeze({
     VISIBLE: 'visible',
-  };
+  });
 
   const SCROLL_SIZE = 256;
 
