@@ -4,6 +4,12 @@
   const storiesScrollLeftButton = storiesElement.querySelector('.stories__scroll-left-button');
   const storiesScrollRightButton = storiesElement.querySelector('.stories__scroll-right-button');
 
+  const ClassName = {
+    VISIBLE: 'visible',
+  };
+
+  const SCROLL_SIZE = 256;
+
   const buildStoryHTML = ({ imageSource, imageAlternativeText, userName }) => `<li class="story ">
   <div class="story__avatar">
     <div class="story__border">
@@ -17,12 +23,6 @@
   </div>
   <span class="story__user">${userName}</span>
 </li>`;
-
-  const ClassName = {
-    VISIBLE: 'visible',
-  };
-
-  const SCROLL_SIZE = 256;
 
   const updateScrollButtonVisibility = () => {
     if (storiesContentElement.scrollLeft + storiesContentElement.clientWidth < storiesContentElement.scrollWidth) {

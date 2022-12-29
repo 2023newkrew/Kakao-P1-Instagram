@@ -3,6 +3,7 @@
 
   const ClassName = {
     VISIBLE: 'visible',
+    FOCUS: 'focus',
   };
 
   const buildPostHTML = ({ userName, images, description }) => `<article class="post" data-medias-index="0">
@@ -26,7 +27,7 @@
     <button class="post__shift-left-button" title="Shift Left">
       <img src="assets/icons/arrow.svg" alt="left" />
     </button>
-    <button class="post__shift-right-button ${images.length > 1 ? 'visible' : ''}" title="Shift Right">
+    <button class="post__shift-right-button ${images.length > 1 ? ClassName.VISIBLE : ''}" title="Shift Right">
       <img src="assets/icons/arrow.svg" alt="right" />
     </button>
   </div>
@@ -40,7 +41,7 @@
         <img src="assets/icons/comment.svg" alt="comment" />
       </button>
 
-      <div class="post__indicators"></div>
+      <div class="post__indicators">${buildPostIndicatorsInnerHTML({ mediasLength: images.length, mediasIndex: 0 })}</div>
 
       <button class="post__button post__button--align-right">
         <img src="assets/icons/bookmark.svg" alt="bookmark" />
@@ -74,8 +75,47 @@
   <img src="${source}" alt="${alternativeText}" />
 </li>`;
 
+  const buildPostIndicatorsInnerHTML = ({ mediasLength, mediasIndex }) => {
+    if (mediasLength <= 1) return '';
+
+    return Array.from({ length: mediasLength }, (_, index) => `<div class="post__indicator ${index === mediasIndex ? ClassName.FOCUS : ''}"></div>`).join('');
+  };
+
   const renderPosts = (posts) => {
     postsElement.innerHTML = posts.map(buildPostHTML).join('\n');
+  };
+
+  const updatePostShiftButtons = ({ postElement, mediasLength, mediasIndex }) => {
+    const shiftLeftButton = postElement.querySelector('.post__shift-left-button');
+    const shiftRightButton = postElement.querySelector('.post__shift-right-button');
+
+    if (mediasIndex === 0) {
+      shiftLeftButton.classList.remove(ClassName.VISIBLE);
+    } else {
+      shiftLeftButton.classList.add(ClassName.VISIBLE);
+    }
+
+    if (mediasIndex === mediasLength - 1) {
+      shiftRightButton.classList.remove(ClassName.VISIBLE);
+    } else {
+      shiftRightButton.classList.add(ClassName.VISIBLE);
+    }
+  };
+
+  const updatePostIndicators = ({ postElement, mediasLength, mediasIndex }) => {
+    const postIndicatorElement = postElement.querySelector('.post__indicators');
+
+    postIndicatorElement.innerHTML = buildPostIndicatorsInnerHTML({ mediasLength, mediasIndex });
+  };
+
+  const updatePostElement = (postElement) => {
+    const mediasElement = postElement.querySelector('.post__medias');
+    const mediasLength = mediasElement.children.length;
+    const mediasIndex = Number(postElement.dataset.mediasIndex);
+
+    updatePostShiftButtons({ postElement, mediasLength, mediasIndex });
+    updatePostIndicators({ postElement, mediasLength, mediasIndex });
+    mediasElement.style.transform = `translateX(-${mediasIndex}00%)`;
   };
 
   const mockPosts = [
@@ -130,29 +170,6 @@
       description: 'description',
     },
   ];
-
-  const updatePostElement = (postElement) => {
-    const shiftLeftButton = postElement.querySelector('.post__shift-left-button');
-    const shiftRightButton = postElement.querySelector('.post__shift-right-button');
-    const mediasElement = postElement.querySelector('.post__medias');
-
-    const mediasIndex = Number(postElement.dataset.mediasIndex);
-    const mediasLength = mediasElement.children.length;
-
-    if (mediasIndex === 0) {
-      shiftLeftButton.classList.remove(ClassName.VISIBLE);
-    } else {
-      shiftLeftButton.classList.add(ClassName.VISIBLE);
-    }
-
-    if (mediasIndex === mediasLength - 1) {
-      shiftRightButton.classList.remove(ClassName.VISIBLE);
-    } else {
-      shiftRightButton.classList.add(ClassName.VISIBLE);
-    }
-
-    mediasElement.style.transform = `translateX(-${mediasIndex}00%)`;
-  };
 
   renderPosts(mockPosts);
 
