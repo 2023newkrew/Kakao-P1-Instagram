@@ -7,6 +7,7 @@ const $stories = document.querySelector(".stories");
 const $rightArrow = document.querySelector(".story__next-button");
 const $leftArrow = document.querySelector(".story__prev-button");
 const $innerBox = document.querySelector(".stories__inner-box");
+const POST_DEBOUNCE_DELAY = 100;
 
 const util = {
     getTranslateX(element) {
@@ -185,7 +186,7 @@ function init() {
 
     window.addEventListener(
         "resize",
-        util.makeDebounceHandler(makeAdjustPostTransform(), 250)
+        util.makeDebounceHandler(makeAdjustPostTransform(), POST_DEBOUNCE_DELAY)
     );
 
     window.addEventListener("load", onload);
@@ -265,7 +266,7 @@ function makePostDummy(count, imgCount) {
 }
 function main() {
     makeStoryDummy(15);
-    makePostDummy(1, 3);
+    makePostDummy(2, 3);
     init();
 }
 main();
