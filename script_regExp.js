@@ -156,7 +156,7 @@ function init() {
         )
     );
 }
-function makeDummy(count) {
+function makeStoryDummy(count) {
     const $target = document.querySelector(".stories__content");
     for (let i = 0; i < count; i++) {
         const $clone = $target.cloneNode(true);
@@ -164,8 +164,24 @@ function makeDummy(count) {
         $stories.querySelector(".stories__inner-box").appendChild($clone);
     }
 }
+function makePostDummy(count, imgCount) {
+    const $target = document.querySelector(".post");
+    for (let i = 0; i < count; i++) {
+        const $clone = $target.cloneNode(true);
+
+        for (let j = 0; j < imgCount; j++) {
+            const $imgClone = $clone
+                .querySelector(".post__media")
+                .cloneNode(true);
+            $clone.querySelector(".post__medias").appendChild($imgClone);
+        }
+
+        document.querySelector(".posts").appendChild($clone);
+    }
+}
 function main() {
-    makeDummy(5);
+    makeStoryDummy(15);
+    makePostDummy(1, 3);
     init();
 }
 main();

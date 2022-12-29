@@ -276,3 +276,36 @@
     display: flex;
     flex-direction: column;
 }
+.post__content {
+    position: relative;
+}
+.post__medias {
+    display: flex;
+    overflow: hidden;
+}
+.post__next-button {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: calc(50% - 15px);
+    right: 20px;
+    background: transparent;
+    border: none;
+    z-index: 10;
+    cursor: pointer;
+}
+.post__prev-button {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: calc(50% - 15px);
+    left: 20px;
+    background: transparent;
+    border: none;
+    z-index: 10;
+    cursor: pointer;
+}
+
+.post__prev-button img {
+    transform: scale(-1);
+}
