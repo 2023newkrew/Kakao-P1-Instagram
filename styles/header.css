@@ -26,9 +26,7 @@
 .header__content {
   width: 100%;
   max-width: 975px;
-
   padding: 0 14px;
-
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -65,8 +63,7 @@
 .header__search {
   width: 216px;
   height: 28px;
-
-  display: none;
+  display: flex;
   align-items: center;
   position: relative;
 }
@@ -143,4 +140,11 @@
 
   overflow: hidden;
   position: relative;
+}
+
+/* meida query */
+@media (max-width: 640px) {
+  .header__search {
+    display: none;
+  }
 }
