@@ -1,45 +1,62 @@
+/** @type {node} 스토리의 너비 */
+const STORY_WIDTH = 80;
+
+/** @type {node} 스토리 전체 영역을 감싸는 엘리먼트 */
+const storyContainerElement = document.querySelector('.stories');
+
+/** @type {node} 스토리 리스트를 감싸는 엘리먼트 */
+let storyWrapperElement;
+
+/** @type {User[]} 스토리를 올린 유저 배열*/
 let storyItems;
-async function init () {
-    storyItems = await getStoryItems();
-    setStories();
-}
+
+/** @type {Node} 스토리 이전 버튼 */
+let prevButton;
+
+/** @type {Node} 스토리 다음 버튼 */
+let nextButton;
+
+/**
+ * 유저
+ * @typedef     {object}    User    유저 정보
+ * @property    {string}    avatar  유저 프로필 사진
+ * @property    {string}    name    유저 이름
+ */
+
+/**
+ * storyItems의 더미데이터를 불러오는 함수
+ * @returns Promise<Story[]>
+ */
 async function getStoryItems() {
     const response = await fetch('../data/storyItems.json');
     const storyItems = await response.json();
     
     return storyItems;
 }
-/*
-    setStories(): void
-    
-    스토리 배열을 바탕으로 elementStories를 그려주는 함수입니다.
-*/
-function setStories() {
-    const elementStories = document.querySelector('.stories');
+
+/**
+ * storyItem elements를 DOM에 배치하는 함수
+ */
+function drawStoryItems() {
     
     let elementString = '<div class="stories__content">';
     elementString = '<div class="stories__content">';
     for (let storyItem of storyItems) {
-        elementString += makeStory(storyItem);
+        elementString += createStory(storyItem);
     }
     elementString += '</div>';
     elementString += '<button onClick="pageController.onPrevStory()" style="display: none" class="stories__arrow__left"><img src="assets/icons/arrow.svg" /></button>';
     elementString += `<button onClick="pageController.onNextStory()" style="${storyItems.length < 6 ? "display: none": ""}" class="stories__arrow__right"><img src="assets/icons/arrow.svg" /></button>`;
 
-    elementStories.innerHTML = elementString;
+    storyContainerElement.innerHTML = elementString;
 }
 
-/*
-    makeStory(user: User): string
-
-    interface User = {
-        avatar: string,
-        name: string
-    }
-    
-    스토리 원소를 바탕으로 하나의 스토리 html을 반환해주는 함수입니다.
-*/
-function makeStory ({avatar, name}) {
+/**
+ * storyItem을 바탕으로 element를 생성하는 함수
+ * @param   {User}      user    스토리를 올린 유저
+ * @returns {string}            storyItem Element String
+ */
+function createStory ({avatar, name}) {
     return (`
         <button class="story ">
             <div class="story__avatar">
@@ -57,14 +74,17 @@ function makeStory ({avatar, name}) {
     `)
 }
 
-/* 
-    스토리 페이지를 컨트롤하기 위한 객체입니다.
-*/
+
+/**
+ * story page controll 객체
+ */
 const pageController = {
+    /** @type {number} 스토리 페이지 변수 */
     storyPage: 0,
+
+    /** 스*/
     moveStory: function () {
-        const elementStory = document.querySelector('.stories__content');
-        elementStory.style.setProperty('transform', `translate(${this.storyPage * -80}px)`);
+        storyWrapperElement.style.setProperty('transform', `translate(${STORY_WIDTH * this.storyPage * -1}px)`);
     },
     onPrevStory: function () {
         if (this.storyPage <= 0) return;
@@ -85,22 +105,39 @@ const pageController = {
         if (this.storyPage === storyItems.length - 5) this.setNextStoryButtonVisible(false);
     },
     setPrevStoryButtonVisible: function (visible) {
-        const elementPrevStoryButton = document.querySelector('.stories__arrow__left')
         if (visible === true) {
-            elementPrevStoryButton.style.setProperty('display', 'block');
+            prevButton.style.setProperty('display', 'block');
         } else {
-            elementPrevStoryButton.style.setProperty('display', 'none');
+            prevButton.style.setProperty('display', 'none');
         }
     },
     setNextStoryButtonVisible: function (visible) {
-        const elementNextStoryButton = document.querySelector('.stories__arrow__right')
+        
         if (visible === true) {
-            elementNextStoryButton.style.setProperty('display', 'block');
+            nextButton.style.setProperty('display', 'block');
         } else {
-            elementNextStoryButton.style.setProperty('display', 'none');
+            nextButton.style.setProperty('display', 'none');
         }
     }
 }
 
-// init function
+/** 
+ * init 함수
+ */
+async function init () {
+    // storyItems 더미 데이터 불러오기
+    storyItems = await getStoryItems();
+
+    // storyItems element 그리기
+    drawStoryItems();
+
+    // storyItems element를 감싸는 element 지정
+    storyWrapperElement = document.querySelector('.stories__content')
+
+    // story pagination prev button 지정
+    prevButton = document.querySelector('.stories__arrow__left');
+
+    // story pagination next button 지정
+    nextButton = document.querySelector('.stories__arrow__right');
+}
 init();
