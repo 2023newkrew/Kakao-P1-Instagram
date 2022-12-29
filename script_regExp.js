@@ -63,17 +63,20 @@ const util = {
             const currentIndex = util.getCurrentIndex(container, contents);
             const contentWidth = contents[0].offsetWidth;
 
+            const afterIndex = currentIndex + adjustNum;
             container.style.transform = `translateX(-${
-                (currentIndex + adjustNum) * contentWidth
+                afterIndex * contentWidth
             }px)`;
 
-            if (util.isLast(container, contents)) {
+            if (afterIndex === contents.length - 1) {
+                // last index
                 util.turnOffElement($rightArrow);
             } else {
                 util.turnOnElement($rightArrow);
             }
 
-            if (util.isFirst(container, contents)) {
+            if (afterIndex === 0) {
+                // first index
                 util.turnOffElement($leftArrow);
             } else {
                 util.turnOnElement($leftArrow);
@@ -90,10 +93,14 @@ function init() {
         $curNode.style.order = i + 1;
     }
 
-    if (util.isFirst($innerBox, storiesContents)) {
+    const currentIndex = util.getCurrentIndex($innerBox, storiesContents);
+
+    if (currentIndex === 0) {
+        // first position
         util.turnOffElement($leftArrow);
     }
-    if (util.isLast($innerBox, storiesContents)) {
+    if (currentIndex === storiesContents.length - 1) {
+        // last position
         util.turnOffElement($rightArrow);
     }
 
