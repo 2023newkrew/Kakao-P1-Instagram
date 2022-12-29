@@ -16,6 +16,7 @@
 
 	--separator-color: rgb(219,219,219);
 	--border-radius: 8px;
+	--border-active: rgb(250,6,99);
 }
 .darkMode {
 	--bg-primary: rgb(0, 0, 0);
