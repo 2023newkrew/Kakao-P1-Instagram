@@ -1,4 +1,4 @@
-function initTheme() {
+export function initTheme() {
   const $toggleThemeButton = document.querySelector(".header__theme-button");
 
   $toggleThemeButton.addEventListener("click", () => {
@@ -15,5 +15,3 @@ function initTheme() {
     if (theme === "dark") rootClassList.add("dark-theme");
   });
 }
-
-initTheme();

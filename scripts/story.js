@@ -1,46 +1,16 @@
-const $stories = document.querySelector(".stories__content");
-const $prevButton = document.querySelector(".stories__button--prev");
-const $nextButton = document.querySelector(".stories__button--next");
+import { initHorizontalScroll } from "./util.js";
 
-const startObserver = new IntersectionObserver(
-  ([{ isIntersecting }]) => {
-    const prevButtonClassList = $prevButton.classList;
+export function initStory() {
+  const $stories = document.querySelector(".stories__content");
+  const stories = Array.from(document.querySelectorAll(".story"));
+  const $prevButton = document.querySelector(".stories__button--prev");
+  const $nextButton = document.querySelector(".stories__button--next");
 
-    if (isIntersecting) {
-      prevButtonClassList.add("hidden");
-    } else {
-      prevButtonClassList.remove("hidden");
-    }
-  },
-  {
-    root: $stories,
-    threshold: 1,
-  }
-);
-
-const endObserver = new IntersectionObserver(
-  ([{ isIntersecting }]) => {
-    const nextButtonClassList = $nextButton.classList;
-
-    if (isIntersecting) {
-      nextButtonClassList.add("hidden");
-    } else {
-      nextButtonClassList.remove("hidden");
-    }
-  },
-  {
-    root: $stories,
-    threshold: 1,
-  }
-);
-
-startObserver.observe(document.querySelector(".story:first-child"));
-endObserver.observe(document.querySelector(".story:last-child"));
-
-$prevButton.addEventListener("click", () => {
-  $stories.scrollLeft -= 320;
-});
-
-$nextButton.addEventListener("click", () => {
-  $stories.scrollLeft += 320;
-});
+  initHorizontalScroll({
+    $container: $stories,
+    items: stories,
+    $prevButton,
+    $nextButton,
+    scrollAmount: 320,
+  });
+}
