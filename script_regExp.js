@@ -86,7 +86,7 @@ const util = {
         return onArrowClickByTransform;
     },
     makeDebounceHandler(handler, delay) {
-        let timeOut = null;
+        let timeOut = undefined;
 
         const debounceHandler = () => {
             clearTimeout(timeOut);
