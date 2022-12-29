@@ -322,6 +322,17 @@
 
 .post .post__footer .post__buttons .post__indicators {
   flex-grow: 0.9;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-right: 60px;
+
+  font-size: 30px;
+
+  list-style: none;
+  gap: 10px;
 }
 
 .post .post__footer .post__infos {

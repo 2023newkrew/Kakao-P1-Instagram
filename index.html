@@ -13,6 +13,7 @@
   <script type="module" src="./src/mediasSlide.js"></script>
   <script type="module" src="./src/toggleTheme.js"></script>
   <script type="module" src="./src/storiesSlide.js"></script>
+  <script type="module" src="./src/search.js"></script>
 </head>
 
 <body>
@@ -28,7 +29,7 @@
 
       <div class="header__search">
         <img src="assets/icons/search.svg" alt="search" />
-        <input type="text" placeholder="Search" />
+        <input type="text" placeholder="Search" autocomplete="on" />
       </div>
 
       <div class="header__buttons ">
@@ -95,7 +96,6 @@
             <div class="post__content">
               <ul class="post__medias">
                 <li><img class="post__media" src="assets/images/picture.jpeg" alt="Post Content" /></li>
-
               </ul>
 
               <div class="post__controller">
@@ -107,9 +107,6 @@
                 </span>
               </div>
             </div>
-
-
-
 
             <div class="post__footer">
               <div class="post__buttons">
