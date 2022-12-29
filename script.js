@@ -21,7 +21,8 @@ function toggleTheme() {
 }
 
 function setStory(story) {
-  const storyHTML = `<button class="story">
+  const storyHTML = `<li>
+  <button class="story">
     <div class="story__avatar">
         <div class="story__border">
         <svg width="64" height="64" xmlns="http://www.w3.org/2000/svg">
@@ -33,7 +34,8 @@ function setStory(story) {
         </div>
         </div>
         <span class="story__user">${story.name}</span>
-    </button>`;
+    </button>
+</li>`;
   return storyHTML;
 }
 
