@@ -1,4 +1,4 @@
-import { appendMediaPage, displayButtons, nextMedia, previousMedia } from "./carousel.js";
+import { appendMediaPage, displayButtons, updateIndicator, nextMedia, previousMedia } from "./carousel.js";
 import { CLASS_NAME } from "./const.js";
 import { dummyPosts } from "./faker.js";
 
@@ -16,13 +16,15 @@ export const createPosts = () => {
     const leftButton = postElement.querySelector(".post__left-carousel-button");
     const rightButton = postElement.querySelector(".post__right-carousel-button");
     const mediasContainer = postElement.querySelector(".post__medias");
+    const indicators = postElement.querySelectorAll(".post__indicator");
 
     appendMediaPage(maxMediaPage);
 
-    leftButton.addEventListener("click", () => previousMedia(index, mediasContainer, leftButton, rightButton));
-    rightButton.addEventListener("click", () => nextMedia(index, mediasContainer, leftButton, rightButton));
+    leftButton.addEventListener("click", () => previousMedia(index, mediasContainer, leftButton, rightButton, indicators));
+    rightButton.addEventListener("click", () => nextMedia(index, mediasContainer, leftButton, rightButton, indicators));
 
     displayButtons(index, leftButton, rightButton);
+    updateIndicator(index, indicators);
     
     postsArray.push(postElement);
   });
@@ -68,7 +70,9 @@ const createPost = ({user, medias, likes, description}) => {
           </button>
         </div>
         <div class="post__button-box">
-          <div class="post__indicators"></div>
+          <div class="post__indicators">
+            ${medias.map(()=> '<div class="post__indicator"></div>').join("")}
+          </div>
         </div>
         <div class="post__button-box">
           <button class="post__button post__button--align-right icon-button">
