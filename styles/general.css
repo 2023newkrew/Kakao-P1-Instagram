@@ -14,7 +14,7 @@ button,
 input,
 select,
 textarea {
-  font-family: "Roboto";
+  font-family: "Roboto", sans-serif;
 }
 
 :root {
@@ -25,6 +25,7 @@ textarea {
   --font-color-secondary: #8e8e8e;
   --font-color-tertiary: #c7c7c7;
   --button-color: #0095f6;
+  --font-weight-primary: 600;
 }
 
 :root.dark-theme {
@@ -72,4 +73,5 @@ li {
 button {
   background-color: transparent;
   border: none;
+  cursor: pointer;
 }

@@ -152,7 +152,7 @@
 
 .post__user {
   margin-left: 10px;
-  font-weight: 600;
+  font-weight: var(--font-weight-primary);
 }
 
 .post__content {
@@ -162,7 +162,7 @@
 
 .post__carousel-buttons {
   position: absolute;
-  width: 470px;
+  width: 100%;
   height: 100%;
   display: flex;
   justify-content: space-between;
@@ -209,8 +209,8 @@
   align-items: center;
 }
 
-.post__name--underline {
-  font-weight: 600;
+.post__name--emphasis {
+  font-weight: var(--font-weight-primary);
 }
 
 .post__description {
