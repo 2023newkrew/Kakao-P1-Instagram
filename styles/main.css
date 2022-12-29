@@ -201,8 +201,20 @@
   margin-left: auto;
 }
 
+.post__indicator {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: var(--primary-text-color);
+}
+
+.post__indicator--active {
+  background-color: var(--accent-color);
+}
+
 .post__indicators {
   display: flex;
+  gap: 4px;
   align-items: center;
   justify-content: center;
   width: 100%;

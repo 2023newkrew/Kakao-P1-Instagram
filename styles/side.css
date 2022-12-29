@@ -42,7 +42,7 @@
 .side-menu__user-button, .side-menu__suggestion-button {
   border: hidden;
   background-color: transparent;
-  color: #3C90EE;
+  color: var(--accent-color);
   font-weight: bold;
   cursor: pointer;
 }
