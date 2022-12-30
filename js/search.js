@@ -2,42 +2,55 @@ import { SUGGESTION_KEYWORDS, SEARCH_BASE_QUERY, EMPTY_KEYWORD_ALERT } from "./c
 import debounce from "./utils/debounce.js";
 import throttle from "./utils/throttle.js";
 
-const ARROW_KEY = {
-  'ArrowUp': -1,
-  'ArrowDown': 1,
-};
-
 const searchHeader = document.querySelector('.header__search');
 const searchInput = searchHeader.querySelector('input');
 const searchButton = searchHeader.querySelector('.search-icon');
 const suggestionsContainer = searchHeader.querySelector('.suggestions');
 
 let prevInputValue = '';
-let currentFocus = 0;
+let currentFocus = 0; // 0 : 검색 Input, 1 ~ : 추천 검색어 목록
 let currentSuggestElements =[];
 
-const moveFocus= (toMove)=>{
+const moveTo = (index)=>{
+  if(index === -1){
+    currentFocus = currentSuggestElements.length;
+    return;
+  }
+  currentFocus = index % (currentSuggestElements.length + 1);
+}
+const moveDown = ()=>{
+  moveTo(currentFocus + 1);
+  console.log(currentFocus);
+}
+const moveUp = ()=>{
+  moveTo(currentFocus - 1);
+  console.log(currentFocus);
+}
+const initCurrentFocus = ()=>{
+  currentFocus = 0;
+}
+
+const moveController = {
+  'ArrowUp': moveUp,
+  'ArrowDown': moveDown,
+};
+
+
+const moveFocus= (keyCode)=>{
   if(currentSuggestElements.length === 0){
     return;
   }
 
-  if(currentFocus !== -1){
-    currentSuggestElements[currentFocus].classList.remove('focus');
+  if(currentFocus > 0){
+    currentSuggestElements[currentFocus - 1].classList.remove('focus');
   }
   
-  currentFocus += toMove;
-  if(currentFocus=== -1) {
+  moveController[keyCode]();
+  if(currentFocus === 0){
     return;
   }
-  if(currentFocus === currentSuggestElements.length){
-    currentFocus = -1;
-    return;
-  }
-  if (currentFocus === -2){
-    currentFocus = currentSuggestElements.length - 1;
-  }
-  currentSuggestElements[currentFocus].classList.add('focus');
- 
+  
+  currentSuggestElements[currentFocus - 1].classList.add('focus');
 }
 
 
@@ -107,30 +120,33 @@ const search = (keyword)=>{
 }
 
 export const initSearchHandlers = ()=>{
-  suggestionsContainer.addEventListener('click', (event)=>{
+  const setInputValueWithSuggested = (event)=>{
     if(event.target.className === 'suggestion__keyword'){
       const keyword = event.target.innerText;
       searchInput.value = keyword;
       hideSuggestions();
     }
-  });
-
-  searchInput.addEventListener('click', ()=>{
-    currentFocus = -1;
+  }
+  const getSuggestionsWithCurrent = ()=>{
+    initCurrentFocus();
     prevInputValue = searchInput.value;
     if(searchInput.value){
       addSuggestions(searchInput.value);
     }
-  });
-
-  searchInput.addEventListener('keypress', (event)=>{
+  }
+  const handleSearchWithEnterKey = (event)=>{
     const { code } = event;
-
+  
     if(code === 'Enter'){
       search(searchInput.value);
       searchInput.blur();
     }
-  });
+  }
+  suggestionsContainer.addEventListener('click', setInputValueWithSuggested);
+
+  searchInput.addEventListener('click', getSuggestionsWithCurrent);
+
+  searchInput.addEventListener('keypress', handleSearchWithEnterKey);
 
   searchInput.addEventListener('keyup', debounce((event)=>{
     if(!searchInput.value){
@@ -141,26 +157,27 @@ export const initSearchHandlers = ()=>{
     if(event.code === 'ArrowDown' || event.code === 'ArrowUp'){
       return;
     }
-    currentFocus = -1;
+
+    initCurrentFocus();
     prevInputValue = searchInput.value;
     addSuggestions(searchInput.value);
   }, 200));
 
   searchInput.addEventListener('keydown', throttle((event)=>{
     const { code } = event;
-    if(code !== 'ArrowDown'  &&code !== 'ArrowUp'){
+    if(code !== 'ArrowDown' && code !== 'ArrowUp'){
       return;
     }
     
-    moveFocus(ARROW_KEY[code]);
-
+    // moveFocus(ARROW_KEY[code]);
+    moveFocus(code);
   
-    if(currentFocus === -1){
+    if(currentFocus === 0){
       searchInput.value = prevInputValue;
     }else{
-      searchInput.value = currentSuggestElements[currentFocus].innerText;
+      searchInput.value = currentSuggestElements[currentFocus - 1].innerText;
     }
-  }, 10));
+  }, 50));
 
   searchButton.addEventListener('click', ()=>{
     search(searchInput.value);

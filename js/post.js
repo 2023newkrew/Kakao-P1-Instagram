@@ -1,5 +1,6 @@
 import { initCarousel } from './carousel.js';
 import { MOCK_POSTS_DATA } from './constants/post.js';
+import { useVisibilityObserver } from './utils/observer.js';
 
 
 const makePostTemplate = ({username, content, images}) => `
@@ -88,6 +89,23 @@ const initPostCarousel = (post)=>{
   const nextButton = post.querySelector('.next-button');
 
   initCarousel(slidesContainer, prevButton, nextButton);
+
+  const ioOptions = {
+    root: slidesContainer.parentNode,
+    threshold: 1,
+  };
+  const initPrevButtonObserver = useVisibilityObserver(
+    slidesContainer.querySelector('.carousel-section:first-child'),
+    prevButton, 
+    ioOptions
+  );
+  const initNextButtonObserver = useVisibilityObserver(
+    slidesContainer.querySelector('.carousel-section:last-child'),
+    nextButton, 
+    ioOptions
+  );
+  initPrevButtonObserver();
+  initNextButtonObserver();
 };
 
 const renderPosts = ()=>{
