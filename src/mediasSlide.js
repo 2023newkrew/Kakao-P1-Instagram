@@ -173,9 +173,6 @@ const render = () => {
     })
 
     return function rerender() {
-        const postsElement = document.querySelector('.posts');
-        const postListElements = Array.prototype.slice.call(postsElement.children);
-
         postListElements.forEach(post => {
             const mediaSlidesElement = post.querySelector(`.post__medias`);
             const mediaSlideImgElements = mediaSlidesElement.querySelectorAll('li');
