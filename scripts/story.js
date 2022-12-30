@@ -16,6 +16,36 @@ let prevButton;
 /** @type {Node} 스토리 다음 버튼 */
 let nextButton;
 
+let options = {
+  root: storyContainerElement,
+  rootMargin: '0px',
+  threshold: 1.0
+}
+
+let observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+        const { id } = entry.target
+
+        switch (id) {
+            case 'first':
+                if (entry.isIntersecting) {
+                    pageController.setPrevStoryButtonVisible(false);
+                } else {
+                    pageController.setPrevStoryButtonVisible(true);
+                }
+                break;
+            case 'last':
+                if (entry.isIntersecting && id === 'last') {
+                    pageController.setNextStoryButtonVisible(false);
+                } else {
+                    pageController.setNextStoryButtonVisible(true);
+                }
+                break;
+            default:
+        }
+    }) 
+}, options);
+
 /**
  * 유저
  * @typedef     {object}    User    유저 정보
@@ -49,6 +79,7 @@ function drawStoryItems() {
     elementString += `<button onClick="pageController.onNextStory()" style="${storyItems.length < 6 ? "display: none": ""}" class="stories__arrow__right"><img src="assets/icons/arrow.svg" /></button>`;
 
     storyContainerElement.innerHTML = elementString;
+    
 }
 
 /**
@@ -81,28 +112,20 @@ function createStory ({avatar, name}) {
 const pageController = {
     /** @type {number} 스토리 페이지 변수 */
     storyPage: 0,
-
-    /** 스*/
     moveStory: function () {
         storyWrapperElement.style.setProperty('transform', `translate(${STORY_WIDTH * this.storyPage * -1}px)`);
     },
     onPrevStory: function () {
         if (this.storyPage <= 0) return;
-        this.setNextStoryButtonVisible(true);
-        
+    
         this.storyPage--;
         this.moveStory();
-
-        if (this.storyPage === 0) this.setPrevStoryButtonVisible(false);
     },
     onNextStory: function () {
         if (this.storyPage >= storyItems.length - 5) return;
-        this.setPrevStoryButtonVisible(true);
-
+    
         this.storyPage++;
         this.moveStory();
-
-        if (this.storyPage === storyItems.length - 5) this.setNextStoryButtonVisible(false);
     },
     setPrevStoryButtonVisible: function (visible) {
         if (visible === true) {
@@ -112,12 +135,21 @@ const pageController = {
         }
     },
     setNextStoryButtonVisible: function (visible) {
-        
         if (visible === true) {
             nextButton.style.setProperty('display', 'block');
         } else {
             nextButton.style.setProperty('display', 'none');
         }
+    },
+    observeStory: function () {
+        const pictureElements = storyWrapperElement.querySelectorAll('.story__picture');
+        const firstElement = pictureElements[0];
+        const lastElement = pictureElements[pictureElements.length - 1];
+
+        firstElement.setAttribute('id', 'first');
+        lastElement.setAttribute('id', 'last');
+        observer.observe(firstElement);
+        observer.observe(lastElement);
     }
 }
 
@@ -139,5 +171,7 @@ async function init () {
 
     // story pagination next button 지정
     nextButton = document.querySelector('.stories__arrow__right');
+
+    pageController.observeStory();
 }
 init();
