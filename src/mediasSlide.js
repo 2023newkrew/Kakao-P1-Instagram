@@ -101,8 +101,8 @@ const render = () => {
     }
 
     const renderSlideButton = (mediaPrevButtonElement, mediaNextButtonElement, currentMediaIndex, mediaSlideCount) => {
-        mediaPrevButtonElement.style.opacity = currentMediaIndex === 0 ? 0 : 100;
-        mediaNextButtonElement.style.opacity = currentMediaIndex === mediaSlideCount - 1 ? 0 : 100;
+        mediaPrevButtonElement.style.opacity = currentMediaIndex === 0 ? 0 : 0.99;
+        mediaNextButtonElement.style.opacity = currentMediaIndex === mediaSlideCount - 1 ? 0 : 0.99;
     }
 
     const filterIndicator = (postIndicator, currentMediaIndex) => {

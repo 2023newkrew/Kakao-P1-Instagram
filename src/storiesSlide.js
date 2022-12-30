@@ -43,19 +43,19 @@ const moveStorySlide = (num) => {
     storySlidesElement.style.setProperty('transform', `translateX(${-(num * ((storyImgWidth + storyGap) * 3))}px)`);
     currentStoryIndex = num;
 
-    storyPrevButton.style.opacity = currentStoryIndex === 0 ? 0 : 100;
-    storyNextButton.style.opacity = currentStoryIndex === limitCount ? 0 : 100;
+    storyPrevButton.style.opacity = currentStoryIndex === 0 ? 0 : 0.99;
+    storyNextButton.style.opacity = currentStoryIndex === limitCount ? 0 : 0.99;
 }
 
 const storyPrevButton = document.querySelector('.stories__controller-prev');
-storyPrevButton.style.opacity = currentStoryIndex === 0 ? 0 : 100;
+storyPrevButton.style.opacity = currentStoryIndex === 0 ? 0 : 0.99;
 
 storyPrevButton.addEventListener('click', function () {
     if (currentStoryIndex !== 0) moveStorySlide(currentStoryIndex - 1);
 })
 
 const storyNextButton = document.querySelector('.stories__controller-next');
-storyNextButton.style.opacity = currentStoryIndex === limitCount ? 0 : 100;
+storyNextButton.style.opacity = currentStoryIndex === limitCount ? 0 : 0.99;
 
 storyNextButton.addEventListener('click', function () {
     if (currentStoryIndex !== limitCount) moveStorySlide(currentStoryIndex + 1);

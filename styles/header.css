@@ -69,6 +69,13 @@
 
   position: absolute;
   left: 8px;
+
+  cursor: pointer;
+  transition: scale 0.2s ease-in;
+}
+
+.header__search img:hover {
+  scale: 1.2;
 }
 
 .header__search input {

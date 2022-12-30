@@ -10,13 +10,12 @@ const autoCompleteData = [
 ];
 
 const headerSearchElement = document.querySelector('.header__search');
+const searchButtonElement = headerSearchElement.querySelector('img')
+
 const searchElement = document.querySelector('.search__area');
 const textAreaElement = document.querySelector('.recommend__area');
 
-const searchButtonElement = document.querySelector('.header__search img')
-searchButtonElement.style.cursor = 'pointer';
-
-searchButtonElement.addEventListener('click', (event) => {
+searchButtonElement.addEventListener('click', () => {
     const text = searchElement.value;
 
     if (text !== '') {
@@ -26,24 +25,23 @@ searchButtonElement.addEventListener('click', (event) => {
     }
 })
 
-headerSearchElement.addEventListener('click', (event) => {
+headerSearchElement.addEventListener('click', () => {
     textAreaElement.style.display = 'block';
 })
 
-headerSearchElement.addEventListener('focusout', (event) => {
+headerSearchElement.addEventListener('focusout', () => {
     textAreaElement.style.display = 'none';
 })
 
-textAreaElement.addEventListener('mousedown', (event) => {
+textAreaElement.addEventListener('mousedown', () => {
     const text = event.target.innerText;
-    window.open(`https://www.google.com/search?q=${text}`);
+    if (text !== '') window.open(`https://www.google.com/search?q=${text}`);
 
     searchElement.value = '';
     textAreaElement.innerHTML = ``;
 })
 
 searchElement.addEventListener('keyup', (event) => {
-    console.log('keyup');
     const text = searchElement.value;
 
     if (event.key == "Enter") {
@@ -57,14 +55,16 @@ searchElement.addEventListener('keyup', (event) => {
 
     if (text !== '') {  //빈줄이 들어오면
         let elementString = ``;
-        autoCompleteData.forEach(function (arg) {
-            if (arg.name.indexOf(text) > -1) {
+        autoCompleteData.forEach(value => {
+            if (value.name.match(`^${text}`)) {
                 elementString += `
-                <a href="https://www.google.com/search?q=${arg.name}" target="_blank">
-                    <div key=${arg.key}>${arg.name}</div>
-                </a>`
+                <a href="https://www.google.com/search?q=${value.name}" target="_blank">
+                    <div key=${value.key}>${value.name}</div>
+                </a>
+            `;
             }
         });
+
         textAreaElement.innerHTML = elementString;
     }
     else if (text === '') textAreaElement.innerHTML = ``;
