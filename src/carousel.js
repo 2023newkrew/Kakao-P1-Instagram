@@ -1,7 +1,12 @@
-function initCarousel(mediasEl, containerEl, leftButtonEl, rightButtonEl) {
-  let currentIndex = 0;
+function initCarousel(
+  mediasEl,
+  containerEl,
+  leftButtonEl,
+  rightButtonEl,
+  type
+) {
+  let currentIndex = 1;
   let maxIndex = 2;
-  let maxWidth = 0;
 
   init();
 
@@ -18,42 +23,47 @@ function initCarousel(mediasEl, containerEl, leftButtonEl, rightButtonEl) {
     }, option);
     leftObserver.observe(mediasEl.firstElementChild);
     rightObserver.observe(mediasEl.lastElementChild);
-    console.log(mediasEl.lastElementChild);
-    maxIndex = mediasEl.childElementCount - 3;
+    maxIndex = mediasEl.childElementCount - 2;
 
     rightButtonEl.addEventListener("click", moveRight); // 클로저 느낌으로 동작하게
     leftButtonEl.addEventListener("click", moveLeft);
-    // drawArrowButton();
   }
 
-  function toggleArrowButton(entries, buttonEl, type) {
-    console.log(type, entries);
+  function toggleArrowButton(entries, buttonEl) {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        buttonEl.classList.add("carousel-button--hide");
+        buttonEl.classList.remove("carousel-button--active");
       } else {
-        buttonEl.classList.remove("carousel-button--hide");
+        buttonEl.classList.add("carousel-button--active");
       }
     });
   }
 
   function moveRight() {
     if (currentIndex < maxIndex) {
-      console.log(currentIndex, maxIndex);
       currentIndex++;
     }
-    // drawArrowButton();
-
-    mediasEl.style.transform = `translateX(${-100 * currentIndex}%)`;
+    const maxWidth = type === "%" ? maxIndex * 100 : mediasEl.scrollWidth;
+    const width = type === "%" ? 100 : mediasEl.offsetWidth;
+    const curPosition = getCurPosition(mediasEl.style.transform);
+    const nextPosition = Math.min(curPosition + width, maxWidth - width);
+    mediasEl.style.transform = `translateX(${-nextPosition}${type})`;
   }
 
   function moveLeft() {
     if (currentIndex > 0) {
       currentIndex--;
     }
-    // drawArrowButton();
-    mediasEl.style.transform = `translateX(${-100 * currentIndex}%)`;
+    const width = type === "%" ? 100 : mediasEl.offsetWidth;
+    const curPosition = getCurPosition(mediasEl.style.transform);
+    const nextPosition = Math.max(curPosition - width, 0);
+    mediasEl.style.transform = `translateX(${-nextPosition}${type})`;
   }
+}
+
+function getCurPosition(posString) {
+  const regex = /[^0-9]/g; // 숫자가 아닌 문자
+  return Number(posString.replace(regex, ""));
 }
 
 function initPostCarousel() {
@@ -71,7 +81,8 @@ function initPostCarousel() {
       mediasEl,
       containerElList[index],
       carouselLeftButtonList[index],
-      carouselRightButtonList[index]
+      carouselRightButtonList[index],
+      "%"
     );
   });
 }
@@ -82,7 +93,6 @@ function initStoryCarousel() {
   const carouselRightButtonList = document.querySelectorAll(
     ".story__carousel.carousel-buttons > .carousel-button.right"
   );
-  console.log(carouselRightButtonList);
   const carouselLeftButtonList = document.querySelectorAll(
     ".story__carousel.carousel-buttons > .carousel-button.left"
   );
@@ -91,7 +101,8 @@ function initStoryCarousel() {
       mediasEl,
       containerElList[index],
       carouselLeftButtonList[index],
-      carouselRightButtonList[index]
+      carouselRightButtonList[index],
+      "px"
     );
   });
 }
