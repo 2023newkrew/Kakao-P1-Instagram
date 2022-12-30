@@ -2,9 +2,9 @@ import { DISPLAY, STORY_SCROLL_PIXELS } from "./const.js";
 import { dummyStory } from "./faker.js";
 
 export const initStories = () => {
-  const storiesContentEl = document.querySelector('.stories__content');
-  const leftBtnEl = document.querySelector('.stories__left-button');
-  const rightBtnEl = document.querySelector('.stories__right-button');
+  const storiesContentEl = document.querySelector(".stories__content");
+  const leftBtnEl = document.querySelector(".stories__left-button");
+  const rightBtnEl = document.querySelector(".stories__right-button");
 
   const createStories = () => {
     const storiesContainerEl = document.querySelector(".stories__content");
@@ -39,15 +39,15 @@ export const initStories = () => {
     rightBtnEl.style.display = isMostRight ? DISPLAY.NONE : DISPLAY.BLOCK;
   }
 
-  leftBtnEl.addEventListener('click', () => {
+  leftBtnEl.addEventListener("click", () => {
     storiesContentEl.scrollLeft -= STORY_SCROLL_PIXELS;
   });
 
-  rightBtnEl.addEventListener('click', () => {
+  rightBtnEl.addEventListener("click", () => {
     storiesContentEl.scrollLeft += STORY_SCROLL_PIXELS;
   });
 
-  storiesContentEl.addEventListener('scroll', displayButtons);
+  storiesContentEl.addEventListener("scroll", displayButtons);
 
   createStories();
   displayButtons();

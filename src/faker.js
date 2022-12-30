@@ -1,13 +1,13 @@
 export const dummyPosts = [
   {
     user: {
-      username: 'user1',
-      avatar: '/assets/images/avatar.png'
+      username: "user1",
+      avatar: "/assets/images/avatar.png"
     }, 
     medias: [
-      '/assets/images/picture.jpeg',
-      '/assets/images/picture2.jpeg',
-      '/assets/images/picture3.jpeg',
+      "/assets/images/picture.jpeg",
+      "/assets/images/picture2.jpeg",
+      "/assets/images/picture3.jpeg",
     ],
     likes: [
       "user2",
@@ -19,13 +19,13 @@ export const dummyPosts = [
   },
   {
     user: {
-      username: 'user1',
-      avatar: '/assets/images/avatar.png'
+      username: "user1",
+      avatar: "/assets/images/avatar.png"
     }, 
     medias: [
-      '/assets/images/picture.jpeg',
-      '/assets/images/picture2.jpeg',
-      '/assets/images/picture3.jpeg',
+      "/assets/images/picture.jpeg",
+      "/assets/images/picture2.jpeg",
+      "/assets/images/picture3.jpeg",
     ],
     likes: [
       "user2",
@@ -37,13 +37,13 @@ export const dummyPosts = [
   },
   {
     user: {
-      username: 'user1',
-      avatar: '/assets/images/avatar.png'
+      username: "user1",
+      avatar: "/assets/images/avatar.png"
     }, 
     medias: [
-      '/assets/images/picture.jpeg',
-      '/assets/images/picture2.jpeg',
-      '/assets/images/picture3.jpeg',
+      "/assets/images/picture.jpeg",
+      "/assets/images/picture2.jpeg",
+      "/assets/images/picture3.jpeg",
     ],
     likes: [
       "user2",
@@ -55,13 +55,13 @@ export const dummyPosts = [
   },
   {
     user: {
-      username: 'user1',
-      avatar: '/assets/images/avatar.png'
+      username: "user1",
+      avatar: "/assets/images/avatar.png"
     }, 
     medias: [
-      '/assets/images/picture.jpeg',
-      '/assets/images/picture2.jpeg',
-      '/assets/images/picture3.jpeg',
+      "/assets/images/picture.jpeg",
+      "/assets/images/picture2.jpeg",
+      "/assets/images/picture3.jpeg",
     ],
     likes: [
       "user2",
@@ -76,146 +76,146 @@ export const dummyPosts = [
 export const dummyStory = [
   {
     user: {
-      username: 'user1',
-      avatar: '/assets/images/avatar.png'
+      username: "user1",
+      avatar: "/assets/images/avatar.png"
     },
   },
   {
     user: {
-      username: 'user2',
-      avatar: '/assets/images/avatar.png'
+      username: "user2",
+      avatar: "/assets/images/avatar.png"
     },
   },
   {
     user: {
-      username: 'user3',
-      avatar: '/assets/images/avatar.png'
+      username: "user3",
+      avatar: "/assets/images/avatar.png"
     },
   },
   {
     user: {
-      username: 'user4',
-      avatar: '/assets/images/avatar.png'
+      username: "user4",
+      avatar: "/assets/images/avatar.png"
     },
   },
   {
     user: {
-      username: 'user5',
-      avatar: '/assets/images/avatar.png'
+      username: "user5",
+      avatar: "/assets/images/avatar.png"
     },
   },
   {
     user: {
-      username: 'user6',
-      avatar: '/assets/images/avatar.png'
+      username: "user6",
+      avatar: "/assets/images/avatar.png"
     },
   },
   {
     user: {
-      username: 'user7',
-      avatar: '/assets/images/avatar.png'
+      username: "user7",
+      avatar: "/assets/images/avatar.png"
     },
   },
   {
     user: {
-      username: 'user8',
-      avatar: '/assets/images/avatar.png'
+      username: "user8",
+      avatar: "/assets/images/avatar.png"
     },
   },
   {
     user: {
-      username: 'user9',
-      avatar: '/assets/images/avatar.png'
+      username: "user9",
+      avatar: "/assets/images/avatar.png"
     },
   },
   {
     user: {
-      username: 'user10',
-      avatar: '/assets/images/avatar.png'
+      username: "user10",
+      avatar: "/assets/images/avatar.png"
     },
   },
   {
     user: {
-      username: 'user11',
-      avatar: '/assets/images/avatar.png'
+      username: "user11",
+      avatar: "/assets/images/avatar.png"
     },
   },
   {
     user: {
-      username: 'user12',
-      avatar: '/assets/images/avatar.png'
+      username: "user12",
+      avatar: "/assets/images/avatar.png"
     },
   },
   {
     user: {
-      username: 'user13',
-      avatar: '/assets/images/avatar.png'
+      username: "user13",
+      avatar: "/assets/images/avatar.png"
     },
   },
   {
     user: {
-      username: 'user14',
-      avatar: '/assets/images/avatar.png'
+      username: "user14",
+      avatar: "/assets/images/avatar.png"
     },
   },
   {
     user: {
-      username: 'user15',
-      avatar: '/assets/images/avatar.png'
+      username: "user15",
+      avatar: "/assets/images/avatar.png"
     },
   },
   {
     user: {
-      username: 'user16',
-      avatar: '/assets/images/avatar.png'
+      username: "user16",
+      avatar: "/assets/images/avatar.png"
     },
   },
   {
     user: {
-      username: 'user17',
-      avatar: '/assets/images/avatar.png'
+      username: "user17",
+      avatar: "/assets/images/avatar.png"
     },
   },
   {
     user: {
-      username: 'user18',
-      avatar: '/assets/images/avatar.png'
+      username: "user18",
+      avatar: "/assets/images/avatar.png"
     },
   },
   {
     user: {
-      username: 'user19',
-      avatar: '/assets/images/avatar.png'
+      username: "user19",
+      avatar: "/assets/images/avatar.png"
     },
   },
   {
     user: {
-      username: 'user20',
-      avatar: '/assets/images/avatar.png'
+      username: "user20",
+      avatar: "/assets/images/avatar.png"
     },
   },
   {
     user: {
-      username: 'user21',
-      avatar: '/assets/images/avatar.png'
+      username: "user21",
+      avatar: "/assets/images/avatar.png"
     },
   },
   {
     user: {
-      username: 'user22',
-      avatar: '/assets/images/avatar.png'
+      username: "user22",
+      avatar: "/assets/images/avatar.png"
     },
   },
   {
     user: {
-      username: 'user23',
-      avatar: '/assets/images/avatar.png'
+      username: "user23",
+      avatar: "/assets/images/avatar.png"
     },
   },
   {
     user: {
-      username: 'user24',
-      avatar: '/assets/images/avatar.png'
+      username: "user24",
+      avatar: "/assets/images/avatar.png"
     },
   },
 ]
