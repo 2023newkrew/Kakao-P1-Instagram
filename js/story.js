@@ -1,7 +1,10 @@
 import { MOCK_STORIES } from "./constants/story.js";
+import { useVisibilityObserver } from "./utils/observer.js";
 
 const storySection = document.querySelector('.content .stories');
 const storiesContainer = storySection.querySelector('.stories__content');
+const prevStoryButton = storySection.querySelector('.stories__prev-button');
+const nextStoryButton = storySection.querySelector('.stories__next-button');
 
 const renderProfileImage = ({user, thumbnailPath})=>{
   if(!thumbnailPath){
@@ -12,8 +15,8 @@ const renderProfileImage = ({user, thumbnailPath})=>{
 }
 
 const getStoryTemplate = ({ id, user, thumbnailPath, active})=>{
-  return `<li id="profile-${id}">
-    <button class="story ${active ? 'active' : ''}">
+  return `<li class="story ${active ? 'active' : ''}" id="profile-${id}">
+    <button>
       <div class="story__avatar">
         <div class="story__border">
           <svg width="64" height="64" xmlns="http://www.w3.org/2000/svg">
@@ -49,6 +52,14 @@ const renderStories = ()=>{
 
   storiesContainer.innerHTML = stories.map(getStoryTemplate).join('\n');
 }
+
 export const initStory = ()=>{
   renderStories();
+
+  const initPrevButtonObserver = useVisibilityObserver(document.querySelector('.story:first-child'), prevStoryButton);
+  const initNextButtonObserver = useVisibilityObserver(document.querySelector('.story:last-child'), nextStoryButton);
+  initPrevButtonObserver();
+  initNextButtonObserver();
+
 }
+
