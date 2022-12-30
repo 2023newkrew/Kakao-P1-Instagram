@@ -24,10 +24,10 @@ import debounce from "./utils/debounce.js";
                 <div class="post__content" id="post__content">
                     <ul class="post__medias" id="post__medias">
                         <li><img class="post__media" src="assets/images/picture.jpeg" alt="Post Content" /></li>
+                        <li><img class="post__media" src="assets/images/picture3.jpeg" alt="Post Content" /></li>
+                        <li><img class="post__media" src="assets/images/picture2.jpeg" alt="Post Content" /></li>
                         <li><img class="post__media" src="assets/images/picture.jpeg" alt="Post Content" /></li>
-                        <li><img class="post__media" src="assets/images/picture.jpeg" alt="Post Content" /></li>
-                        <li><img class="post__media" src="assets/images/picture.jpeg" alt="Post Content" /></li>
-                        <li><img class="post__media" src="assets/images/picture.jpeg" alt="Post Content" /></li>
+                        <li><img class="post__media" src="assets/images/picture3.jpeg" alt="Post Content" /></li>
                     </ul>
 
                     <div class="post__controller">

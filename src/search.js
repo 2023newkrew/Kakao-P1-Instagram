@@ -35,12 +35,13 @@ headerSearchElement.addEventListener('focusout', () => {
     textAreaElement.style.display = 'none';
 })
 
-textAreaElement.addEventListener('mousedown', () => {
+textAreaElement.addEventListener('mousedown', (event) => {
     const text = event.target.innerText;
-    if (text !== '') window.open(`https://www.google.com/search?q=${text}`);
-
-    searchElement.value = '';
-    textAreaElement.innerHTML = ``;
+    if (text !== '') {
+        window.open(`https://www.google.com/search?q=${text}`);
+        searchElement.value = '';
+        textAreaElement.innerHTML = ``;
+    }
 })
 
 searchElement.addEventListener('keyup', debounce((event) => {
@@ -49,7 +50,6 @@ searchElement.addEventListener('keyup', debounce((event) => {
     if (event.key == "Enter") {
         if (text !== '') {
             window.open(`https://www.google.com/search?q=${text}`)
-
             searchElement.value = '';
             textAreaElement.innerHTML = ``;
         }
