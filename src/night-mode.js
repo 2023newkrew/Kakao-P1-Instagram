@@ -13,7 +13,7 @@ const setThemeMode = () => getIsNightMode() ? setNightTheme() : setDayTheme();
 export const initNightMode = () => {
   themeBtnEl.addEventListener("click", () => {
     toggleNightMode();
-    setThemeMode(getIsNightMode());
+    setThemeMode();
   });
 
   if (getIsNightMode()) setNightTheme();
