@@ -23,11 +23,11 @@ import debounce from "./utils/debounce.js";
 
                 <div class="post__content" id="post__content">
                     <ul class="post__medias" id="post__medias">
-                        <li><img class="post__media" src="assets/images/picture.avif" alt="Post Content" loading="lazy" /></li>
-                        <li><img class="post__media" src="assets/images/picture3.avif" alt="Post Content" loading="lazy" /></li>
-                        <li><img class="post__media" src="assets/images/picture2.avif" alt="Post Content" loading="lazy" /></li>
-                        <li><img class="post__media" src="assets/images/picture.avif" alt="Post Content" loading="lazy" /></li>
-                        <li><img class="post__media" src="assets/images/picture3.avif" alt="Post Content" loading="lazy" /></li>
+                        <li><img class="post__media" src="assets/images/picture-min.jpeg" data-src="assets/images/picture.avif" alt="Post Content" loading="lazy" /></li>
+                        <li><img class="post__media" src="assets/images/picture3-min.jpeg" data-src="assets/images/picture3.avif" alt="Post Content" loading="lazy" /></li>
+                        <li><img class="post__media" src="assets/images/picture2-min.jpeg" data-src="assets/images/picture2.avif" alt="Post Content" loading="lazy" /></li>
+                        <li><img class="post__media" src="assets/images/picture-min.jpeg" data-src="assets/images/picture.avif" alt="Post Content" loading="lazy" /></li>
+                        <li><img class="post__media" src="assets/images/picture3-min.jpeg" data-src="assets/images/picture3.avif" alt="Post Content" loading="lazy" /></li>
                     </ul>
 
                     <div class="post__controller">
@@ -84,7 +84,7 @@ import debounce from "./utils/debounce.js";
     }
     // posts.innerHTML = elementString;
     posts.insertAdjacentHTML("afterbegin", elementString);
-})(10)
+})(1500)
 
 
 const render = () => {
