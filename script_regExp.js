@@ -104,12 +104,14 @@ const util = {
 };
 
 function init() {
+    /* 더미 스토리 유저 이름 변경 */
     const storiesContents = $stories.querySelectorAll(".stories__content");
     for (let i = 0; i < storiesContents.length; i++) {
         const $curNode = storiesContents[i];
         $curNode.style.order = i + 1;
     }
 
+    /* 스토리 초기 화살표 버튼 설정 */
     const currentIndex = util.getCurrentIndex($innerBox, storiesContents);
 
     if (currentIndex === 0) {
@@ -121,6 +123,7 @@ function init() {
         util.turnOffElement($rightArrow);
     }
 
+    /* 다크 모드 설정 */
     const onload = () => {
         const theme = util.getThemeInLocalStorage();
 
@@ -166,6 +169,7 @@ function init() {
         }
     };
 
+    /* Transform의 translateX를 이용한 캐러셀 동작 함수 */
     const makeAdjustPostTransform = () => {
         // 자유변수
         let beforeContainerWidth =
@@ -189,18 +193,27 @@ function init() {
         };
         return adjustPostTransform;
     };
+    const closeSearchBox = () => {
+        $searchBoxInput.style.borderBottomLeftRadius = "";
+        $searchBoxInput.style.borderBottomRightRadius = "";
+        const $keywordBoxes = $searchBox.querySelector("keyword-boxes");
+        if ($keywordBoxes) $searchBox.removeChild($keywordBoxes);
+    };
 
+    /* 검색창에 값 입력 */
     const onKeyDownSearchBox = (event) => {
         // TODO
         // 키보드로 자동완성된 키워드 선택 및 하이라이팅
+
+        /* 포커스 해제 키(ex Tab)를 눌렀을 때는 동작 안 하도록 함*/
+        if (event.target !== document.activeElement) return;
+
         let $keywordBoxes = $searchBox.querySelector("keyword-boxes");
         const inputValue = event.target.value;
 
         if (inputValue === "") {
             //비어있는 값 입력
-            $searchBoxInput.style.borderBottomLeftRadius = "";
-            $searchBoxInput.style.borderBottomRightRadius = "";
-            if ($keywordBoxes) $searchBox.removeChild($keywordBoxes);
+            closeSearchBox();
             return;
         }
 
@@ -231,23 +244,33 @@ function init() {
     };
 
     const onKeyDownSearchBoxInput = (event) => {
-        //TODO
         if (event.key === "Enter") {
             event.preventDefault();
             window.location.href = `https://www.google.com/search?q=${event.target.value}`;
         }
     };
 
+    const onClickExceptSearchBoxHandler = (event) => {
+        if (event.target.closest(".header__search")) return;
+
+        closeSearchBox();
+    };
+
+    /* 이벤트 핸들러 부착*/
     $searchBoxInput.addEventListener("keydown", onKeyDownSearchBoxInput);
+    $searchBoxInput.addEventListener("focus", onKeyDownSearchBox);
+    $searchBoxInput.addEventListener("focusout", closeSearchBox);
+
     $searchBox.addEventListener(
         "keydown",
         util.makeDebounceHandler(onKeyDownSearchBox, SEARCH_DEBOUNCE_DELAY)
     );
+    $searchBox.addEventListener("click", onKeyDownSearchBox);
+
     window.addEventListener(
         "resize",
         util.makeDebounceHandler(makeAdjustPostTransform(), POST_DEBOUNCE_DELAY)
     );
-
     window.addEventListener("load", onload);
     $toggleThemeBtn.addEventListener("click", onDarkThemeBtnClick);
     $rightArrow.addEventListener(
@@ -270,6 +293,7 @@ function init() {
             $leftArrow
         )
     );
+    document.body.addEventListener("click", onClickExceptSearchBoxHandler);
 }
 function makeStoryDummy(count) {
     const $target = document.querySelector(".stories__content");
@@ -280,10 +304,11 @@ function makeStoryDummy(count) {
     }
 }
 function makePostDummy(count, imgCount) {
+    //count는 포스트 개수 / imgCount는 포스트마다 이미지 개수
     const $target = document.querySelector(".post");
     for (let i = 0; i < count; i++) {
         const $clone = $target.cloneNode(true);
-
+        /* 이미지 추가 */
         for (let j = 0; j < imgCount; j++) {
             const $imgClone = $clone
                 .querySelector(".post__media")
@@ -301,6 +326,7 @@ function makePostDummy(count, imgCount) {
         util.turnOffElement($leftArrow);
         if (contents.length <= 1) util.turnOffElement($rightArrow);
 
+        /* 포스트 화살표 핸들러 부착 */
         $rightArrow.addEventListener(
             "click",
             util.makeOnArrowClickByTransform(
@@ -349,7 +375,7 @@ function makePostDummy(count, imgCount) {
                 if (i === currentIndex) $curIndicator.classList.add("active");
             }
         };
-
+        /* 인디케이터 핸들러 부착 */
         $rightArrow.addEventListener("click", onClickIndicatorHandler);
         $leftArrow.addEventListener("click", onClickIndicatorHandler);
 
