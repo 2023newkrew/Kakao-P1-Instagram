@@ -35,7 +35,6 @@ const moveController = {
   'ArrowDown': moveDown,
 };
 
-
 const moveFocus= (keyCode)=>{
   if(currentSuggestElements.length === 0){
     return;
@@ -127,6 +126,8 @@ export const initSearchHandlers = ()=>{
       hideSuggestions();
     }
   }
+  suggestionsContainer.addEventListener('click', setInputValueWithSuggested);
+
   const getSuggestionsWithCurrent = ()=>{
     initCurrentFocus();
     prevInputValue = searchInput.value;
@@ -134,6 +135,8 @@ export const initSearchHandlers = ()=>{
       addSuggestions(searchInput.value);
     }
   }
+  searchInput.addEventListener('click', getSuggestionsWithCurrent);
+
   const handleSearchWithEnterKey = (event)=>{
     const { code } = event;
   
@@ -142,19 +145,21 @@ export const initSearchHandlers = ()=>{
       searchInput.blur();
     }
   }
-  suggestionsContainer.addEventListener('click', setInputValueWithSuggested);
-
-  searchInput.addEventListener('click', getSuggestionsWithCurrent);
-
   searchInput.addEventListener('keypress', handleSearchWithEnterKey);
 
   searchInput.addEventListener('keyup', debounce((event)=>{
+    const { code } = event;
     if(!searchInput.value){
       clearSuggestions();
       return;
     }
   
-    if(event.code === 'ArrowDown' || event.code === 'ArrowUp'){
+    if(code === 'Escape'){
+      hideSuggestions();
+      return;
+    }
+
+    if(code === 'ArrowDown' || code === 'ArrowUp'){
       return;
     }
 
@@ -165,11 +170,11 @@ export const initSearchHandlers = ()=>{
 
   searchInput.addEventListener('keydown', throttle((event)=>{
     const { code } = event;
+
     if(code !== 'ArrowDown' && code !== 'ArrowUp'){
       return;
     }
     
-    // moveFocus(ARROW_KEY[code]);
     moveFocus(code);
   
     if(currentFocus === 0){
