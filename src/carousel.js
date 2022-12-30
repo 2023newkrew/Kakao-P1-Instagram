@@ -3,42 +3,42 @@ import { CLASS_NAME, DISPLAY } from "./const.js";
 const mediaPage = [];
 
 const displayButtons = (postIndex, leftButton, rightButton) => {
-  const isFirstMedia = mediaPage[postIndex].current === 0;
-  const isLastMedia = mediaPage[postIndex].current === mediaPage[postIndex].max;
+  const isFirstMedia = mediaPage[postIndex].currentIndex === 0;
+  const isLastMedia = mediaPage[postIndex].currentIndex === mediaPage[postIndex].maxIndex;
 
   leftButton.style.display = isFirstMedia ? DISPLAY.NONE : DISPLAY.BLOCK;
   rightButton.style.display = isLastMedia ? DISPLAY.NONE : DISPLAY.BLOCK;
 }
 
 const previousMedia = (postIndex, mediasContainer, leftButton, rightButton, indicators) => {
-  if (mediaPage[postIndex].current === 0) return;
-  mediaPage[postIndex].current = Math.max(mediaPage[postIndex].current - 1, 0);
-  mediasContainer.style.transform = `translateX(-${mediaPage[postIndex].current * 100}%)`;
+  if (mediaPage[postIndex].currentIndex === 0) return;
+  mediaPage[postIndex].currentIndex = Math.max(mediaPage[postIndex].currentIndex - 1, 0);
+  mediasContainer.style.transform = `translateX(-${mediaPage[postIndex].currentIndex * 100}%)`;
 
   updateIndicator(postIndex, indicators);
   displayButtons(postIndex, leftButton, rightButton);
 }
 
 const nextMedia = (postIndex, mediasContainer, leftButton, rightButton, indicators) => {
-  if (mediaPage[postIndex].current === mediaPage[postIndex].max) return;
-  mediaPage[postIndex].current = Math.min(mediaPage[postIndex].current + 1, mediaPage[postIndex].max);
-  mediasContainer.style.transform = `translateX(-${mediaPage[postIndex].current * 100}%)`;
+  if (mediaPage[postIndex].currentIndex === mediaPage[postIndex].maxIndex) return;
+  mediaPage[postIndex].currentIndex = Math.min(mediaPage[postIndex].currentIndex + 1, mediaPage[postIndex].maxIndex);
+  mediasContainer.style.transform = `translateX(-${mediaPage[postIndex].currentIndex * 100}%)`;
 
   updateIndicator(postIndex, indicators);
   displayButtons(postIndex, leftButton, rightButton);
 }
 
 const updateIndicator = (postIndex, indicators) => {
-  const currentPage = mediaPage[postIndex].current;
+  const currentIndexPage = mediaPage[postIndex].currentIndex;
 
   indicators.forEach((indicator) => indicator.classList.remove(CLASS_NAME.POST_ACTIVE_INDICATOR));
-  indicators[currentPage].classList.add(CLASS_NAME.POST_ACTIVE_INDICATOR);
+  indicators[currentIndexPage].classList.add(CLASS_NAME.POST_ACTIVE_INDICATOR);
 }
 
 const appendMediaPage = (maxMediaPage) => {
   mediaPage.push({
-    current: 0,
-    max: maxMediaPage
+    currentIndex: 0,
+    maxIndex: maxMediaPage
   });
 }
 
