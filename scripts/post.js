@@ -142,13 +142,13 @@ function onPrevPicture(index) {
     picturePages[index]--;
     
     const post = postElement[index]; // index에 해당하는 post
-    const prevButton = post.querySelector('.post__content__left-arrow');  // post carousel에 종속된 이전 버튼
-    const nextButton = post.querySelector('.post__content__right-arrow'); // post carousel에 종속된 다음 버튼
+    const prevButtonElement = post.querySelector('.post__content__left-arrow');  // post carousel에 종속된 이전 버튼
+    const nextButtonElement = post.querySelector('.post__content__right-arrow'); // post carousel에 종속된 다음 버튼
 
     if (picturePages[index] === 0) {
-        prevButton.style.setProperty('visibility', 'hidden');
+        prevButtonElement.style.setProperty('visibility', 'hidden');
     }
-    nextButton.style.setProperty('visibility', 'visible');
+    nextButtonElement.style.setProperty('visibility', 'visible');
     movePicture(index);
     indicatePicture(index);
 }
@@ -162,13 +162,13 @@ function onNextPicture(index) {
     picturePages[index]++;
     
     const post = postElement[index];
-    const prevButton = post.querySelector('.post__content__left-arrow');
-    const nextButton = post.querySelector('.post__content__right-arrow');
+    const prevButtonElement = post.querySelector('.post__content__left-arrow');
+    const nextButtonElement = post.querySelector('.post__content__right-arrow');
     
     if (picturePages[index] === postItems[index].pictures.length - 1) {
-        nextButton.style.setProperty('visibility', 'hidden');
+        nextButtonElement.style.setProperty('visibility', 'hidden');
     }
-    prevButton.style.setProperty('visibility', 'visible');
+    prevButtonElement.style.setProperty('visibility', 'visible');
     movePicture(index);
     indicatePicture(index);
 }
