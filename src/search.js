@@ -1,3 +1,5 @@
+import debounce from "./utils/debounce.js";
+
 const autoCompleteData = [
     { key: 1, name: '데이터1' },
     { key: 2, name: '데이터2' },
@@ -41,7 +43,7 @@ textAreaElement.addEventListener('mousedown', () => {
     textAreaElement.innerHTML = ``;
 })
 
-searchElement.addEventListener('keyup', (event) => {
+searchElement.addEventListener('keyup', debounce((event) => {
     const text = searchElement.value;
 
     if (event.key == "Enter") {
@@ -68,4 +70,4 @@ searchElement.addEventListener('keyup', (event) => {
         textAreaElement.innerHTML = elementString;
     }
     else if (text === '') textAreaElement.innerHTML = ``;
-})
+}, 200))

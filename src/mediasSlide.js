@@ -193,4 +193,4 @@ const rerender = render();
 
 window.addEventListener("resize", debounce(function (e) {
     rerender();
-}));
+}, 200));
