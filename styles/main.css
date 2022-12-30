@@ -29,7 +29,6 @@
 .stories {
   width: 100%;
   background-color: var(--background-color-secondary);
-  padding: 16px 0;
   flex-shrink: 0;
   border: 1px solid var(--border-color);
   border-radius: 8px;
@@ -40,14 +39,15 @@
 
 .stories__content {
   display: flex;
-  overflow-x: auto;
-  overflow-y: hidden;
+  /* overflow-x: auto; */
+  /* overflow-y: hidden; */
   gap: 16px;
-  padding: 0 16px;
+  padding: 16px;
   position: relative;
+  transition: all 0.3s ease-out;
 
-  scroll-behavior: smooth;
-  scrollbar-width: none;
+  /* scroll-behavior: smooth;
+  scrollbar-width: none; */
 }
 
 .stories__content::-webkit-scrollbar {
@@ -160,17 +160,6 @@
   overflow: hidden;
 }
 
-.post__carousel-buttons {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 014px;
-  z-index: 10;
-}
-
 .post__medias {
   display: flex;
   transition: all 0.3s ease-out;
@@ -231,12 +220,19 @@
   border-radius: 50%;
 }
 
-.carousel-button {
-  /* display: none;
-   */
-  visibility: hidden;
-}
-
-.carousel-button--active {
+/* .carousel-button {
   visibility: unset;
+} */
+.carousel-buttons {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 14px;
+  z-index: 10;
+}
+.carousel-button--hide {
+  visibility: hidden;
 }
