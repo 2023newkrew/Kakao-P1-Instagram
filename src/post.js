@@ -11,17 +11,29 @@ export const createPosts = () => {
   postsEl.append(...postsElArray);
 }
 
-const createPostElement = ({user, medias, likes, description}) => {
+const createPostElement = (postData) => {
   const postEl = document.createElement("article");
   postEl.classList.add(CLASS_NAME.POST);
+
+  const {
+    user: {
+      avatar,
+      username
+    },
+    medias,
+    likes,
+    description
+  } = postData;
+  
+  const likeLength = likes.length;
 
   const postBody = `
     <div class="post__header">
       <div class="post__profile">
         <a href="" target="_blank" class="post__avatar avatar">
-          <img src="${user.avatar}" alt="user picture" />
+          <img src="${avatar}" alt="user picture" />
         </a>
-        <a href="" target="_blank" class="post__user">${user.username}</a>
+        <a href="" target="_blank" class="post__user">${username}</a>
       </div>
 
       <button class="post__more-options icon-button">
@@ -64,23 +76,21 @@ const createPostElement = ({user, medias, likes, description}) => {
       </div>
 
       <div class="post__infos">
-        ${
-        likes.length > 0 ? `
-          <div class="post__likes">
-            <a href="#" class="post__likes-avatar avatar">
-              <img src="assets/images/avatar.png" alt="user picture" />
-            </a>
-            <span>Liked by
-              <a class="post__name--underline" href="#">${likes[0]}</a> 
-              ${likes.length > 1 ? `and <a href="#">${likes.length - 1} others</a>` : ""}
-            </span>
-          </div>
-            ` : ""
-        }
+        ${likeLength > 0
+          ? `<div class="post__likes">
+              <a href="#" class="post__likes-avatar avatar">
+                <img src="assets/images/avatar.png" alt="user picture" />
+              </a>
+              <span>Liked by
+                <a class="post__name--underline" href="#">${likes[0]}</a> 
+                ${likeLength > 1 ? `and <a href="#">${likeLength - 1} others</a>` : ""}
+              </span>
+            </div>`
+          : ""}
 
         <div class="post__description">
           <span>
-            <a class="post__name--underline" href="" target="_blank">${user.username}</a>
+            <a class="post__name--underline" href="" target="_blank">${username}</a>
             ${description}
           </span>
         </div>
