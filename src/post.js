@@ -3,19 +3,17 @@ import { CLASS_NAME } from "./const.js";
 import { dummyPosts } from "./faker.js";
 
 export const createPosts = () => {
-  const posts = document.querySelector(".posts");
-  const postsArray = dummyPosts.map((post) => createPostElement(post));
+  const postsEl = document.querySelector(".posts");
+  const postsElArray = dummyPosts.map(createPostElement);
 
-  postsArray.forEach((postElement, index) => {
-    initCarousel(postElement, index);
-  });
+  postsElArray.forEach(initCarousel);
 
-  posts.append(...postsArray);
+  postsEl.append(...postsElArray);
 }
 
 const createPostElement = ({user, medias, likes, description}) => {
-  const postElement = document.createElement("article");
-  postElement.classList.add(CLASS_NAME.POST);
+  const postEl = document.createElement("article");
+  postEl.classList.add(CLASS_NAME.POST);
 
   const postBody = `
     <div class="post__header">
@@ -92,7 +90,7 @@ const createPostElement = ({user, medias, likes, description}) => {
     </div>
   `;
   
-  postElement.innerHTML = postBody;
+  postEl.innerHTML = postBody;
 
-  return postElement;
+  return postEl;
 }

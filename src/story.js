@@ -2,14 +2,14 @@ import { DISPLAY, STORY_SCROLL_PIXELS } from "./const.js";
 import { dummyStory } from "./faker.js";
 
 export const initStories = () => {
-  const storiesContent = document.querySelector('.stories__content');
-  const leftButton = document.querySelector('.stories__left-button');
-  const rightButton = document.querySelector('.stories__right-button');
+  const storiesContentEl = document.querySelector('.stories__content');
+  const leftBtnEl = document.querySelector('.stories__left-button');
+  const rightBtnEl = document.querySelector('.stories__right-button');
 
   const createStories = () => {
-    const storiesContainer = document.querySelector(".stories__content");
-    const storiesArray = dummyStory.map(createStory);
-    storiesContainer.innerHTML = storiesArray.join("");
+    const storiesContainerEl = document.querySelector(".stories__content");
+    const storiesElArray = dummyStory.map(createStory);
+    storiesContainerEl.innerHTML = storiesElArray.join("");
   }
 
   const createStory = ({user}) => {
@@ -32,24 +32,22 @@ export const initStories = () => {
   }
 
   const displayButtons = () => {
-    const isMostLeft = storiesContent.scrollLeft === 0;
-    const isMostRight = storiesContent.scrollLeft + storiesContent.offsetWidth >= storiesContent.scrollWidth;
+    const isMostLeft = storiesContentEl.scrollLeft === 0;
+    const isMostRight = storiesContentEl.scrollLeft + storiesContentEl.offsetWidth >= storiesContentEl.scrollWidth;
 
-    leftButton.style.display = isMostLeft ? DISPLAY.NONE : DISPLAY.BLOCK;
-    rightButton.style.display = isMostRight ? DISPLAY.NONE : DISPLAY.BLOCK;
+    leftBtnEl.style.display = isMostLeft ? DISPLAY.NONE : DISPLAY.BLOCK;
+    rightBtnEl.style.display = isMostRight ? DISPLAY.NONE : DISPLAY.BLOCK;
   }
 
-  leftButton.addEventListener('click', () => {
-    storiesContent.scrollLeft -= STORY_SCROLL_PIXELS;
+  leftBtnEl.addEventListener('click', () => {
+    storiesContentEl.scrollLeft -= STORY_SCROLL_PIXELS;
   });
 
-  rightButton.addEventListener('click', () => {
-    storiesContent.scrollLeft += STORY_SCROLL_PIXELS;
+  rightBtnEl.addEventListener('click', () => {
+    storiesContentEl.scrollLeft += STORY_SCROLL_PIXELS;
   });
 
-  storiesContent.addEventListener('scroll', () => {
-    displayButtons();
-  });
+  storiesContentEl.addEventListener('scroll', displayButtons);
 
   createStories();
   displayButtons();
