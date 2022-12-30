@@ -84,7 +84,7 @@ import debounce from "./utils/debounce.js";
     }
     // posts.innerHTML = elementString;
     posts.insertAdjacentHTML("afterbegin", elementString);
-})(1500)
+})(4000)
 
 
 const render = () => {
@@ -132,13 +132,13 @@ const render = () => {
         return currentMediaIndex;
     }
 
+    const postContentElement = postsElement.firstElementChild.querySelector(`.post__content`);
+    const mediaSlideWidth = postContentElement.clientWidth;
+
     postListElements.forEach(post => {
         const mediaSlidesElement = post.querySelector(`.post__medias`);
         const mediaSlideImgElements = mediaSlidesElement.querySelectorAll('li');
         const mediaSlideCount = mediaSlideImgElements.length;
-
-        const postContentElement = post.querySelector(`.post__content`);
-        const mediaSlideWidth = postContentElement.clientWidth;
 
         mediaSlidesElement.style.width = `${mediaSlideWidth * mediaSlideCount}px`;
 
@@ -147,8 +147,8 @@ const render = () => {
 
         let currentMediaIndex = 0;
 
-        const mediaPrevButtonElement = postContentElement.querySelector('.post__controller-prev');
-        const mediaNextButtonElement = postContentElement.querySelector('.post__controller-next');
+        const mediaPrevButtonElement = post.querySelector('.post__controller-prev');
+        const mediaNextButtonElement = post.querySelector('.post__controller-next');
 
         renderSlideButton(mediaPrevButtonElement, mediaNextButtonElement, currentMediaIndex, mediaSlideCount);
         filterIndicator(postIndicator, currentMediaIndex);
@@ -190,7 +190,9 @@ const render = () => {
     }
 }
 
+console.time('label');
 const rerender = render();
+console.timeEnd('label');
 
 window.addEventListener("resize", debounce(function (event) {
     rerender();
