@@ -2,6 +2,8 @@ import { SUGGESTION_KEYWORDS, SEARCH_BASE_QUERY, EMPTY_KEYWORD_ALERT } from "./c
 import debounce from "./utils/debounce.js";
 import throttle from "./utils/throttle.js";
 
+const SEARCH_DELAY_MS = 150;
+
 const searchHeader = document.querySelector('.header__search');
 const searchInput = searchHeader.querySelector('input');
 const searchButton = searchHeader.querySelector('.search-icon');
@@ -20,20 +22,14 @@ const moveTo = (index)=>{
 }
 const moveDown = ()=>{
   moveTo(currentFocus + 1);
-  console.log(currentFocus);
 }
 const moveUp = ()=>{
   moveTo(currentFocus - 1);
-  console.log(currentFocus);
 }
 const initCurrentFocus = ()=>{
   currentFocus = 0;
 }
 
-const moveController = {
-  'ArrowUp': moveUp,
-  'ArrowDown': moveDown,
-};
 
 const moveFocus= (keyCode)=>{
   if(currentSuggestElements.length === 0){
@@ -44,7 +40,12 @@ const moveFocus= (keyCode)=>{
     currentSuggestElements[currentFocus - 1].classList.remove('focus');
   }
   
-  moveController[keyCode]();
+  if(keyCode === 'ArrowDown'){
+    moveDown();
+  } else if(keyCode === 'ArrowUp'){
+    moveUp();
+  }
+
   if(currentFocus === 0){
     return;
   }
@@ -119,56 +120,52 @@ const search = (keyword)=>{
 }
 
 export const initSearchHandlers = ()=>{
-  const setInputValueWithSuggested = (event)=>{
+  const handleSuggestionClick = (event)=>{
     if(event.target.className === 'suggestion__keyword'){
       const keyword = event.target.innerText;
       searchInput.value = keyword;
       hideSuggestions();
     }
   }
-  suggestionsContainer.addEventListener('click', setInputValueWithSuggested);
 
-  const getSuggestionsWithCurrent = ()=>{
+  const handleSearchInputClick = ()=>{
     initCurrentFocus();
     prevInputValue = searchInput.value;
     if(searchInput.value){
       addSuggestions(searchInput.value);
     }
   }
-  searchInput.addEventListener('click', getSuggestionsWithCurrent);
 
-  const handleSearchWithEnterKey = (event)=>{
+  const handleSearchInputKey = (event)=>{
     const { code } = event;
-  
-    if(code === 'Enter'){
-      search(searchInput.value);
-      searchInput.blur();
-    }
-  }
-  searchInput.addEventListener('keypress', handleSearchWithEnterKey);
-
-  searchInput.addEventListener('keyup', debounce((event)=>{
-    const { code } = event;
+    
     if(!searchInput.value){
       clearSuggestions();
-      return;
-    }
-  
-    if(code === 'Escape'){
-      hideSuggestions();
       return;
     }
 
     if(code === 'ArrowDown' || code === 'ArrowUp'){
       return;
     }
+    
+    if(code === 'Escape'){
+      hideSuggestions();
+      return;
+    }
 
+    if(code === 'Enter'){
+      search(searchInput.value);
+      searchInput.blur();
+      return;
+    }
+
+    
     initCurrentFocus();
     prevInputValue = searchInput.value;
     addSuggestions(searchInput.value);
-  }, 200));
+  }
 
-  searchInput.addEventListener('keydown', throttle((event)=>{
+  const handleArrowKey = (event)=>{
     const { code } = event;
 
     if(code !== 'ArrowDown' && code !== 'ArrowUp'){
@@ -182,7 +179,14 @@ export const initSearchHandlers = ()=>{
     }else{
       searchInput.value = currentSuggestElements[currentFocus - 1].innerText;
     }
-  }, 50));
+  }
+
+  
+  suggestionsContainer.addEventListener('click', handleSuggestionClick);
+  
+  searchInput.addEventListener('click', handleSearchInputClick);
+  searchInput.addEventListener('keydown', throttle(handleArrowKey, 100));
+  searchInput.addEventListener('keyup', debounce(handleSearchInputKey, SEARCH_DELAY_MS));
 
   searchButton.addEventListener('click', ()=>{
     search(searchInput.value);
