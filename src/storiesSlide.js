@@ -40,7 +40,6 @@ const limitCount = storySlideCount % 3 !== 0 ?
     parseInt(storySlideCount / 3) - 1;
 
 const moveStorySlide = (num) => {
-    // TODO : 추후 observer를 활용해서 제작하는 방식을 통해 성능 측정 해보기
     storySlidesElement.style.setProperty('transform', `translateX(${-(num * ((storyImgWidth + storyGap) * 3))}px)`);
     currentStoryIndex = num;
 
