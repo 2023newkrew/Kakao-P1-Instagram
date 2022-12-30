@@ -1,6 +1,6 @@
 import debounce from "./utils/debounce.js";
 
-const autoCompleteData = [
+const autoCompleteDataList = [
     { key: 1, name: '데이터1' },
     { key: 2, name: '데이터2' },
     { key: 3, name: '자바스크립트' },
@@ -55,9 +55,9 @@ searchElement.addEventListener('keyup', debounce((event) => {
         }
     }
 
-    if (text !== '') {  //빈줄이 들어오면
+    if (text !== '') {
         let elementString = ``;
-        autoCompleteData.forEach(value => {
+        autoCompleteDataList.forEach(value => {
             if (value.name.match(`^${text}`)) {
                 elementString += `
                 <a href="https://www.google.com/search?q=${value.name}" target="_blank">

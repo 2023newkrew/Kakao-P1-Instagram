@@ -191,6 +191,6 @@ const render = () => {
 
 const rerender = render();
 
-window.addEventListener("resize", debounce(function (e) {
+window.addEventListener("resize", debounce(function (event) {
     rerender();
 }, 200));
