@@ -5,6 +5,7 @@
   padding-bottom: 44px;
   display: flex;
   flex: 1;
+  transition: background-color 0.3s;
 }
 
 .content-container {
@@ -33,6 +34,7 @@
   margin-top: 16px;
   position: relative;
   overflow: hidden;
+  transition: background-color 0.3s, border 0.3s;
 }
 
 .stories__content {
@@ -117,12 +119,14 @@
   flex: 1;
   gap: 8px;
   margin-top: 16px;
+  transition: background-color 0.3s;
 }
 
 .post {
   background-color: var(--background-color-secondary);
   border: 1px solid var(--border-color);
   border-radius: 8px;
+  transition: background-color 0.3s, border 0.3s;
 }
 
 .post__header {
@@ -207,6 +211,7 @@
   margin-top: 12px;
   font-size: 10px;
   color: var(--font-color-secondary);
+  transition: color 0.3s;
 }
 
 .user-profile-img {
