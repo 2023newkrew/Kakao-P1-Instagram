@@ -3,11 +3,7 @@ function createScrollObserver({ $container, $button }) {
     ([{ isIntersecting }]) => {
       const buttonClassList = $button.classList;
 
-      if (isIntersecting) {
-        buttonClassList.add("hidden");
-      } else {
-        buttonClassList.remove("hidden");
-      }
+      isIntersecting ? buttonClassList.add("hidden") : buttonClassList.remove("hidden");
     },
     {
       root: $container,
