@@ -7,7 +7,13 @@ const $stories = document.querySelector(".stories");
 const $rightArrow = document.querySelector(".story__next-button");
 const $leftArrow = document.querySelector(".story__prev-button");
 const $innerBox = document.querySelector(".stories__inner-box");
+const $searchBox = document.querySelector(".header__search");
+const $searchBoxInput = $searchBox.querySelector("input");
+
 const POST_DEBOUNCE_DELAY = 100;
+const SEARCH_DEBOUNCE_DELAY = 300;
+
+const searchKeywords = ["apple", "banana"];
 
 const util = {
     getTranslateX(element) {
@@ -88,9 +94,9 @@ const util = {
     makeDebounceHandler(handler, delay) {
         let timeOut = undefined;
 
-        const debounceHandler = () => {
+        const debounceHandler = (event) => {
             clearTimeout(timeOut);
-            timeOut = setTimeout(handler, delay);
+            timeOut = setTimeout(() => handler(event), delay);
         };
 
         return debounceHandler;
@@ -165,16 +171,16 @@ function init() {
         let beforeContainerWidth =
             document.querySelector(".post__content").offsetWidth;
 
-        const adjustPostTransform = () => {
+        const adjustPostTransform = (event) => {
             const currentContainerWidth =
                 document.querySelector(".post__content").offsetWidth;
 
             const targets = document.querySelectorAll(".post__medias");
             for (let i = 0; i < targets.length; i++) {
-                const target = targets[i];
+                const $target = targets[i];
 
-                const targetTranslateValue = util.getTranslateX(target);
-                target.style.transform = `translateX(-${
+                const targetTranslateValue = util.getTranslateX($target);
+                $target.style.transform = `translateX(-${
                     (targetTranslateValue * currentContainerWidth) /
                     beforeContainerWidth
                 }px)`;
@@ -184,6 +190,59 @@ function init() {
         return adjustPostTransform;
     };
 
+    const onKeyDownSearchBox = (event) => {
+        // TODO
+        // 키보드로 자동완성된 키워드 선택 및 하이라이팅
+        let $keywordBoxes = $searchBox.querySelector("keyword-boxes");
+        const inputValue = event.target.value;
+
+        if (inputValue === "") {
+            //비어있는 값 입력
+            $searchBoxInput.style.borderBottomLeftRadius = "";
+            $searchBoxInput.style.borderBottomRightRadius = "";
+            if ($keywordBoxes) $searchBox.removeChild($keywordBoxes);
+            return;
+        }
+
+        const showList = searchKeywords.filter((keyword) =>
+            keyword.includes(inputValue)
+        );
+
+        if (showList.length > 0) {
+            $searchBoxInput.style.borderBottomLeftRadius = "0px";
+            $searchBoxInput.style.borderBottomRightRadius = "0px";
+        } else {
+            $searchBoxInput.style.borderBottomLeftRadius = "";
+            $searchBoxInput.style.borderBottomRightRadius = "";
+        }
+
+        if ($keywordBoxes) $searchBox.removeChild($keywordBoxes);
+
+        const $newKeywordBoxes = document.createElement("keyword-boxes");
+
+        for (let i = 0; i < showList.length; i++) {
+            const curKeyword = showList[i];
+            const $node = document.createElement("keyword-box");
+            $node.innerText = curKeyword;
+            $newKeywordBoxes.appendChild($node);
+        }
+
+        $searchBox.appendChild($newKeywordBoxes);
+    };
+
+    const onKeyDownSearchBoxInput = (event) => {
+        //TODO
+        if (event.key === "Enter") {
+            event.preventDefault();
+            window.location.href = `https://www.google.com/search?q=${event.target.value}`;
+        }
+    };
+
+    $searchBoxInput.addEventListener("keydown", onKeyDownSearchBoxInput);
+    $searchBox.addEventListener(
+        "keydown",
+        util.makeDebounceHandler(onKeyDownSearchBox, SEARCH_DEBOUNCE_DELAY)
+    );
     window.addEventListener(
         "resize",
         util.makeDebounceHandler(makeAdjustPostTransform(), POST_DEBOUNCE_DELAY)
@@ -232,6 +291,7 @@ function makePostDummy(count, imgCount) {
             $clone.querySelector(".post__medias").appendChild($imgClone);
         }
 
+        /* 왼쪽, 오른쪽 화살표 구현 */
         const $rightArrow = $clone.querySelector(".post__next-button");
         const $leftArrow = $clone.querySelector(".post__prev-button");
 
@@ -261,12 +321,44 @@ function makePostDummy(count, imgCount) {
                 $leftArrow
             )
         );
+
+        /* 인디케이터 구현 */
+        const $indicators = $clone.querySelector(".post__indicators");
+
+        const $indicatorSet = document.createElement("div");
+        $indicatorSet.classList.add("post__indicator-set");
+        for (let i = 0; i < imgCount + 1; i++) {
+            //html에 기본적으로 1개가 추가되어 있어서 imgCount+1임 나중에 지워야 함
+            const $indicator = document.createElement("div");
+            $indicator.classList.add("post__indicator");
+            if (i === 0) $indicator.classList.add("active");
+
+            $indicatorSet.appendChild($indicator);
+        }
+        $indicators.appendChild($indicatorSet);
+
+        const onClickIndicatorHandler = (event) => {
+            const indicatorList =
+                $indicatorSet.querySelectorAll(".post__indicator");
+            const currentIndex = util.getCurrentIndex(container, contents);
+
+            for (let i = 0; i < indicatorList.length; i++) {
+                const $curIndicator = indicatorList[i];
+
+                $curIndicator.classList.remove("active");
+                if (i === currentIndex) $curIndicator.classList.add("active");
+            }
+        };
+
+        $rightArrow.addEventListener("click", onClickIndicatorHandler);
+        $leftArrow.addEventListener("click", onClickIndicatorHandler);
+
         document.querySelector(".posts").appendChild($clone);
     }
 }
 function main() {
     makeStoryDummy(15);
-    makePostDummy(2, 3);
+    makePostDummy(2, 4);
     init();
 }
 main();
