@@ -230,3 +230,13 @@
 .user-profile-img {
   border-radius: 50%;
 }
+
+.carousel-button {
+  /* display: none;
+   */
+  visibility: hidden;
+}
+
+.carousel-button--active {
+  visibility: unset;
+}

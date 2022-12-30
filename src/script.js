@@ -1,5 +1,5 @@
 import { stories, posts } from "./dummy.js";
-import { initCarousel } from "./carousel.js";
+import { setCarousel } from "./carousel.js";
 import { initThemeMode } from "./theme.js";
 import { initSearch } from "./search.js";
 
@@ -34,7 +34,7 @@ function initStories() {
 function main() {
   initThemeMode();
   initStories();
-  initCarousel();
+  setCarousel();
   initSearch();
 }
 
