@@ -1,4 +1,4 @@
-export const useVisibilityObserver = (observeTarget, controlTarget)=>{
+export const useVisibilityObserver = (observeTarget, controlTarget, ioOptions)=>{
   const observe = (target)=>{
     const storyObserver = new IntersectionObserver((entries)=>{
       entries.forEach((entry)=>{
@@ -8,7 +8,7 @@ export const useVisibilityObserver = (observeTarget, controlTarget)=>{
           show();
         }
       });
-    });
+    }, ioOptions);
 
     storyObserver.observe(target);  
   }

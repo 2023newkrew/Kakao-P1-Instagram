@@ -56,8 +56,22 @@ const renderStories = ()=>{
 export const initStory = ()=>{
   renderStories();
 
-  const initPrevButtonObserver = useVisibilityObserver(document.querySelector('.story:first-child'), prevStoryButton);
-  const initNextButtonObserver = useVisibilityObserver(document.querySelector('.story:last-child'), nextStoryButton);
+  const ioOptions =  { 
+    root: storySection, 
+    threshold: 1,
+  };
+
+  const initPrevButtonObserver = useVisibilityObserver(
+    document.querySelector('.story:first-child'), 
+    prevStoryButton,
+    ioOptions
+  );
+  const initNextButtonObserver = useVisibilityObserver(
+    document.querySelector('.story:last-child'), 
+    nextStoryButton, 
+    ioOptions
+  );
+
   initPrevButtonObserver();
   initNextButtonObserver();
 
