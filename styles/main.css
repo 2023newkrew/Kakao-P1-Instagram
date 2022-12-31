@@ -75,7 +75,7 @@
   align-items: center;
 }
 
-.stories__controller .stories__controller-prev {
+.stories__controller-prev {
   position: absolute;
   left: 10px;
   rotate: 180deg;
@@ -93,7 +93,7 @@
   z-index: 2;
 }
 
-.stories__controller .stories__controller-next {
+.stories__controller-next {
   position: absolute;
   right: 10px;
 
@@ -112,8 +112,8 @@
   cursor: pointer;
 }
 
-.stories__controller .stories__controller-prev:hover,
-.stories__controller .stories__controller-next:hover {
+.stories__controller-prev:hover,
+.stories__controller-next:hover {
   transform: translateX(5px);
 }
 
@@ -189,7 +189,7 @@
   white-space: nowrap;
 }
 
-.story--has-story .story__user {
+.story__user {
   color: var(--text-dark);
 }
 
@@ -206,42 +206,42 @@
 /* post */
 
 /* post header */
-.post .post__header {
+.post__header {
   display: flex;
   justify-content: space-between;
 
   margin-bottom: 10px;
 }
 
-.post .post__header .post__profile {
+.post__profile {
   display: flex;
   align-items: center;
 }
 
-.post .post__header .post__profile .post__avatar {
+.post__avatar {
   width: 15%;
 
   margin-right: 15px;
 }
 
-.post .post__header .post__profile .post__user {
+.post__user {
   color: var(--text-dark);
   font-weight: bolder;
 }
 
-.post .post__header .post__more-options {
+.post__more-options {
   color: var(--text-dark);
 }
 
 /* post header */
 
 /* post content */
-.post .post__content {
+.post__content {
   position: relative;
   overflow: hidden;
 }
 
-.post .post__content .post__medias {
+.post__medias {
   display: flex;
 
   position: relative;
@@ -249,27 +249,27 @@
   transition: all 0.5s;
 
   list-style: none;
-  height: 100%;
+  /* height: 100%; */
+  width: 2910px;
 }
 
 
 
-.post .post__content .post__media {
-  width: 582px;
-  height: 100%;
+.post__media {
+  width: 600px;
+  height: 300px;
   /* object-fit: contain; */
 }
 
-.post__content .post__medias .post_media img {
+.post_media img {
   position: absolute;
   top: 0px;
-  width: 100%;
-  height: 100%;
+
   display: block;
   object-fit: contain;
 }
 
-.post .post__content .post__controller {
+.post__controller {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -280,7 +280,7 @@
   align-items: center;
 }
 
-.post .post__content .post__controller .post__controller-prev {
+.post__controller-prev {
   position: absolute;
   left: 10px;
   rotate: 180deg;
@@ -297,7 +297,7 @@
   cursor: pointer;
 }
 
-.post .post__content .post__controller .post__controller-next {
+.post__controller-next {
   position: absolute;
   right: 10px;
 
@@ -311,25 +311,24 @@
   transition: transform 0.5s ease-out;
 
   cursor: pointer;
-
 }
 
-.post .post__content .post__controller .post__controller-prev:hover,
-.post .post__content .post__controller .post__controller-next:hover {
+.post__controller-prev:hover,
+.post__controller-next:hover {
   transform: translateX(5px);
 }
 
 /* post content */
 
 /* post footer */
-.post__footer .post__buttons {
+.post__buttons {
   display: flex;
   justify-content: space-between;
 
   margin: 10px 0px;
 }
 
-.post__footer .post__buttons .post__indicators {
+.post__indicators {
   flex-grow: 0.9;
 
   display: flex;
@@ -344,53 +343,54 @@
   gap: 10px;
 }
 
-.post__footer .post__buttons .post__indicators li {
-  filter: none;
+.post__indicators li {
+  color: black;
+  font-size: 50px;
 }
 
-.post__footer .post__buttons .post__indicators li[class*="active"] {
-  filter: invert(83%) sepia(4%) saturate(4977%) hue-rotate(167deg) brightness(98%) contrast(88%);
+.post__indicators li[class*="active"] {
+  color: skyblue;
 }
 
-.post .post__footer .post__infos {
+.post__infos {
   display: flex;
   flex-direction: column;
 }
 
-.post .post__footer .post__infos .post__likes {
+.post__likes {
   color: var(--text-dark);
 
   display: flex;
 }
 
-.post .post__footer .post__infos .post__likes span {
+.post__likes span {
   display: flex;
   align-items: center;
 }
 
-.post .post__footer .post__infos .post__likes .post__likes-avatar {
+.post__likes-avatar {
   width: 5%;
 
   margin-right: 5px;
 }
 
-.post .post__footer .post__infos .post__likes a {
+.post__likes a {
   font-weight: bolder;
 
   margin: 0px 5px;
 }
 
-.post .post__footer .post__infos .post__description {
+.post__description {
   margin: 10px 0px;
 
   color: var(--text-dark);
 }
 
-.post .post__footer .post__infos .post__description .post__name--underline {
+.post__name--underline {
   font-weight: bolder;
 }
 
-.post .post__footer .post__infos .post__date-time {
+.post__date-time {
   margin: 10px 0px;
 
   color: var(--text-light);

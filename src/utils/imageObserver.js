@@ -14,7 +14,7 @@ let observer = new IntersectionObserver((entries, observer) => {
         // 이미지를 불러왔다면 타켓 엘리먼트에 대한 관찰을 멈춘다.
         observer.unobserve(image)
     });
-}, { threshold: 0.1 });
+}, { threshold: 0.8 });
 
 // 관찰할 대상을 선언하고, 해당 속성을 관찰시킨다.
 images.forEach((image) => {

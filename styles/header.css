@@ -102,7 +102,7 @@
   color: var(--text-dark);
 }
 
-.header__search .recommend__area {
+.recommend__area {
   position: absolute;
   top: 100%;
   z-index: 1;
@@ -117,7 +117,7 @@
   font-size: 20px;
 }
 
-.header__search .recommend__area div {
+.recommend__area div {
   border-bottom: 1px solid var(--story-border);
   transition: background-color 0.2s ease-in;
 
@@ -128,7 +128,7 @@
   padding: 5px;
 }
 
-.header__search .recommend__area div:hover {
+.recommend__area div:hover {
   background-color: var(--secondary);
 }
 

@@ -22,7 +22,8 @@
         `
     }
 
-    storiesContent.innerHTML = elementString;
+    // storiesContent.innerHTML = elementString;
+    storiesContent.insertAdjacentHTML("afterbegin", elementString);
 })(20)
 
 const storiesElement = document.querySelector('.stories');
