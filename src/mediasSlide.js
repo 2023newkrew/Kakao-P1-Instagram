@@ -24,9 +24,9 @@ import debounce from "./utils/debounce.js";
                 <div class="post__content" id="post__content">
                     <ul class="post__medias" id="post__medias">
                         <li><img class="post__media"  src="assets/images/picture3-min.jpeg" data-src="assets/images/picture3.avif"  alt="Post Content" /></li>
-                        <li><img class="post__media"  src="assets/images/picture3-min.jpeg" data-src="assets/images/picture3.avif" alt="Post Content" /></li>
-                        <li><img class="post__media"  src="assets/images/picture3-min.jpeg" data-src="assets/images/picture3.avif" alt="Post Content" /></li>
-                        <li><img class="post__media"  src="assets/images/picture3-min.jpeg" data-src="assets/images/picture3.avif" alt="Post Content" /></li>
+                        <li><img class="post__media"  src="assets/images/picture2-min.jpeg" data-src="assets/images/picture2.avif" alt="Post Content" /></li>
+                        <li><img class="post__media"  src="assets/images/picture-min.jpeg" data-src="assets/images/picture.avif" alt="Post Content" /></li>
+                        <li><img class="post__media"  src="assets/images/picture2-min.jpeg" data-src="assets/images/picture2.avif" alt="Post Content" /></li>
                         <li><img class="post__media"  src="assets/images/picture3-min.jpeg" data-src="assets/images/picture3.avif" alt="Post Content" /></li>
                     </ul>
 
@@ -83,7 +83,7 @@ import debounce from "./utils/debounce.js";
         `
     }
     posts.insertAdjacentHTML("afterbegin", elementString);
-})(4000)
+})(20)
 
 
 const render = () => {
@@ -92,9 +92,9 @@ const render = () => {
 
     const makeIndicator = (post, mediaSlideCount) => {
         const postIndicatorsElement = post.querySelector(`.post__indicators`);
-        let elementString = '<li class="active">.</li>';
+        let elementString = '<li class="active">·</li>';
         for (let index = 1; index < mediaSlideCount; index++) {
-            elementString += `<li>.</li>`
+            elementString += `<li>·</li>`
         }
         postIndicatorsElement.insertAdjacentHTML("afterbegin", elementString);
         return postIndicatorsElement;
@@ -119,8 +119,9 @@ const render = () => {
         }
     }
 
-    const moveMediaSlide = (post, nextMediaIndex, currentMediaIndex, mediaSlideWidth) => {
+    const moveMediaSlide = (post, nextMediaIndex, currentMediaIndex) => {
         const mediaSlidesElement = post.querySelector(`.post__medias`);
+        const mediaSlideWidth = mediaSlidesElement.children[0].clientWidth;
 
         currentMediaIndex = nextMediaIndex;
         mediaSlidesElement.style.setProperty('transform', `translateX(${-(currentMediaIndex * mediaSlideWidth)}px)`);
@@ -150,7 +151,7 @@ const render = () => {
         mediaPrevButtonElement.addEventListener('click', () => {
             if (currentMediaIndex !== 0) {
                 filterIndicator(postIndicator, currentMediaIndex);
-                currentMediaIndex = moveMediaSlide(post, currentMediaIndex - 1, currentMediaIndex, mediaSlideWidth)
+                currentMediaIndex = moveMediaSlide(post, currentMediaIndex - 1, currentMediaIndex)
                 filterIndicator(postIndicator, currentMediaIndex);
 
                 renderSlideButton(mediaPrevButtonElement, mediaNextButtonElement, currentMediaIndex, mediaSlideCount);
@@ -160,7 +161,7 @@ const render = () => {
         mediaNextButtonElement.addEventListener('click', () => {
             if (currentMediaIndex !== (mediaSlideCount - 1)) {
                 filterIndicator(postIndicator, currentMediaIndex);
-                currentMediaIndex = moveMediaSlide(post, currentMediaIndex + 1, currentMediaIndex, mediaSlideWidth)
+                currentMediaIndex = moveMediaSlide(post, currentMediaIndex + 1, currentMediaIndex)
                 filterIndicator(postIndicator, currentMediaIndex);
 
                 renderSlideButton(mediaPrevButtonElement, mediaNextButtonElement, currentMediaIndex, mediaSlideCount);
@@ -169,13 +170,13 @@ const render = () => {
     })
 
     return function rerender() {
+        const postContentElement = document.querySelector(`.post__content`);
+        const mediaSlideWidth = postContentElement.clientWidth;
+
         postListElements.forEach(post => {
             const mediaSlidesElement = post.querySelector(`.post__medias`);
             const mediaSlideImgElements = mediaSlidesElement.querySelectorAll('li');
             const mediaSlideCount = mediaSlideImgElements.length;
-
-            const postContentElement = post.querySelector(`.post__content`);
-            const mediaSlideWidth = postContentElement.clientWidth;
 
             const currentMediaIndex = getCurrentMediaIndex(post);
 
@@ -185,8 +186,12 @@ const render = () => {
     }
 }
 
+console.time('label');
 const rerender = render();
+console.timeEnd('label');
 
 window.addEventListener("resize", debounce(function (event) {
+
     rerender();
+
 }, 200));
