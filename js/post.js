@@ -8,7 +8,6 @@ const loader = document.querySelector('#posts__loader');
 let isLoading = false;
 let page = 0;
 
-
 const makePostTemplate = ({username, content, images}) => `
     <header class="post__header">
       <div class="post__profile">
@@ -53,8 +52,6 @@ const makePostTemplate = ({username, content, images}) => `
             </button>
 
             <div class="post__indicators">
-              <div></div>
-              <div></div>
             </div>
 
             <button class="post__button post__button--align-right">
@@ -115,6 +112,43 @@ const initPostsCarousel = ()=>{
   posts.forEach(initPostCarousel);
 }
 
+const initPostIndicatorObserver = (carouselSection, root, indicator)=>{
+  const ioOptions = {
+    root,
+    threshold: 0.5,
+  };
+
+  const observer = new IntersectionObserver((entries)=>{
+    entries.forEach((entry)=>{
+          if(entry.isIntersecting){
+            indicator.classList.add('active');
+          }else{
+            indicator.classList.remove('active');
+          }
+      });
+    },
+    ioOptions
+  );
+
+  observer.observe(carouselSection);
+}
+
+const initIndicator = (post, images)=>{
+  const indicatorsContainer = post.querySelector('.post__indicators');
+  const carouselContainer = post.querySelector('.carousel-sections-scroll');
+  const carouselSections = carouselContainer.querySelectorAll('.carousel-section');
+
+  const indicators = images.map((_, index)=>{
+    const indicator = document.createElement('div');
+    indicator.className = 'post__indicator';
+    initPostIndicatorObserver(carouselSections[index], carouselContainer, indicator);
+    return indicator;
+  });
+
+  indicators[0].classList.add('active');
+  indicatorsContainer.append(...indicators);
+}
+
 const loadPost = () =>{
   isLoading = true;
 
@@ -128,6 +162,9 @@ const loadPost = () =>{
     const postEl = document.createElement('article');
     postEl.className = 'post';
     postEl.innerHTML = makePostTemplate(postData);
+    
+    initIndicator(postEl, postData.images);
+
     return postEl;
   });
 
