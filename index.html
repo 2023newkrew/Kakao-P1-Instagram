@@ -24,8 +24,8 @@
 
       <div class="header__search">
         <img src="assets/icons/search.svg" alt="search" />
-          <input class="search__area" type="text" placeholder="Search" autocomplete="on" />
-          <div class="recommend__area"></div>
+        <input class="search__area" type="text" placeholder="Search" autocomplete="on" />
+        <div class="recommend__area"></div>
       </div>
 
       <div class="header__buttons ">
@@ -75,8 +75,87 @@
         </div>
 
         <ul class="posts">
-          <!-- 포스트 들어갈 자리 -->
+          <li class="post">
+
+            <div class="post__header">
+              <div class="post__profile">
+                <a href="" target="_blank" class="post__avatar">
+                  <img src="assets/images/avatar.png" alt="user picture" />
+                </a>
+                <a href="" target="_blank" class="post__user">user</a>
+              </div>
+
+              <button class="post__more-options">
+                <img src="assets/icons/more.svg" alt="more" />
+              </button>
+            </div>
+
+            <div class="post__content" id="post__content">
+              <ul class="post__medias" id="post__medias">
+                <li><img class="post__media" src="assets/images/picture3-min.jpeg"
+                    data-src="assets/images/picture3.avif" alt="Post Content" /></li>
+                <li><img class="post__media" src="assets/images/picture2-min.jpeg"
+                    data-src="assets/images/picture2.avif" alt="Post Content" /></li>
+                <li><img class="post__media" src="assets/images/picture-min.jpeg" data-src="assets/images/picture.avif"
+                    alt="Post Content" /></li>
+                <li><img class="post__media" src="assets/images/picture2-min.jpeg"
+                    data-src="assets/images/picture2.avif" alt="Post Content" /></li>
+                <li><img class="post__media" src="assets/images/picture3-min.jpeg"
+                    data-src="assets/images/picture3.avif" alt="Post Content" /></li>
+              </ul>
+
+              <div class="post__controller">
+                <span class="post__controller-prev">
+                  <img src="assets/icons/arrow.svg" alt="leftArrow">
+                </span>
+                <span class="post__controller-next">
+                  <img src="assets/icons/arrow.svg" alt="rightArrow">
+                </span>
+              </div>
+            </div>
+
+            <div class="post__footer">
+              <div class="post__buttons">
+                <button class="post__button">
+                  <img src="assets/icons/heart.svg" alt="heart" />
+                </button>
+                <button class="post__button">
+                  <img src="assets/icons/comment.svg" alt="comment" />
+                </button>
+
+                <ul class="post__indicators" id="post__indicators"></ul>
+
+                <button class="post__button post__button--align-right">
+                  <img src="assets/icons/bookmark.svg" alt="bookmark" />
+                </button>
+              </div>
+
+              <div class="post__infos">
+                <div class="post__likes">
+                  <a href="#" class="post__likes-avatar">
+                    <img src="assets/images/avatar.png" alt="user picture" />
+                  </a>
+
+                  <span>Liked by
+                    <a class="post__name--underline" href="#">user1</a> and
+                    <a href="#">33 others</a>
+                  </span>
+                </div>
+
+                <div class="post__description">
+                  <span>
+                    <a class="post__name--underline" href="" target="_blank">user</a>
+                    description
+                  </span>
+                </div>
+
+                <span class="post__date-time">30 minutes ago</span>
+              </div>
+            </div>
+
+          </li>
         </ul>
+        <div class="postEnd"></div>
 
       </div>
 
