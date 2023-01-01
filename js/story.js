@@ -6,6 +6,8 @@ const storiesContainer = storySection.querySelector('.stories__content');
 const prevStoryButton = storySection.querySelector('.stories__prev-button');
 const nextStoryButton = storySection.querySelector('.stories__next-button');
 
+const STORY_SLIDE_OFFSET = 80;
+
 const renderProfileImage = ({user, thumbnailPath})=>{
   if(!thumbnailPath){
     return `<img class="avatar" src="assets/images/avatar.png" alt="user picture" />`;
@@ -53,6 +55,19 @@ const renderStories = ()=>{
   storiesContainer.innerHTML = stories.map(getStoryTemplate).join('\n');
 }
 
+const scrollStories = (scrollOffset)=>{
+  storiesContainer.scrollLeft += scrollOffset;
+}
+
+const initScrollButtons = ()=>{
+  prevStoryButton.addEventListener('click', ()=>{
+    scrollStories(-STORY_SLIDE_OFFSET * 3);
+  });
+  nextStoryButton.addEventListener('click', ()=>{
+    scrollStories(STORY_SLIDE_OFFSET * 3);
+  });
+}
+
 export const initStory = ()=>{
   renderStories();
 
@@ -74,6 +89,6 @@ export const initStory = ()=>{
 
   initPrevButtonObserver();
   initNextButtonObserver();
-
+  initScrollButtons();
 }
 
