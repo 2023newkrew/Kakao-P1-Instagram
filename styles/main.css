@@ -277,7 +277,7 @@
   width: 8px;
   border-radius: 50%;
   opacity: 0.4;
-  background-color: var(--always-white);
+  background-color: var(--text-primary);
 }
 .post__footer .post__buttons .post__indicators .post__indicator.active {
   opacity: 0.99;

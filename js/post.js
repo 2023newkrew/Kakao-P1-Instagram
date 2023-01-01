@@ -108,8 +108,7 @@ const initPostCarousel = post => {
   initNextButtonObserver();
 };
 
-const initPostsCarousel = () => {
-  const posts = postsContainer.querySelectorAll('.post');
+const initPostsCarousel = posts => {
   posts.forEach(initPostCarousel);
 };
 
@@ -175,7 +174,7 @@ const loadPost = () => {
 
 const renderPosts = posts => {
   postsContainer.append(...posts);
-  initPostsCarousel();
+  initPostsCarousel(posts);
 };
 
 const initPostLoaderObserver = () => {
