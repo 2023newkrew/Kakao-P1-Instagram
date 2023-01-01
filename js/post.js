@@ -2,9 +2,14 @@ import { initCarousel } from './carousel.js';
 import { MOCK_POSTS_DATA } from './constants/post.js';
 import { useVisibilityObserver } from './utils/observer.js';
 
+const postsContainer = document.querySelector('.posts');
+const loader = document.querySelector('#posts__loader');
+
+let isLoading = false;
+let page = 0;
+
 
 const makePostTemplate = ({username, content, images}) => `
-  <article class="post">
     <header class="post__header">
       <div class="post__profile">
         <a href="" target="_blank" class="post__avatar">
@@ -78,10 +83,7 @@ const makePostTemplate = ({username, content, images}) => `
             <span class="post__date-time">30 minutes ago</span>
         </div>
       </div>
-    </article>
 `;
-
-const postsContainer = document.querySelector('.posts');
 
 const initPostCarousel = (post)=>{
   const slidesContainer = post.querySelector('.post__content .carousel-sections');
@@ -108,13 +110,53 @@ const initPostCarousel = (post)=>{
   initNextButtonObserver();
 };
 
-const renderPosts = ()=>{
-  postsContainer.innerHTML = MOCK_POSTS_DATA.map(makePostTemplate).join('\n');
+const initPostsCarousel = ()=>{
+  const posts = postsContainer.querySelectorAll('.post');
+  posts.forEach(initPostCarousel);
+}
+
+const loadPost = () =>{
+  isLoading = true;
+
+  if(page > MOCK_POSTS_DATA.last){
+    loader.textContent = '마지막 게시물입니다.';
+    isLoading = false;
+    return [];
+  }
+
+  const newPosts = MOCK_POSTS_DATA.data[page].map((postData)=>{
+    const postEl = document.createElement('article');
+    postEl.className = 'post';
+    postEl.innerHTML = makePostTemplate(postData);
+    return postEl;
+  });
+
+  page += 1;
+  isLoading = false;
+
+  return newPosts;
+}
+
+const renderPosts = (posts)=>{
+  postsContainer.append(...posts);
+  initPostsCarousel();
+}
+
+const initPostLoaderObserver = ()=>{
+  const observer = new IntersectionObserver((entries)=>{
+    entries.forEach((entry)=>{
+        if(entry.isIntersecting && !isLoading){
+          const newPosts = loadPost(page);
+          renderPosts(newPosts);
+        }
+      }
+    );
+  }, {
+    threshold: 0.1
+  });
+  observer.observe(loader);
 }
 
 export const initPosts = async ()=>{
-  renderPosts();
-
-  const posts = postsContainer.querySelectorAll('.post');
-  posts.forEach(initPostCarousel);
+  initPostLoaderObserver();
 }
