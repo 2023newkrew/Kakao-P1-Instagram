@@ -1,14 +1,14 @@
-function throttle(callback, limit=100){
+function throttle(callback, limit = 100) {
   let isWaiting = false;
 
-  return function (){
-    if(!isWaiting){
+  return function () {
+    if (!isWaiting) {
       callback.apply(this, arguments);
       isWaiting = true;
-      setTimeout(()=>{
+      setTimeout(() => {
         isWaiting = false;
       }, limit);
     }
-  }
+  };
 }
 export default throttle;

@@ -1,6 +1,6 @@
-import { initCarousel } from './carousel.js';
-import { MOCK_POSTS_DATA } from './constants/post.js';
-import { useVisibilityObserver } from './utils/observer.js';
+import {initCarousel} from './carousel.js';
+import {MOCK_POSTS_DATA} from './constants/post.js';
+import {useVisibilityObserver} from './utils/observer.js';
 
 const postsContainer = document.querySelector('.posts');
 const loader = document.querySelector('#posts__loader');
@@ -28,13 +28,14 @@ const makePostTemplate = ({username, content, images}) => `
       </button>
     <div class="post__medias carousel-sections-scroll">
       <ul class="post_media carousel-sections">
-        ${
-          images.map((image, index)=>
-            `<li class="carousel-section">
+        ${images
+          .map(
+            (image, index) =>
+              `<li class="carousel-section">
                 <img src="${image}" alt="게시글 이미지 ${index}" />
             </li>`
-          ).join('\n')
-        }
+          )
+          .join('\n')}
       </ul>
     </div>
       <button class="post__button next-button">
@@ -82,7 +83,7 @@ const makePostTemplate = ({username, content, images}) => `
       </div>
 `;
 
-const initPostCarousel = (post)=>{
+const initPostCarousel = post => {
   const slidesContainer = post.querySelector('.post__content .carousel-sections');
   const prevButton = post.querySelector('.prev-button');
   const nextButton = post.querySelector('.next-button');
@@ -95,50 +96,48 @@ const initPostCarousel = (post)=>{
   };
   const initPrevButtonObserver = useVisibilityObserver(
     slidesContainer.querySelector('.carousel-section:first-child'),
-    prevButton, 
+    prevButton,
     ioOptions
   );
   const initNextButtonObserver = useVisibilityObserver(
     slidesContainer.querySelector('.carousel-section:last-child'),
-    nextButton, 
+    nextButton,
     ioOptions
   );
   initPrevButtonObserver();
   initNextButtonObserver();
 };
 
-const initPostsCarousel = ()=>{
+const initPostsCarousel = () => {
   const posts = postsContainer.querySelectorAll('.post');
   posts.forEach(initPostCarousel);
-}
+};
 
-const initPostIndicatorObserver = (carouselSection, root, indicator)=>{
+const initPostIndicatorObserver = (carouselSection, root, indicator) => {
   const ioOptions = {
     root,
     threshold: 0.5,
   };
 
-  const observer = new IntersectionObserver((entries)=>{
-    entries.forEach((entry)=>{
-          if(entry.isIntersecting){
-            indicator.classList.add('active');
-          }else{
-            indicator.classList.remove('active');
-          }
-      });
-    },
-    ioOptions
-  );
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        indicator.classList.add('active');
+      } else {
+        indicator.classList.remove('active');
+      }
+    });
+  }, ioOptions);
 
   observer.observe(carouselSection);
-}
+};
 
-const initIndicator = (post, images)=>{
+const initIndicator = (post, images) => {
   const indicatorsContainer = post.querySelector('.post__indicators');
   const carouselContainer = post.querySelector('.carousel-sections-scroll');
   const carouselSections = carouselContainer.querySelectorAll('.carousel-section');
 
-  const indicators = images.map((_, index)=>{
+  const indicators = images.map((_, index) => {
     const indicator = document.createElement('div');
     indicator.className = 'post__indicator';
     initPostIndicatorObserver(carouselSections[index], carouselContainer, indicator);
@@ -147,22 +146,22 @@ const initIndicator = (post, images)=>{
 
   indicators[0].classList.add('active');
   indicatorsContainer.append(...indicators);
-}
+};
 
-const loadPost = () =>{
+const loadPost = () => {
   isLoading = true;
 
-  if(page > MOCK_POSTS_DATA.last){
+  if (page > MOCK_POSTS_DATA.last) {
     loader.textContent = '마지막 게시물입니다.';
     isLoading = false;
     return [];
   }
 
-  const newPosts = MOCK_POSTS_DATA.data[page].map((postData)=>{
+  const newPosts = MOCK_POSTS_DATA.data[page].map(postData => {
     const postEl = document.createElement('article');
     postEl.className = 'post';
     postEl.innerHTML = makePostTemplate(postData);
-    
+
     initIndicator(postEl, postData.images);
 
     return postEl;
@@ -172,28 +171,30 @@ const loadPost = () =>{
   isLoading = false;
 
   return newPosts;
-}
+};
 
-const renderPosts = (posts)=>{
+const renderPosts = posts => {
   postsContainer.append(...posts);
   initPostsCarousel();
-}
+};
 
-const initPostLoaderObserver = ()=>{
-  const observer = new IntersectionObserver((entries)=>{
-    entries.forEach((entry)=>{
-        if(entry.isIntersecting && !isLoading){
+const initPostLoaderObserver = () => {
+  const observer = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !isLoading) {
           const newPosts = loadPost(page);
           renderPosts(newPosts);
         }
-      }
-    );
-  }, {
-    threshold: 0.1
-  });
+      });
+    },
+    {
+      threshold: 0.1,
+    }
+  );
   observer.observe(loader);
-}
+};
 
-export const initPosts = async ()=>{
+export const initPosts = async () => {
   initPostLoaderObserver();
-}
+};

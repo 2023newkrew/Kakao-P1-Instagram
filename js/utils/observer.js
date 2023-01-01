@@ -1,28 +1,28 @@
-export const useVisibilityObserver = (observeTarget, controlTarget, ioOptions)=>{
-  const observe = (target)=>{
-    const storyObserver = new IntersectionObserver((entries)=>{
-      entries.forEach((entry)=>{
-        if(entry.isIntersecting){
+export const useVisibilityObserver = (observeTarget, controlTarget, ioOptions) => {
+  const observe = target => {
+    const storyObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
           hide();
-        }else {
+        } else {
           show();
         }
       });
     }, ioOptions);
 
-    storyObserver.observe(target);  
-  }
+    storyObserver.observe(target);
+  };
 
-  const hide = ()=>{
+  const hide = () => {
     controlTarget.style.display = 'none';
-  }
-  const show = ()=>{
+  };
+  const show = () => {
     controlTarget.style.display = 'block';
-  }
+  };
 
-  const init = ()=>{
+  const init = () => {
     observe(observeTarget);
-  }
+  };
 
   return init;
-}
+};
