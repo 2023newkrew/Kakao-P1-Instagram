@@ -1,10 +1,10 @@
-import { CLASS_NAME, DISPLAY } from "./const.js";
+import { CLASS_NAME, DISPLAY } from './const.js';
 
 const initCarousel = (postEl) => {
-  const leftBtnEl = postEl.querySelector(".post__left-carousel-button");
-  const rightBtnEl = postEl.querySelector(".post__right-carousel-button");
-  const mediasContainerEl = postEl.querySelector(".post__medias");
-  const indicatorsEl = postEl.querySelectorAll(".post__indicator");
+  const leftBtnEl = postEl.querySelector('.post__left-carousel-button');
+  const rightBtnEl = postEl.querySelector('.post__right-carousel-button');
+  const mediasContainerEl = postEl.querySelector('.post__medias');
+  const indicatorsEl = postEl.querySelectorAll('.post__indicator');
 
   const maxMediaPage = mediasContainerEl.childElementCount - 1;
 
@@ -47,8 +47,8 @@ const initCarousel = (postEl) => {
     displayButtons();
   }
 
-  leftBtnEl.addEventListener("click", previousMedia);
-  rightBtnEl.addEventListener("click", nextMedia);
+  leftBtnEl.addEventListener('click', previousMedia);
+  rightBtnEl.addEventListener('click', nextMedia);
 
   render(false);
 };
