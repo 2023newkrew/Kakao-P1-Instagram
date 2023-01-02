@@ -256,6 +256,13 @@ function init() {
         closeSearchBox();
     };
 
+    const onClickSearchBox = (event) => {
+        console.log(event.target.tagName, "tttt");
+        if (event.target.tagName === "KEYWORD-BOX") {
+            window.location.href = `https://www.google.com/search?q=${event.target.innerText}`;
+        }
+    };
+
     /* 이벤트 핸들러 부착*/
     $searchBoxInput.addEventListener("keydown", onKeyDownSearchBoxInput);
     $searchBoxInput.addEventListener("focus", onKeyDownSearchBox);
@@ -266,12 +273,14 @@ function init() {
         util.makeDebounceHandler(onKeyDownSearchBox, SEARCH_DEBOUNCE_DELAY)
     );
     $searchBox.addEventListener("click", onKeyDownSearchBox);
+    $searchBox.addEventListener("mousedown", onClickSearchBox);
 
     window.addEventListener(
         "resize",
         util.makeDebounceHandler(makeAdjustPostTransform(), POST_DEBOUNCE_DELAY)
     );
     window.addEventListener("load", onload);
+
     $toggleThemeBtn.addEventListener("click", onDarkThemeBtnClick);
     $rightArrow.addEventListener(
         "click",
