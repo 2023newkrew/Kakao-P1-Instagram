@@ -39,8 +39,9 @@ const initCarousel = (postEl) => {
   }
 
   const render = (isMoveMedia = true) => {
-    if (isMoveMedia)
+    if (isMoveMedia) {
       mediasContainerEl.style.transform = `translateX(-${mediaPage.currentIndex * 100}%)`;
+    }
 
     updateIndicator();
     displayButtons();
