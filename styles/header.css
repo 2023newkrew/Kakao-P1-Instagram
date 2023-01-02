@@ -2,7 +2,7 @@
 .header {
   width: 100%;
   height: 44px;
-  background-color: #FFFFFF;
+  background-color: var(--background-color);
 
   display: flex;
   justify-content: center;
@@ -20,7 +20,7 @@
 
   width: 100%;
   height: 1px;
-  background-color: #DBDBDB;
+  background-color: var(--card-border-color);
 }
 
 .header__content {
@@ -42,6 +42,8 @@
   background-color: transparent;
   border: none;
   cursor: pointer;
+  width: 24px;
+  height: 24px;
 }
 
 .header__theme-button-sun {
@@ -49,6 +51,14 @@
 }
 
 .header__theme-button-moon {
+  display: unset;
+}
+
+:root.nightMode .header__theme-button-moon {
+  display: none;
+}
+
+:root.nightMode .header__theme-button-sun {
   display: unset;
 }
 
@@ -129,7 +139,6 @@
 .profile-button__picture {
   width: 24px;
   height: 24px;
-  border-radius: 50%;
 
   overflow: hidden;
   position: relative;

@@ -4,9 +4,9 @@
 *,
 *::after,
 *::before {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 *,
@@ -14,20 +14,47 @@ button,
 input,
 select,
 textarea {
-    font-family: 'Roboto';
+  font-family: 'Roboto';
 }
 
 /* General Styles */
 body {
-    min-height: 100vh;
+  min-height: 100vh;
 
-    display: flex;
-    flex-direction: column;
-    overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  background-color: var(--background-color);
+  color: var(--primary-text-color);
 }
 
 img {
-    max-width: 100%;
+  max-width: 100%;
 }
 
+.avatar {
+  border-radius: 50%;
+  overflow: hidden;
+}
 
+:root {
+  --background-color: #FAFAFA;
+  --card-background-color: white;
+  --card-border-color: #DBDBDB;
+  --primary-text-color: black;
+  --secondary-text-color: #8E8E8E;
+  --accent-color: #4285F5;
+}
+
+:root.nightMode {
+  --background-color: #121212;
+  --card-background-color: black;
+  --card-border-color: #363636;
+  --primary-text-color: white;
+  --secondary-text-color: #A8A8A8;
+  --accent-color: #4285F5;
+}
+
+:root.nightMode img[src*="svg"] {
+  filter: brightness(0) invert(1);
+}
