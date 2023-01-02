@@ -1,6 +1,7 @@
 import initCarousel from "./carousel.js";
 import { CLASS_NAME } from "./const.js";
 import { dummyPosts } from "./faker.js";
+import infiniteScrollUtil from "./utils/infinite-scroll-util.js";
 
 const initPosts = () => {
   const createPostElement = (postData) => {
@@ -97,11 +98,20 @@ const initPosts = () => {
     return postEl;
   }
 
-  const postsEl = document.querySelector(".posts");
-  const postsElArray = dummyPosts.map(createPostElement);
+  const createPosts = () => {
+    const postsEl = document.querySelector(".posts");
+    const postsElArray = dummyPosts.map(createPostElement);
 
-  postsElArray.forEach(initCarousel);
-  postsEl.append(...postsElArray);
+    postsElArray.forEach(initCarousel);
+    postsEl.append(...postsElArray);
+  }
+
+  createPosts();
+
+  infiniteScrollUtil({
+    lastItemSelector: ".post:last-child",
+    onReachLastItem: createPosts,
+  });
 }
 
 export default initPosts;
