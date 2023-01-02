@@ -1,6 +1,6 @@
 import { CLASS_NAME } from "./const.js";
 
-export const initNightMode = () => {
+const initNightMode = () => {
   const themeBtnEl = document.querySelector(".header__theme-button");
 
   const getIsNightMode = () => localStorage.getItem(CLASS_NAME.NIGHT_MODE) === "true";
@@ -18,3 +18,5 @@ export const initNightMode = () => {
 
   if (getIsNightMode()) setNightTheme();
 }
+
+export default initNightMode;
