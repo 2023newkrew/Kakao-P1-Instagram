@@ -1,6 +1,6 @@
 import { CLASS_NAME, DISPLAY } from "./const.js";
 
-export const initCarousel = (postEl) => {
+const initCarousel = (postEl) => {
   const leftBtnEl = postEl.querySelector(".post__left-carousel-button");
   const rightBtnEl = postEl.querySelector(".post__right-carousel-button");
   const mediasContainerEl = postEl.querySelector(".post__medias");
@@ -51,3 +51,5 @@ export const initCarousel = (postEl) => {
 
   render(false);
 };
+
+export default initCarousel;
