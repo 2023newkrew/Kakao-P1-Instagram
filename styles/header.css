@@ -119,6 +119,10 @@
   z-index: 10;
 }
 
+.header__search-result--show {
+  display: block;
+}
+
 .header__search-result-item {
   display: flex;
   align-items: center;

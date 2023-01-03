@@ -1,11 +1,11 @@
-import { AUTO_COMPLETE_LOCAL_KEYWORDS, DISPLAY, GOOGLE_SEARCH_BASE_URL, MAXIMUM_RESULT_COUNT } from './const.js';
+import { AUTO_COMPLETE_LOCAL_KEYWORDS, GOOGLE_SEARCH_BASE_URL, MAXIMUM_RESULT_COUNT } from './const.js';
 
 
 const initAutoComplete = () => {
   const searchInputEl = document.querySelector('.header__search input');
   const searchResultEl = document.querySelector('.header__search-result');
 
-  const searchResultTemplate = (result) => {
+  const getSearchResultTemplate = (result) => {
     return `
       <li class='header__search-result-item'>
         <a href='${`${GOOGLE_SEARCH_BASE_URL}${result}`}' class='header__search-result-link'>
@@ -17,38 +17,36 @@ const initAutoComplete = () => {
     `;
   };
 
-  const searchResultList = (results) => {
-    const hasResults = results.length > 0;
-    
+  const getSearchResultList = (results) => {
     return `
       <ul class='header__search-result-list'>
-        ${hasResults
-          ? results.map((result) => searchResultTemplate(result)).join('')
+        ${results.length > 0
+          ? results.map((result) => getSearchResultTemplate(result)).join('')
           : `<li class='header__search-result-item'>No result</li>`}
       </ul>
     `;
   };
 
   const search = (searchKeyword) => {
-    const regex = new RegExp(`(^${searchKeyword}| +${searchKeyword})`, 'gi');
+    const trimKeyword = searchKeyword.trim();
+
+    const regex = new RegExp(`(^${trimKeyword}| +${trimKeyword})`, 'gi');
 
     const result = AUTO_COMPLETE_LOCAL_KEYWORDS
       .filter((keyword) => keyword.match(regex))
       .slice(0, MAXIMUM_RESULT_COUNT);
 
-    searchResultEl.innerHTML = searchResultList(result);
+    searchResultEl.innerHTML = getSearchResultList(result);
   };
 
-  const onTextInput = (event) => {
-    const keyword = event.target.value;
-
-    if (keyword.length === 0) {
-      searchResultEl.style.display = DISPLAY.NONE;
+  const onTextInput = ({ target: { value }}) => {
+    if (value.length === 0) {
+      searchResultEl.classList.remove('header__search-result--show');
       return;
     }
 
-    if (searchResultEl.style.display !== DISPLAY.BLOCK) searchResultEl.style.display = DISPLAY.BLOCK;
-    search(keyword);
+    searchResultEl.classList.add('header__search-result--show');
+    search(value);
   };
 
   searchInputEl.addEventListener('input', onTextInput);
