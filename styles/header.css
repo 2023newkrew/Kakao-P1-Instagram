@@ -116,6 +116,31 @@
   line-height: 0;
 }
 
+/* Search Suggestion */
+.search-suggestion__container {
+  position: relative;
+  top: 2px;
+  z-index: 1;
+  background-color: var(--primary-background);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.search-suggestion__item {
+  padding: 6px 8px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.search-suggestion__item:hover {
+  background-color: var(--secondary-background);
+}
+
+.search-suggestion__item:not(:last-child) {
+  border-bottom: 1px solid var(--border);
+}
+
 /* Profile Button */
 .profile-button {
   background-color: transparent;
