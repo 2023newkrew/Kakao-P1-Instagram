@@ -1,12 +1,12 @@
 import { initHorizontalScroll, initInfiniteScroll } from "./util.js";
 import { CAROUSEL_SCROLL_AMOUNT, POST_FETCH_AMOUNT } from "./CONSTANTS.js";
 
-function initIndicator({ $container, items, indicators }) {
+function initIndicator({ containerEl, itemEls, indicatorEls }) {
   const indexObserver = new IntersectionObserver(
     (entries) => {
       entries.forEach(({ isIntersecting, target }) => {
-        const index = items.indexOf(target);
-        const indicatorClassList = indicators[index].classList;
+        const index = itemEls.indexOf(target);
+        const indicatorClassList = indicatorEls[index].classList;
 
         if (isIntersecting) {
           indicatorClassList.add("post__indicator--focused");
@@ -16,40 +16,40 @@ function initIndicator({ $container, items, indicators }) {
       });
     },
     {
-      root: $container,
+      root: containerEl,
       threshold: 0.5,
     }
   );
 
-  items.forEach(($item) => indexObserver.observe($item));
+  itemEls.forEach((itemEl) => indexObserver.observe(itemEl));
 }
 
-function initCarousel($post) {
-  const $medias = $post.querySelector(".post__medias");
-  const medias = Array.from($post.querySelectorAll(".post__media"));
-  const $prevButton = $post.querySelector(".medias__button--prev");
-  const $nextButton = $post.querySelector(".medias__button--next");
-  const indicators = Array.from($post.querySelectorAll(".post__indicator"));
+function initCarousel(postEl) {
+  const mediasEl = postEl.querySelector(".post__medias");
+  const mediaEls = Array.from(postEl.querySelectorAll(".post__media"));
+  const prevButtonEl = postEl.querySelector(".medias__button--prev");
+  const nextButtonEl = postEl.querySelector(".medias__button--next");
+  const indicatorEls = Array.from(postEl.querySelectorAll(".post__indicator"));
 
   initHorizontalScroll({
-    $container: $medias,
-    items: medias,
-    $prevButton,
-    $nextButton,
+    containerEl: mediasEl,
+    itemEls: mediaEls,
+    prevButtonEl,
+    nextButtonEl,
     scrollAmount: CAROUSEL_SCROLL_AMOUNT,
   });
 
   initIndicator({
-    $container: $medias,
-    items: medias,
-    indicators,
+    containerEl: mediasEl,
+    itemEls: mediaEls,
+    indicatorEls,
   });
 }
 
 function createPostEl() {
-  const $post = document.createElement("article");
-  $post.classList.add("post");
-  $post.innerHTML = `<div class="post__header">
+  const postEl = document.createElement("article");
+  postEl.classList.add("post");
+  postEl.innerHTML = `<div class="post__header">
   <div class="post__profile">
     <a href="" target="_blank" class="post__avatar">
       <img src="assets/images/avatar.png" class="avatar" alt="user picture" />
@@ -118,18 +118,18 @@ function createPostEl() {
   </div>
 </div>`;
 
-  initCarousel($post);
+  initCarousel(postEl);
 
-  return $post;
+  return postEl;
 }
 
 function fetchPosts(count) {
-  const $posts = document.body.querySelector(".posts");
+  const postsEl = document.body.querySelector(".posts");
 
   Array(count)
     .fill()
     .forEach(() => {
-      $posts.appendChild(createPostEl());
+      postsEl.appendChild(createPostEl());
     });
 }
 

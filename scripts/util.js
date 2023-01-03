@@ -1,36 +1,36 @@
-function createScrollObserver({ $container, $button }) {
+function createScrollObserver({ containerEl, buttonEl }) {
   return new IntersectionObserver(
     ([{ isIntersecting }]) => {
-      const buttonClassList = $button.classList;
+      const buttonElClassList = buttonEl.classList;
 
-      isIntersecting ? buttonClassList.add("hidden") : buttonClassList.remove("hidden");
+      isIntersecting ? buttonElClassList.add("hidden") : buttonElClassList.remove("hidden");
     },
     {
-      root: $container,
+      root: containerEl,
       threshold: 1,
     }
   );
 }
 
 export function initHorizontalScroll({
-  $container,
-  items,
-  $prevButton,
-  $nextButton,
+  containerEl,
+  itemEls,
+  prevButtonEl,
+  nextButtonEl,
   scrollAmount,
 }) {
-  const startObserver = createScrollObserver({ $container, $button: $prevButton });
-  const endObserver = createScrollObserver({ $container, $button: $nextButton });
+  const startObserver = createScrollObserver({ containerEl, buttonEl: prevButtonEl });
+  const endObserver = createScrollObserver({ containerEl, buttonEl: nextButtonEl });
 
-  startObserver.observe(items.at(0));
-  endObserver.observe(items.at(-1));
+  startObserver.observe(itemEls.at(0));
+  endObserver.observe(itemEls.at(-1));
 
-  $prevButton.addEventListener("click", () => {
-    $container.scrollLeft -= scrollAmount;
+  prevButtonEl.addEventListener("click", () => {
+    containerEl.scrollLeft -= scrollAmount;
   });
 
-  $nextButton.addEventListener("click", () => {
-    $container.scrollLeft += scrollAmount;
+  nextButtonEl.addEventListener("click", () => {
+    containerEl.scrollLeft += scrollAmount;
   });
 }
 

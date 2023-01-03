@@ -2,16 +2,16 @@ import { initHorizontalScroll } from "./util.js";
 import { STORY_SCROLL_AMOUNT } from "./CONSTANTS.js";
 
 export function initStory() {
-  const $stories = document.body.querySelector(".stories__content");
-  const stories = Array.from(document.body.querySelectorAll(".story"));
-  const $prevButton = document.body.querySelector(".stories__button--prev");
-  const $nextButton = document.body.querySelector(".stories__button--next");
+  const storiesEl = document.body.querySelector(".stories__content");
+  const storyEls = Array.from(document.body.querySelectorAll(".story"));
+  const prevButtonEl = document.body.querySelector(".stories__button--prev");
+  const nextButtonEl = document.body.querySelector(".stories__button--next");
 
   initHorizontalScroll({
-    $container: $stories,
-    items: stories,
-    $prevButton,
-    $nextButton,
+    containerEl: storiesEl,
+    itemEls: storyEls,
+    prevButtonEl,
+    nextButtonEl,
     scrollAmount: STORY_SCROLL_AMOUNT,
   });
 }

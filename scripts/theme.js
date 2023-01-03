@@ -1,7 +1,7 @@
 export function initTheme() {
-  const $toggleThemeButton = document.body.querySelector(".header__theme-button");
+  const toggleThemeButtonEl = document.body.querySelector(".header__theme-button");
 
-  $toggleThemeButton.addEventListener("click", () => {
+  toggleThemeButtonEl.addEventListener("click", () => {
     const rootClassList = document.documentElement.classList;
 
     rootClassList.toggle("dark-theme");
