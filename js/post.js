@@ -1,9 +1,14 @@
-import { initCarousel } from './carousel.js';
-import { MOCK_POSTS_DATA } from './constants/post.js';
+import {initCarousel} from './carousel.js';
+import {MOCK_POSTS_DATA} from './constants/post.js';
+import {useVisibilityObserver} from './utils/observer.js';
 
+const postsContainer = document.querySelector('.posts');
+const loader = document.querySelector('#posts__loader');
+
+let isLoading = false;
+let page = 0;
 
 const makePostTemplate = ({username, content, images}) => `
-  <article class="post">
     <header class="post__header">
       <div class="post__profile">
         <a href="" target="_blank" class="post__avatar">
@@ -23,13 +28,14 @@ const makePostTemplate = ({username, content, images}) => `
       </button>
     <div class="post__medias carousel-sections-scroll">
       <ul class="post_media carousel-sections">
-        ${
-          images.map((image, index)=>
-            `<li class="carousel-section">
+        ${images
+          .map(
+            (image, index) =>
+              `<li class="carousel-section">
                 <img src="${image}" alt="게시글 이미지 ${index}" />
             </li>`
-          ).join('\n')
-        }
+          )
+          .join('\n')}
       </ul>
     </div>
       <button class="post__button next-button">
@@ -47,8 +53,6 @@ const makePostTemplate = ({username, content, images}) => `
             </button>
 
             <div class="post__indicators">
-              <div></div>
-              <div></div>
             </div>
 
             <button class="post__button post__button--align-right">
@@ -77,26 +81,119 @@ const makePostTemplate = ({username, content, images}) => `
             <span class="post__date-time">30 minutes ago</span>
         </div>
       </div>
-    </article>
 `;
 
-const postsContainer = document.querySelector('.posts');
-
-const initPostCarousel = (post)=>{
+const initPostCarousel = post => {
   const slidesContainer = post.querySelector('.post__content .carousel-sections');
   const prevButton = post.querySelector('.prev-button');
   const nextButton = post.querySelector('.next-button');
 
   initCarousel(slidesContainer, prevButton, nextButton);
+
+  const ioOptions = {
+    root: slidesContainer.parentNode,
+    threshold: 1,
+  };
+  const initPrevButtonObserver = useVisibilityObserver(
+    slidesContainer.querySelector('.carousel-section:first-child'),
+    prevButton,
+    ioOptions
+  );
+  const initNextButtonObserver = useVisibilityObserver(
+    slidesContainer.querySelector('.carousel-section:last-child'),
+    nextButton,
+    ioOptions
+  );
+  initPrevButtonObserver();
+  initNextButtonObserver();
 };
 
-const renderPosts = ()=>{
-  postsContainer.innerHTML = MOCK_POSTS_DATA.map(makePostTemplate).join('\n');
-}
-
-export const initPosts = async ()=>{
-  renderPosts();
-
-  const posts = postsContainer.querySelectorAll('.post');
+const initPostsCarousel = posts => {
   posts.forEach(initPostCarousel);
-}
+};
+
+const initPostIndicatorObserver = (carouselSection, root, indicator) => {
+  const ioOptions = {
+    root,
+    threshold: 0.5,
+  };
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        indicator.classList.add('active');
+      } else {
+        indicator.classList.remove('active');
+      }
+    });
+  }, ioOptions);
+
+  observer.observe(carouselSection);
+};
+
+const initIndicator = (post, images) => {
+  const indicatorsContainer = post.querySelector('.post__indicators');
+  const carouselContainer = post.querySelector('.carousel-sections-scroll');
+  const carouselSections = carouselContainer.querySelectorAll('.carousel-section');
+
+  const indicators = images.map((_, index) => {
+    const indicator = document.createElement('div');
+    indicator.className = 'post__indicator';
+    initPostIndicatorObserver(carouselSections[index], carouselContainer, indicator);
+    return indicator;
+  });
+
+  indicators[0].classList.add('active');
+  indicatorsContainer.append(...indicators);
+};
+
+const loadPost = () => {
+  isLoading = true;
+
+  if (page > MOCK_POSTS_DATA.last) {
+    loader.textContent = '마지막 게시물입니다.';
+    isLoading = false;
+    return [];
+  }
+
+  const newPosts = MOCK_POSTS_DATA.data[page].map(postData => {
+    const postEl = document.createElement('article');
+    postEl.className = 'post';
+    postEl.innerHTML = makePostTemplate(postData);
+
+    initIndicator(postEl, postData.images);
+
+    return postEl;
+  });
+
+  page += 1;
+  isLoading = false;
+
+  return newPosts;
+};
+
+const renderPosts = posts => {
+  postsContainer.append(...posts);
+  initPostsCarousel(posts);
+};
+
+const initPostLoaderObserver = () => {
+  const observer = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !isLoading) {
+          const newPosts = loadPost(page);
+          renderPosts(newPosts);
+        }
+      });
+    },
+    {
+      threshold: 0.1,
+    }
+  );
+  observer.observe(loader);
+};
+
+export const initPosts = async () => {
+  initPostLoaderObserver();
+};

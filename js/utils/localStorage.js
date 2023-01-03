@@ -1,11 +1,11 @@
-export function getItem(key){
+export function getItem(key) {
   return JSON.parse(localStorage.getItem(key));
 }
-export function setItem(key, value){
+export function setItem(key, value) {
   localStorage.setItem(key, JSON.stringify(value));
 }
 
 export default {
   getItem,
-  setItem
-}
+  setItem,
+};
