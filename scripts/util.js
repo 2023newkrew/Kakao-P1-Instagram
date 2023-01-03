@@ -33,3 +33,20 @@ export function initHorizontalScroll({
     $container.scrollLeft += scrollAmount;
   });
 }
+
+export function initInfiniteScroll({ selectors, callback }) {
+  const observer = new IntersectionObserver(
+    ([{ isIntersecting, target }], observer) => {
+      if (!isIntersecting) return;
+
+      observer.unobserve(target);
+      callback();
+      observer.observe(document.querySelector(selectors));
+    },
+    {
+      threshold: 1,
+    }
+  );
+
+  observer.observe(document.querySelector(selectors));
+}
