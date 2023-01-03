@@ -29,8 +29,8 @@ const initAutoComplete = () => {
     `;
   };
 
-  const search = (keyword) => {
-    const regex = new RegExp(`^${keyword}`, 'gi');
+  const search = (searchKeyword) => {
+    const regex = new RegExp(`(^${searchKeyword}| +${searchKeyword})`, 'gi');
 
     const result = AUTO_COMPLETE_LOCAL_KEYWORDS
       .filter((keyword) => keyword.match(regex))
