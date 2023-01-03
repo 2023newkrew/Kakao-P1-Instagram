@@ -3,6 +3,7 @@
   display: block;
   margin-left: calc(var(--base-unit) * 2);
   max-width: 375px;
+  max-height: 600px;
 }
 
 @media (max-width: 1000px){

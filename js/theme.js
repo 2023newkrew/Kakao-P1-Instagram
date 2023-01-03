@@ -41,7 +41,7 @@ export const toggleTheme = () => {
 }
 
 export const initTheme = () => {
-	toggleButton.addEventListener('click', toggleMode);
+	themeButton.addEventListener('click', toggleTheme);
 
 	const currentTheme = getItem('theme');
 
@@ -55,6 +55,6 @@ export const initTheme = () => {
 export default {
 	setDarkTheme,
 	setLightTheme,
-	toggleMode,
+	toggleTheme,
 	initTheme
 };
