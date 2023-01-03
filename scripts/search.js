@@ -1,3 +1,4 @@
+import { createElementFromHtml } from "./utils/dom.js";
 import { SEARCH_SUGGESTIONS } from "./constants.js";
 
 function createSuggestions({ suggestionsEl, query }) {
@@ -12,11 +13,9 @@ function createSuggestions({ suggestionsEl, query }) {
 }
 
 function createSuggestionEl({ query, suggestion }) {
-  const suggestionEl = document.createElement("div");
-  suggestionEl.classList.add("search-suggestion");
-  suggestionEl.innerHTML = `<b>${query}</b>${suggestion.substring(query.length)}`;
-
-  return suggestionEl;
+  return createElementFromHtml(`<div class="search-suggestion">
+  <b>${query}</b>${suggestion.substring(query.length)}
+</div>`);
 }
 
 export function initSearch() {

@@ -1,4 +1,4 @@
-import { initHorizontalScroll } from "./util.js";
+import { initHorizontalScroll } from "./utils/scroll.js";
 import { STORY_SCROLL_AMOUNT } from "./constants.js";
 
 export function initStory() {
