@@ -34,19 +34,19 @@ export function initHorizontalScroll({
   });
 }
 
-export function initInfiniteScroll({ selectors, callback }) {
+export function initInfiniteScroll({ lastItemSelector, callback }) {
   const observer = new IntersectionObserver(
     ([{ isIntersecting, target }], observer) => {
       if (!isIntersecting) return;
 
       observer.unobserve(target);
       callback();
-      observer.observe(document.querySelector(selectors));
+      observer.observe(document.querySelector(lastItemSelector));
     },
     {
-      threshold: 1,
+      threshold: 0.8,
     }
   );
 
-  observer.observe(document.querySelector(selectors));
+  observer.observe(document.querySelector(lastItemSelector));
 }

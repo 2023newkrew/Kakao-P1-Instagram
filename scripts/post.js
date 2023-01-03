@@ -136,7 +136,7 @@ function fetchPosts(count) {
 export function initPost() {
   fetchPosts(POST_FETCH_AMOUNT);
   initInfiniteScroll({
-    selectors: ".post:last-child",
+    lastItemSelector: ".post:last-child",
     callback: () => fetchPosts(POST_FETCH_AMOUNT),
   });
 }
