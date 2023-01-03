@@ -1,5 +1,5 @@
 import { initHorizontalScroll, initInfiniteScroll } from "./util.js";
-import { CAROUSEL_SCROLL_AMOUNT } from "./CONSTANTS.js";
+import { CAROUSEL_SCROLL_AMOUNT, POST_FETCH_AMOUNT } from "./CONSTANTS.js";
 
 function initIndicator({ $container, items, indicators }) {
   const indexObserver = new IntersectionObserver(
@@ -134,9 +134,9 @@ function fetchPosts(count) {
 }
 
 export function initPost() {
-  fetchPosts(2);
+  fetchPosts(POST_FETCH_AMOUNT);
   initInfiniteScroll({
     selectors: ".post:last-child",
-    callback: () => fetchPosts(2),
+    callback: () => fetchPosts(POST_FETCH_AMOUNT),
   });
 }
