@@ -1,4 +1,4 @@
-import { SEARCH_SUGGESTIONS } from "./CONSTANTS.js";
+import { SEARCH_SUGGESTIONS } from "./constants.js";
 
 function createSuggestions({ suggestionsEl, query }) {
   const suggestionEls = query

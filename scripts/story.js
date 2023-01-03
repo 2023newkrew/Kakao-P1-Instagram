@@ -1,5 +1,5 @@
 import { initHorizontalScroll } from "./util.js";
-import { STORY_SCROLL_AMOUNT } from "./CONSTANTS.js";
+import { STORY_SCROLL_AMOUNT } from "./constants.js";
 
 export function initStory() {
   const storiesEl = document.body.querySelector(".stories__content");

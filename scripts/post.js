@@ -1,5 +1,5 @@
 import { initHorizontalScroll, initInfiniteScroll } from "./util.js";
-import { CAROUSEL_SCROLL_AMOUNT, POST_FETCH_AMOUNT } from "./CONSTANTS.js";
+import { CAROUSEL_SCROLL_AMOUNT, POST_FETCH_AMOUNT } from "./constants.js";
 
 function initIndicator({ containerEl, itemEls, indicatorEls }) {
   const indexObserver = new IntersectionObserver(
