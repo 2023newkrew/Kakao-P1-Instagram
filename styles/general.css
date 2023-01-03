@@ -24,10 +24,23 @@ body {
     display: flex;
     flex-direction: column;
     overflow-y: auto;
+    font-size: 14px;
 }
 
 img {
     max-width: 100%;
+    display: block;
+    border: 0;
 }
 
+button {
+    border: 0;
+    outline: 0;
+    background-color: var(--background-gray-1);
+}
+
+a, span, h2, button {
+    text-decoration: none;
+    color: var(--black-1);
+}
 

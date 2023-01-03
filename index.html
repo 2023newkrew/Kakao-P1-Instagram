@@ -8,6 +8,7 @@
   <link rel="stylesheet" type="text/css" href="styles/header.css" />
   <link rel="stylesheet" type="text/css" href="styles/main.css" />
   <link rel="stylesheet" type="text/css" href="styles/side.css" />
+  <link rel="stylesheet" type="text/css" href="styles/darkmode.css" />
 </head>
 
 <body>
@@ -17,8 +18,14 @@
         <a href="index.html" class="header__home">
           <img src="assets/icons/logo.svg" alt="logo" />
         </a>
+        <button class="header__theme-button" title="Toggle Theme">
+          <img src="assets/icons/moon.svg" class="header__theme-button-moon" alt="moon"/>
+          <img src="assets/icons/sun.svg" class="header__theme-button-sun" alt="sun"/>
+        </button>
+        <!-- ThemeButton의 EventLister 등록을 위해 ThemeButton 등록 이후 로드 -->
+        <script src="./scripts/darkmode.js"></script>
+        <!-- 초기 깜빡임 제거를 위해 렌더링 이전 로드 -->
       </div>
-
       <div class="header__search">
         <img src="assets/icons/search.svg" alt="search"  />
         <input type="text" placeholder="Search" />
@@ -192,6 +199,12 @@
       </div>
     </section>
   </main>
+  <script type="text/javascript" src="./data/postItems.json"></script>
+  <script type="text/javascript" src="./data/storyItems.json"></script>
+
+  <script src="./scripts/post.js"></script>
+  <script src="./scripts/story.js"></script>
+  <script src="./scripts/autocomplete.js"></script>
 
 </body>
 

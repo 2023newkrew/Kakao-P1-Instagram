@@ -1,0 +1,53 @@
+[
+    {
+        "user": {
+            "avatar": "assets/images/avatar.png",
+            "name": "hash.table"
+        },
+        "content": "오늘도 카카오맨 hash는 행복합니다.\n카카오라서 행복합니다",
+        "pictures": [
+            "assets/images/picture.jpeg"
+        ],
+        "likes": [
+            {
+                "user": {
+                    "avatar": "assets/images/avatar.png",
+                    "name": "tori.ham"
+                }
+            },
+            {
+                "user": {
+                    "avatar": "assets/images/avatar.png",
+                    "name": "muse.le"
+                }
+            }
+        ],
+        "updatedAt": "2022-12-28"
+    },
+    {
+        "user": {
+            "avatar": "assets/images/avatar.png",
+            "name": "hash.table"
+        },
+        "content": "오늘도 카카오맨 hash는 행복합니다.\n카카오라서 행복합니다",
+        "pictures": [
+            "assets/images/picture.jpeg",
+            "assets/images/picture.jpeg"
+        ],
+        "likes": [
+            {
+                "user": {
+                    "avatar": "assets/images/avatar.png",
+                    "name": "tori.ham"
+                }
+            },
+            {
+                "user": {
+                    "avatar": "assets/images/avatar.png",
+                    "name": "muse.le"
+                }
+            }
+        ],
+        "updatedAt": "2022-12-26"
+    }
+]
