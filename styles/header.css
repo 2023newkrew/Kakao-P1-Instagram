@@ -39,17 +39,29 @@
 }
 
 .header__theme-button {
+  width: 40px;
+  height: 40px;
   background-color: transparent;
   border: none;
   cursor: pointer;
 }
 
-.header__theme-button-sun {
+.header__theme-button--light {
   display: none;
 }
 
-.header__theme-button-moon {
+:root.dark-theme .header__theme-button--light {
+  width: 24px;
   display: unset;
+}
+
+.header__theme-button--dark {
+  width: 24px;
+  display: unset;
+}
+
+:root.dark-theme .header__theme-button--dark {
+  display: none;
 }
 
 .header__search {
