@@ -1,5 +1,5 @@
 export function initTheme() {
-  const $toggleThemeButton = document.querySelector(".header__theme-button");
+  const $toggleThemeButton = document.body.querySelector(".header__theme-button");
 
   $toggleThemeButton.addEventListener("click", () => {
     const rootClassList = document.documentElement.classList;

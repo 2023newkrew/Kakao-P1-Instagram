@@ -124,7 +124,7 @@ function createPostEl() {
 }
 
 function fetchPosts(count) {
-  const $posts = document.querySelector(".posts");
+  const $posts = document.body.querySelector(".posts");
 
   Array(count)
     .fill()

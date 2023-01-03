@@ -41,12 +41,12 @@ export function initInfiniteScroll({ lastItemSelector, callback }) {
 
       observer.unobserve(target);
       callback();
-      observer.observe(document.querySelector(lastItemSelector));
+      observer.observe(document.body.querySelector(lastItemSelector));
     },
     {
       threshold: 0.8,
     }
   );
 
-  observer.observe(document.querySelector(lastItemSelector));
+  observer.observe(document.body.querySelector(lastItemSelector));
 }

@@ -20,7 +20,7 @@ function createSuggestionEl({ query, suggestion }) {
 }
 
 export function initSearch() {
-  const $search = document.querySelector(".header__search");
+  const $search = document.body.querySelector(".header__search");
   const $searchInput = $search.querySelector("input");
   const $suggestions = $search.querySelector(".search-suggestions");
 
