@@ -2,7 +2,7 @@
 .header {
   width: 100%;
   height: 44px;
-  background-color: #FFFFFF;
+  background-color: var(--primary);
 
   display: flex;
   justify-content: center;
@@ -14,13 +14,13 @@
 }
 
 .header::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 0;
 
   width: 100%;
   height: 1px;
-  background-color: #DBDBDB;
+  background-color: var(--border);
 }
 
 .header__content {
@@ -56,9 +56,11 @@
   width: 216px;
   height: 28px;
 
-  display: none;
   align-items: center;
   position: relative;
+
+  display: flex;
+  align-items: center;
 }
 
 .header__search img {
@@ -67,22 +69,29 @@
 
   position: absolute;
   left: 8px;
+
+  cursor: pointer;
+  transition: scale 0.2s ease-in;
+}
+
+.header__search img:hover {
+  scale: 1.2;
 }
 
 .header__search input {
   width: 100%;
-  height: 100%;
-  background-color: #FAFAFA;
+  height: 120%;
+  background-color: var(--secondary);
 
   padding: 4px 10px 4px 28px;
-  border: 1px solid #DBDBDB;
+  border: 1px solid var(--border);
   border-radius: 4px;
   outline: none;
 
   font-size: 12px;
-  font-weight: 300;
+  font-weight: 600;
   text-decoration: none;
-  color: #999999;
+  color: var(--text-light);
 
   text-overflow: ellipsis;
   overflow: hidden;
@@ -90,7 +99,37 @@
 }
 
 .header__search input:focus {
-  color: #262626;
+  color: var(--text-dark);
+}
+
+.recommend__area {
+  position: absolute;
+  top: 100%;
+  z-index: 1;
+  width: 100%;
+
+  background-color: var(--primary);
+
+  border: 1px solid var(--story-border);
+  border-top: 0px;
+
+  color: var(--text-dark);
+  font-size: 20px;
+}
+
+.recommend__area div {
+  border-bottom: 1px solid var(--story-border);
+  transition: background-color 0.2s ease-in;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  padding: 5px;
+}
+
+.recommend__area div:hover {
+  background-color: var(--secondary);
 }
 
 .header__buttons {
@@ -133,4 +172,26 @@
 
   overflow: hidden;
   position: relative;
+}
+
+.header__theme-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.header__theme-button-sun {
+  display: none;
+}
+
+.header__theme-button-moon {
+  display: unset;
+}
+
+:root.darkTheme .header__theme-button-sun {
+  display: unset;
+}
+
+:root.darkTheme .header__theme-button-moon {
+  display: none;
 }

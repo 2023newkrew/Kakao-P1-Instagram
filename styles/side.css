@@ -1,0 +1,141 @@
+.side-menu {
+  display: flex;
+  flex-direction: column;
+
+  padding: 60px 20px 20px 30px;
+}
+
+/* side menu user profile */
+
+.side-menu__user-profile {
+  display: flex;
+  align-items: center;
+
+  height: 80px;
+}
+
+.side-menu__user-avatar {
+  width: 80px;
+  margin-right: 10px;
+}
+
+.side-menu__user-info {
+  width: 60%;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.side-menu__user-info a {
+  color: var(--text-dark);
+  font-weight: bolder;
+}
+
+.side-menu__user-info span {
+  color: var(--text-light);
+}
+
+.side-menu__user-button {
+  color: var(--button-blue-color);
+  font-weight: bolder;
+
+  width: 15%;
+}
+
+/* side menu user profile */
+
+/* side menu suggestions sectino */
+
+.side-menu__suggestions-section {
+  display: flex;
+  flex-direction: column;
+
+  margin-bottom: 20px;
+}
+
+.side-menu__suggestions-header {
+  display: flex;
+  justify-content: space-between;
+
+  margin: 20px 0;
+
+  font-size: 12px;
+}
+
+.side-menu__suggestions-header h2 {
+  color: var(--text-light);
+}
+
+.side-menu__suggestions-header button {
+  color: var(--text-dark);
+  font-weight: bolder;
+}
+
+.side-menu__suggestion {
+  display: flex;
+
+  margin-bottom: 20px;
+}
+
+.side-menu__suggestion-avatar {
+  width: 30px;
+
+  margin-right: 10px;
+}
+
+.side-menu__suggestion-info {
+  display: flex;
+
+  flex-direction: column;
+}
+
+.side-menu__suggestion-info a {
+  color: var(--text-dark);
+
+  font-weight: bolder;
+}
+
+.side-menu__suggestion-info span {
+  color: var(--text-light);
+
+  /* ellipsis를 사용하기 위해서는 최대 너비 값을 지정해 둬야 함 */
+  max-width: 190px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.side-menu__suggestion-button {
+  color: var(--button-blue-color);
+  font-weight: bolder;
+}
+
+/* side menu suggestions sectino */
+
+/* side menu footer */
+
+.side-menu__footer {
+  color: var(--text-light);
+
+  display: flex;
+  flex-direction: column;
+}
+
+.side-menu__footer-list {
+  display: flex;
+  flex-direction: row;
+
+  list-style: none;
+}
+
+.side-menu__footer-item {
+  padding-right: 20px;
+}
+
+/* side menu footer */
+
+@media (max-width: 650px) {
+  .side-menu {
+    display: none;
+  }
+}
