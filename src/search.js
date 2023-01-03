@@ -27,6 +27,9 @@ searchButtonElement.addEventListener('click', () => {
     }
 })
 
+
+// mousedown < mouseup < click
+
 headerSearchElement.addEventListener('click', () => {
     textAreaElement.style.display = 'block';
 })

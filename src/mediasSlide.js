@@ -1,5 +1,7 @@
-import debounce from "./utils/debounce.js";
-import { imageObserver } from "./utils/imageObserver.js";
+
+import { imageObserver } from "./observer/imageObserver.js";
+import { postEndObserver } from "./observer/postEndObserver.js";
+import { resizeObserver } from "./observer/resizeObserver.js";
 
 function makeDummyMedia(dummyMediaCount) {
     function makeIndicator(post, mediaSlideCount) {
@@ -20,15 +22,6 @@ function makeDummyMedia(dummyMediaCount) {
     function filterIndicator(postIndicator, currentMediaIndex) {
         const indicator = postIndicator.querySelector(`:nth-child(${currentMediaIndex + 1})`);
         indicator.classList.toggle('active');
-    }
-
-    function getCurrentMediaIndex(post) {
-        const postIndicatorsElement = post.querySelector(`.post__indicators`);
-        const indicators = Array.prototype.slice.call(postIndicatorsElement.children);
-
-        for (let index = 0; index < indicators.length; index++) {
-            if (indicators[index].className === "active") return index;
-        }
     }
 
     function moveMediaSlide(post, nextMediaIndex, currentMediaIndex) {
@@ -79,37 +72,8 @@ function makeDummyMedia(dummyMediaCount) {
         return post;
     }
 
-    function resizeObserver(posts) {
-        const resizeObserver = new ResizeObserver(debounce((entries) => {
-            const target = Array.prototype.slice.call(entries[0].target.children);
-            rerender(target);
-        }, 200));
-
-        resizeObserver.observe(posts);
-    }
-
-    function rerender(postListElements) {
-        const postContentElement = document.querySelector(`.post__content`);
-        const mediaSlideWidth = postContentElement.clientWidth;
-
-        postListElements.forEach(post => {
-            if (post.className !== 'postEnd') {
-                const mediaSlidesElement = post.querySelector(`.post__medias`);
-                const mediaSlideImgElements = mediaSlidesElement.querySelectorAll('li');
-                const mediaSlideCount = mediaSlideImgElements.length;
-
-                const currentMediaIndex = getCurrentMediaIndex(post);
-
-                mediaSlidesElement.style.width = `${mediaSlideWidth * mediaSlideCount}px`;
-                mediaSlidesElement.style.setProperty('transform', `translateX(${-(currentMediaIndex * mediaSlideWidth)}px)`);
-            }
-        });
-    }
-
     const posts = document.querySelector('.posts');
     const mediaSlideWidth = 582;
-
-    resizeObserver(posts);
 
     for (let index = 0; index < dummyMediaCount; index++) {
         const post = render(posts.firstElementChild.cloneNode(true));
@@ -119,12 +83,9 @@ function makeDummyMedia(dummyMediaCount) {
 };
 
 
-const observer = new IntersectionObserver(debounce((entries) => {
-    if (entries[0].isIntersecting && Math.floor(entries[0].intersectionRatio) === 1) {
-        makeDummyMedia(2);
-    }
-}, 200), { threshold: 1 })
 
+const posts = document.querySelector('.posts');
+postEndObserver(makeDummyMedia);
+imageObserver(posts);
+resizeObserver(posts);
 
-const postEnd = document.querySelector('.postEnd');
-observer.observe(postEnd)
