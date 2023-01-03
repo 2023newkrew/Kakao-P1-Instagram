@@ -1,4 +1,4 @@
-import debounce from "./utils/debounce.js";
+import { debounce } from "./utils/debounce.js";
 
 const autoCompleteDataList = [
     { key: 1, name: '데이터1' },

@@ -1,4 +1,4 @@
-import debounce from "../utils/debounce.js";
+import { debounce } from "../utils/debounce.js";
 
 export const resizeObserver = (posts) => {
     function rerender(postListElements) {
