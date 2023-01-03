@@ -225,10 +225,22 @@
 
 .post__indicators {
   position: absolute;
-  display: inline-block;
+  display: flex;
+  gap: 6px;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.post__indicator {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--secondary-text);
+}
+
+.post__indicator--focused {
+  background-color: var(--primary-text);
 }
 
 .post__likes {
