@@ -1,7 +1,10 @@
 import { initHorizontalScroll, initInfiniteScroll } from "./util.js";
 import { CAROUSEL_SCROLL_AMOUNT, POST_FETCH_AMOUNT } from "./constants.js";
 
-function initIndicator({ containerEl, itemEls, indicatorEls }) {
+function initIndicator({ containerEl, itemElsSelector, indicatorElsSelector }) {
+  const itemEls = Array.from(containerEl.querySelectorAll(itemElsSelector));
+  const indicatorEls = Array.from(containerEl.parentElement.querySelectorAll(indicatorElsSelector));
+
   const indexObserver = new IntersectionObserver(
     (entries) => {
       entries.forEach(({ isIntersecting, target }) => {
@@ -26,23 +29,19 @@ function initIndicator({ containerEl, itemEls, indicatorEls }) {
 
 function initCarousel(postEl) {
   const mediasEl = postEl.querySelector(".post__medias");
-  const mediaEls = Array.from(postEl.querySelectorAll(".post__media"));
-  const prevButtonEl = postEl.querySelector(".medias__button--prev");
-  const nextButtonEl = postEl.querySelector(".medias__button--next");
-  const indicatorEls = Array.from(postEl.querySelectorAll(".post__indicator"));
 
   initHorizontalScroll({
     containerEl: mediasEl,
-    itemEls: mediaEls,
-    prevButtonEl,
-    nextButtonEl,
+    itemElsSelector: ".post__media",
+    prevButtonElSelector: ".medias__button--prev",
+    nextButtonElSelector: ".medias__button--next",
     scrollAmount: CAROUSEL_SCROLL_AMOUNT,
   });
 
   initIndicator({
     containerEl: mediasEl,
-    itemEls: mediaEls,
-    indicatorEls,
+    itemElsSelector: ".post__media",
+    indicatorElsSelector: ".post__indicator",
   });
 }
 
@@ -74,6 +73,11 @@ function createPostEl() {
   <button class="medias__button medias__button--next">
     <img src="assets/icons/arrow.svg" class="arrow-icon" alt="next" />
   </button>
+  <div class="post__indicators">
+    <div class="post__indicator"></div>
+    <div class="post__indicator"></div>
+    <div class="post__indicator"></div>
+  </div>
 </div>
 
 <div class="post__footer">
@@ -84,12 +88,6 @@ function createPostEl() {
     <button class="post__button">
       <img src="assets/icons/comment.svg" class="icon" alt="comment" />
     </button>
-
-    <div class="post__indicators">
-      <div class="post__indicator"></div>
-      <div class="post__indicator"></div>
-      <div class="post__indicator"></div>
-    </div>
 
     <button class="post__button post__button--align-right">
       <img src="assets/icons/bookmark.svg" class="icon" alt="bookmark" />

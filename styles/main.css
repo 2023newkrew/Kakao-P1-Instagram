@@ -214,20 +214,11 @@
   filter: opacity(50%);
 }
 
-.post__buttons {
-  margin: 4px 12px 6px;
-  position: relative;
-}
-
-.post__button--align-right {
-  float: right;
-}
-
 .post__indicators {
   position: absolute;
   display: flex;
   gap: 6px;
-  top: 50%;
+  bottom: -30px;
   left: 50%;
   transform: translate(-50%, -50%);
 }
@@ -240,7 +231,15 @@
 }
 
 .post__indicator--focused {
-  background-color: var(--primary-text);
+  background-color: var(--primary-button);
+}
+
+.post__buttons {
+  margin: 4px 12px 6px;
+}
+
+.post__button--align-right {
+  float: right;
 }
 
 .post__likes {

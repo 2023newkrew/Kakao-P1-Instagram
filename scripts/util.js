@@ -14,11 +14,15 @@ function createScrollObserver({ containerEl, buttonEl }) {
 
 export function initHorizontalScroll({
   containerEl,
-  itemEls,
-  prevButtonEl,
-  nextButtonEl,
+  itemElsSelector,
+  prevButtonElSelector,
+  nextButtonElSelector,
   scrollAmount,
 }) {
+  const itemEls = Array.from(containerEl.querySelectorAll(itemElsSelector));
+  const prevButtonEl = containerEl.parentElement.querySelector(prevButtonElSelector)
+  const nextButtonEl = containerEl.parentElement.querySelector(nextButtonElSelector)
+
   const startObserver = createScrollObserver({ containerEl, buttonEl: prevButtonEl });
   const endObserver = createScrollObserver({ containerEl, buttonEl: nextButtonEl });
 
