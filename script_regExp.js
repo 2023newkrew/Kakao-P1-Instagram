@@ -257,7 +257,6 @@ function init() {
     };
 
     const onClickSearchBox = (event) => {
-        console.log(event.target.tagName, "tttt");
         if (event.target.tagName === "KEYWORD-BOX") {
             window.location.href = `https://www.google.com/search?q=${event.target.innerText}`;
         }
@@ -362,8 +361,9 @@ function makePostDummy(count, imgCount) {
 
         const $indicatorSet = document.createElement("div");
         $indicatorSet.classList.add("post__indicator-set");
+
+        //html에 기본적으로 1개가 추가되어 있어서 imgCount+1임 나중에 지워야 함
         for (let i = 0; i < imgCount + 1; i++) {
-            //html에 기본적으로 1개가 추가되어 있어서 imgCount+1임 나중에 지워야 함
             const $indicator = document.createElement("div");
             $indicator.classList.add("post__indicator");
             if (i === 0) $indicator.classList.add("active");
