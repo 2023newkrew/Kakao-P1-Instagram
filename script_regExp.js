@@ -91,12 +91,22 @@ const util = {
         };
         return onArrowClickByTransform;
     },
-    makeDebounceHandler(handler, delay) {
+    makeDebounceHandler(
+        handler,
+        delay,
+        loadingHandler = null,
+        loadedHandler = null
+    ) {
         let timeOut = undefined;
 
         const debounceHandler = (event) => {
             clearTimeout(timeOut);
-            timeOut = setTimeout(() => handler(event), delay);
+            if (loadingHandler) loadingHandler();
+
+            timeOut = setTimeout(() => {
+                handler(event);
+                if (loadedHandler) loadedHandler();
+            }, delay);
         };
 
         return debounceHandler;
@@ -269,7 +279,25 @@ function init() {
 
     $searchBox.addEventListener(
         "keydown",
-        util.makeDebounceHandler(onKeyDownSearchBox, SEARCH_DEBOUNCE_DELAY)
+        util.makeDebounceHandler(
+            onKeyDownSearchBox,
+            SEARCH_DEBOUNCE_DELAY,
+            () => {
+                const $img = $searchBox.querySelector("img");
+                const imgState = $img.dataset.state;
+                const loadingImgUrl = "assets/icons/loading.gif";
+                if (imgState !== "loading") {
+                    $img.dataset.state = "loading";
+                    $img.src = loadingImgUrl;
+                }
+            },
+            () => {
+                const $img = $searchBox.querySelector("img");
+                const loadedImgUrl = "assets/icons/search.svg";
+                $img.dataset.state = "search";
+                $img.src = loadedImgUrl;
+            }
+        )
     );
     $searchBox.addEventListener("click", onKeyDownSearchBox);
     $searchBox.addEventListener("mousedown", onClickSearchBox);
