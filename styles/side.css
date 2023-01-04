@@ -1,0 +1,126 @@
+.side-menu {
+    display: flex;
+    flex-direction: column;
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-top: 50px;
+}
+.side-menu a {
+    text-decoration: none;
+    color: black;
+}
+.side-menu button {
+    background-color: transparent;
+    border: none;
+    color: blue;
+}
+.side-menu__user-profile {
+    display: flex;
+    align-items: center;
+}
+
+.side-menu__user-avatar img {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.side-menu__user-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.side-menu__user-info span {
+    color: gray;
+    font-size: 12px;
+}
+
+.side-menu__user-button {
+    margin-left: auto;
+}
+
+.side-menu__suggestions-section {
+    display: flex;
+    flex-direction: column;
+}
+
+.side-menu__suggestions-header {
+    display: flex;
+    flex-wrap: nowrap;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+.side-menu__suggestions-header > h2 {
+    font-size: 15px;
+    color: gray;
+
+    align-items: center;
+}
+.side-menu__suggestions-header > button {
+    margin-left: auto;
+    color: black;
+}
+
+.side-menu__suggestions-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.side-menu__suggestion {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.side-menu__suggestion > a {
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+    margin-right: 10px;
+}
+
+.side-menu__suggestion > a > img {
+    border-radius: 50%;
+}
+
+.side-menu__suggestion-info {
+    display: flex;
+    flex-direction: column;
+    max-width: 160px;
+}
+.side-menu__suggestion-info span {
+    font-size: 12px;
+    color: gray;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.side-menu__suggestion-button {
+    margin-left: auto;
+}
+.side-menu__footer {
+    margin-top: 20px;
+    font-size: 10px;
+    color: gray;
+}
+.side-menu__footer a {
+    color: gray;
+}
+.side-menu__footer-list {
+    display: flex;
+    list-style: none;
+}
+.side-menu__footer-item::after {
+    content: "\00a0·\00a0";
+    float: right;
+    display: block;
+}
+.side-menu__footer-item:last-child::after {
+    content: "";
+}
+
+@media (max-width: 1000px) {
+    .side-menu {
+        display: none;
+    }
+}

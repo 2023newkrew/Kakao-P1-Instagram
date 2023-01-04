@@ -1,6 +1,30 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap");
 
 /* CSS Reset */
+:root {
+    --background-color-gray: rgb(249, 249, 249);
+    --background-color-white: white;
+}
+:root.darkTheme {
+    --primary: #000000;
+    --secondary: #050505;
+    --border: #262626;
+
+    --story-border: #707070;
+
+    --text-dark: #fafafa;
+    --text-light: #999999;
+
+    color: var(--text-dark);
+}
+:root.darkTheme a,
+:root.darkTheme button {
+    color: var(--text-dark);
+}
+:root.darkTheme img[src$="svg"] {
+    filter: brightness(0) invert(1);
+}
+
 *,
 *::after,
 *::before {
@@ -14,13 +38,12 @@ button,
 input,
 select,
 textarea {
-    font-family: 'Roboto';
+    font-family: "Roboto";
 }
 
 /* General Styles */
 body {
     min-height: 100vh;
-
     display: flex;
     flex-direction: column;
     overflow-y: auto;
@@ -29,5 +52,3 @@ body {
 img {
     max-width: 100%;
 }
-
-
