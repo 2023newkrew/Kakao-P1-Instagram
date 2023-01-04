@@ -94,18 +94,18 @@ const util = {
     makeDebounceHandler(
         handler,
         delay,
-        loadingHandler = null,
-        loadedHandler = null
+        loadStartHandler = null,
+        loadEndHandler = null
     ) {
         let timeOut = undefined;
 
         const debounceHandler = (event) => {
             clearTimeout(timeOut);
-            if (loadingHandler) loadingHandler();
+            if (loadStartHandler) loadStartHandler();
 
             timeOut = setTimeout(() => {
                 handler(event);
-                if (loadedHandler) loadedHandler();
+                if (loadEndHandler) loadEndHandler();
             }, delay);
         };
 
