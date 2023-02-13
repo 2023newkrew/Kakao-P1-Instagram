@@ -214,21 +214,32 @@
   filter: opacity(50%);
 }
 
+.post__indicators {
+  position: absolute;
+  display: flex;
+  gap: 6px;
+  bottom: -30px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.post__indicator {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--secondary-text);
+}
+
+.post__indicator--focused {
+  background-color: var(--primary-button);
+}
+
 .post__buttons {
   margin: 4px 12px 6px;
-  position: relative;
 }
 
 .post__button--align-right {
   float: right;
-}
-
-.post__indicators {
-  position: absolute;
-  display: inline-block;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
 }
 
 .post__likes {

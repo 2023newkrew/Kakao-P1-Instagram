@@ -1,17 +1,19 @@
-export function initTheme() {
-  const $toggleThemeButton = document.querySelector(".header__theme-button");
+import { DARK_THEME } from "./constants.js";
 
-  $toggleThemeButton.addEventListener("click", () => {
+export function initTheme() {
+  const toggleThemeButtonEl = document.body.querySelector(".header__theme-button");
+
+  toggleThemeButtonEl.addEventListener("click", () => {
     const rootClassList = document.documentElement.classList;
 
-    rootClassList.toggle("dark-theme");
-    localStorage.setItem("theme", rootClassList.contains("dark-theme") ? "dark" : "light");
+    rootClassList.toggle(DARK_THEME);
+    localStorage.setItem(DARK_THEME, rootClassList.contains(DARK_THEME));
   });
 
   window.addEventListener("DOMContentLoaded", () => {
-    const theme = localStorage.getItem("theme");
+    const isDarkTheme = JSON.parse(localStorage.getItem(DARK_THEME));
     const rootClassList = document.documentElement.classList;
 
-    if (theme === "dark") rootClassList.add("dark-theme");
+    if (isDarkTheme) rootClassList.add(DARK_THEME);
   });
 }
