@@ -3,16 +3,14 @@ export function initThemeMode() {
   themeButtonEl.addEventListener("click", toggleTheme);
 
   const currentMode = window.localStorage.getItem("ThemeMode");
-  if (currentMode === undefined) {
-    window.localStorage.setItem("ThemeMode", "light");
-  } else if (currentMode === "dark") {
-    document.documentElement.classList.add("dark-theme");
-  }
+  window.localStorage.setItem("ThemeMode", currentMode || "light-theme");
+  document.documentElement.classList.add(currentMode);
 }
 
 function toggleTheme() {
   const currentMode = window.localStorage.getItem("ThemeMode");
-  const nextMode = currentMode === "light" ? "dark" : "light";
+  const nextMode = currentMode === "light-theme" ? "dark-theme" : "light-theme";
   window.localStorage.setItem("ThemeMode", nextMode);
-  document.documentElement.classList.toggle("dark-theme");
+  document.documentElement.classList.add(nextMode);
+  document.documentElement.classList.remove(currentMode);
 }

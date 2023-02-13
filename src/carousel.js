@@ -1,62 +1,113 @@
-/*  
-각 carousel의 index 정보를 담은 list
-[{
-    currentIndex: number,
-    maxIndex: number
- }, 
- ...]
-*/
-const carouselInfoList = [];
+function initCarousel(
+  mediasEl,
+  containerEl,
+  leftButtonEl,
+  rightButtonEl,
+  type
+) {
+  let currentIndex = 1;
+  let maxIndex = 2;
 
-function moveRight(mediasEL, postIndex) {
-  if (
-    carouselInfoList[postIndex].currentIndex <
-    carouselInfoList[postIndex].maxIndex
-  ) {
-    carouselInfoList[postIndex].currentIndex++;
+  init();
+
+  function init() {
+    const option = {
+      root: containerEl,
+      threshold: 1.0,
+    };
+    const leftObserver = new IntersectionObserver((entries) => {
+      toggleArrowButton(entries, leftButtonEl, "l");
+    }, option);
+    const rightObserver = new IntersectionObserver((entries) => {
+      toggleArrowButton(entries, rightButtonEl, "r");
+    }, option);
+    leftObserver.observe(mediasEl.firstElementChild);
+    rightObserver.observe(mediasEl.lastElementChild);
+    maxIndex = mediasEl.childElementCount - 2;
+
+    rightButtonEl.addEventListener("click", moveRight); // 클로저 느낌으로 동작하게
+    leftButtonEl.addEventListener("click", moveLeft);
   }
-  mediasEL.style.transform = `translateX(${
-    -100 * carouselInfoList[postIndex].currentIndex
-  }%)`;
+
+  function toggleArrowButton(entries, buttonEl) {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        buttonEl.classList.remove("carousel-button--active");
+      } else {
+        buttonEl.classList.add("carousel-button--active");
+      }
+    });
+  }
+
+  function moveRight() {
+    if (currentIndex < maxIndex) {
+      currentIndex++;
+    }
+    const maxWidth = type === "%" ? maxIndex * 100 : mediasEl.scrollWidth;
+    const width = type === "%" ? 100 : mediasEl.offsetWidth;
+    const curPosition = getCurPosition(mediasEl.style.transform);
+    const nextPosition = Math.min(curPosition + width, maxWidth - width);
+    mediasEl.style.transform = `translateX(${-nextPosition}${type})`;
+  }
+
+  function moveLeft() {
+    if (currentIndex > 0) {
+      currentIndex--;
+    }
+    const width = type === "%" ? 100 : mediasEl.offsetWidth;
+    const curPosition = getCurPosition(mediasEl.style.transform);
+    const nextPosition = Math.max(curPosition - width, 0);
+    mediasEl.style.transform = `translateX(${-nextPosition}${type})`;
+  }
 }
 
-function moveLeft(mediasEL, postIndex) {
-  if (carouselInfoList[postIndex].currentIndex > 0) {
-    carouselInfoList[postIndex].currentIndex--;
-  }
-  mediasEL.style.transform = `translateX(${
-    -100 * carouselInfoList[postIndex].currentIndex
-  }%)`;
+function getCurPosition(posString) {
+  const regex = /[^0-9]/g; // 숫자가 아닌 문자
+  return Number(posString.replace(regex, ""));
 }
 
-function initCarouselButton() {
+function initPostCarousel() {
+  const containerElList = document.querySelector(".post__content");
   const mediasElList = document.querySelectorAll(".post__medias");
   const carouselRightButtonList = document.querySelectorAll(
-    ".post__carousel-button--right"
+    ".post__carousel.carousel-buttons > .carousel-button.right"
   );
-  carouselRightButtonList.forEach((buttonEl, index) => {
-    buttonEl.addEventListener("click", () => {
-      moveRight(mediasElList[index], index);
-    });
-  });
-
+  console.log(carouselRightButtonList);
   const carouselLeftButtonList = document.querySelectorAll(
-    ".post__carousel-button--left"
+    ".post__carousel.carousel-buttons > .carousel-button.left"
   );
-  carouselLeftButtonList.forEach((buttonEl, index) => {
-    buttonEl.addEventListener("click", () => {
-      moveLeft(mediasElList[index], index);
-    });
-  });
-
-  mediasElList.forEach((mediasEl) => {
-    carouselInfoList.push({
-      currentIndex: 0,
-      maxIndex: mediasEl.childElementCount - 1,
-    });
+  mediasElList.forEach((mediasEl, index) => {
+    initCarousel(
+      mediasEl,
+      containerElList[index],
+      carouselLeftButtonList[index],
+      carouselRightButtonList[index],
+      "%"
+    );
   });
 }
 
-export function initCarousel() {
-  initCarouselButton();
+function initStoryCarousel() {
+  const containerElList = document.querySelector(".stories");
+  const mediasElList = document.querySelectorAll(".stories__content");
+  const carouselRightButtonList = document.querySelectorAll(
+    ".story__carousel.carousel-buttons > .carousel-button.right"
+  );
+  const carouselLeftButtonList = document.querySelectorAll(
+    ".story__carousel.carousel-buttons > .carousel-button.left"
+  );
+  mediasElList.forEach((mediasEl, index) => {
+    initCarousel(
+      mediasEl,
+      containerElList[index],
+      carouselLeftButtonList[index],
+      carouselRightButtonList[index],
+      "px"
+    );
+  });
+}
+
+export function setCarousel() {
+  initPostCarousel();
+  initStoryCarousel();
 }

@@ -16,7 +16,7 @@
           <a href="index.html" class="header__home">
             <img src="assets/icons/logo.svg" alt="logo" />
           </a>
-          <button class="header__theme-button" href="index.html">
+          <button class="header__theme-button">
             <img
               class="theme-button--dark"
               src="assets/icons/moon.svg"
@@ -31,7 +31,14 @@
         </div>
         <div class="header__search">
           <img src="assets/icons/search.svg" alt="search" />
-          <input type="text" placeholder="Search" />
+          <input type="text" list="suggestions" placeholder="Search" />
+          <datalist id="suggestions">
+            <option value="Kakao"></option>
+            <option value="How to learn Javascript"></option>
+            <option value="I don't know"></option>
+            <option value="wow wow"></option>
+            <option value="Hello world"></option>
+          </datalist>
         </div>
 
         <div class="header__buttons">
@@ -44,7 +51,7 @@
           <a href="#">
             <img src="assets/icons/messenger.svg" alt="messenger" />
           </a>
-          <button class="profile-button">
+          <a href="#" class="profile-button">
             <div class="profile-button__border"></div>
             <div class="profile-button__picture">
               <img
@@ -53,7 +60,7 @@
                 alt="user picture"
               />
             </div>
-          </button>
+          </a>
         </div>
       </nav>
     </header>
@@ -62,200 +69,24 @@
       <section class="content-container">
         <section class="content">
           <div class="stories">
+            <div class="story__carousel carousel-buttons">
+              <button class="carousel-button left">
+                <img
+                  src="assets/icons/arrow_left.svg"
+                  alt="carousel left button"
+                />
+              </button>
+              <button class="carousel-button right">
+                <img
+                  src="assets/icons/arrow_right.svg"
+                  alt="carousel right button"
+                />
+              </button>
+            </div>
             <ul class="stories__content"></ul>
           </div>
 
-          <ul class="posts">
-            <li class="post">
-              <article>
-                <header class="post__header">
-                  <div class="post__profile">
-                    <a href="" target="_blank" class="post__avatar">
-                      <img
-                        class="user-profile-img"
-                        src="assets/images/avatar.png"
-                        alt="user picture"
-                      />
-                    </a>
-                    <a href="" target="_blank" class="post__user">user</a>
-                  </div>
-
-                  <button class="post__more-options">
-                    <img src="assets/icons/more.svg" alt="more" />
-                  </button>
-                </header>
-
-                <div class="post__content">
-                  <div class="post__carousel-buttons">
-                    <button class="post__carousel-button--left">
-                      <img src="assets/icons/arrow_left.svg" />
-                    </button>
-                    <button class="post__carousel-button--right">
-                      <img src="assets/icons/arrow_right.svg" />
-                    </button>
-                  </div>
-                  <div class="post__medias">
-                    <img
-                      class="post__media"
-                      src="assets/images/picture.jpeg"
-                      alt="Post Content"
-                    />
-                    <img
-                      class="post__media"
-                      src="assets/images/picture.jpeg"
-                      alt="Post Content"
-                    />
-                    <img
-                      class="post__media"
-                      src="assets/images/picture.jpeg"
-                      alt="Post Content"
-                    />
-                  </div>
-                </div>
-
-                <footer class="post__footer">
-                  <div class="post__buttons">
-                    <button class="post__button">
-                      <img src="assets/icons/heart.svg" alt="heart" />
-                    </button>
-                    <button class="post__button">
-                      <img src="assets/icons/comment.svg" alt="comment" />
-                    </button>
-
-                    <div class="post__indicators"></div>
-
-                    <button class="post__button post__button--align-right">
-                      <img src="assets/icons/bookmark.svg" alt="bookmark" />
-                    </button>
-                  </div>
-
-                  <div class="post__infos">
-                    <div class="post__likes">
-                      <a href="#" class="post__likes-avatar">
-                        <img
-                          class="user-profile-img"
-                          src="assets/images/avatar.png"
-                          alt="user picture"
-                        />
-                      </a>
-
-                      <span
-                        >Liked by
-                        <a class="post__name--emphasis" href="#">user1</a> and
-                        <a href="#">33 others</a></span
-                      >
-                    </div>
-
-                    <div class="post__description">
-                      <span>
-                        <a class="post__name--emphasis" href="" target="_blank"
-                          >user</a
-                        >
-                        description
-                      </span>
-                    </div>
-
-                    <span class="post__date-time">30 minutes ago</span>
-                  </div>
-                </footer>
-              </article>
-            </li>
-
-            <li class="post">
-              <article>
-                <header class="post__header">
-                  <div class="post__profile">
-                    <a href="" target="_blank" class="post__avatar">
-                      <img
-                        class="user-profile-img"
-                        src="assets/images/avatar.png"
-                        alt="user picture"
-                      />
-                    </a>
-                    <a href="" target="_blank" class="post__user">user</a>
-                  </div>
-
-                  <button class="post__more-options">
-                    <img src="assets/icons/more.svg" alt="more" />
-                  </button>
-                </header>
-
-                <div class="post__content">
-                  <div class="post__carousel-buttons">
-                    <button class="post__carousel-button--left">
-                      <img src="assets/icons/arrow_left.svg" />
-                    </button>
-                    <button class="post__carousel-button--right">
-                      <img src="assets/icons/arrow_right.svg" />
-                    </button>
-                  </div>
-                  <div class="post__medias">
-                    <img
-                      class="post__media"
-                      src="assets/images/picture.jpeg"
-                      alt="Post Content"
-                    />
-                    <img
-                      class="post__media"
-                      src="assets/images/picture.jpeg"
-                      alt="Post Content"
-                    />
-                    <img
-                      class="post__media"
-                      src="assets/images/picture.jpeg"
-                      alt="Post Content"
-                    />
-                  </div>
-                </div>
-
-                <footer class="post__footer">
-                  <div class="post__buttons">
-                    <button class="post__button">
-                      <img src="assets/icons/heart.svg" alt="heart" />
-                    </button>
-                    <button class="post__button">
-                      <img src="assets/icons/comment.svg" alt="comment" />
-                    </button>
-
-                    <div class="post__indicators"></div>
-
-                    <button class="post__button post__button--align-right">
-                      <img src="assets/icons/bookmark.svg" alt="bookmark" />
-                    </button>
-                  </div>
-
-                  <div class="post__infos">
-                    <div class="post__likes">
-                      <a href="#" class="post__likes-avatar">
-                        <img
-                          class="user-profile-img"
-                          src="assets/images/avatar.png"
-                          alt="user picture"
-                        />
-                      </a>
-
-                      <span
-                        >Liked by
-                        <a class="post__name--emphasis" href="#">user1</a> and
-                        <a href="#">33 others</a></span
-                      >
-                    </div>
-
-                    <div class="post__description">
-                      <span>
-                        <a class="post__name--emphasis" href="" target="_blank"
-                          >user</a
-                        >
-                        description
-                      </span>
-                    </div>
-
-                    <span class="post__date-time">30 minutes ago</span>
-                  </div>
-                </footer>
-              </article>
-            </li>
-          </ul>
+          <ul class="posts"></ul>
         </section>
 
         <aside class="side-menu">
